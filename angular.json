@@ -26,7 +26,6 @@
             "styles": [
               "src/styles.css",
               "src/assets/login/vendor/bootstrap/css/bootstrap.min.css",
-              "src/assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
               "src/assets/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css",
               "src/assets/login/vendor/animate/animate.css",
               "src/assets/login/vendor/css-hamburgers/hamburgers.min.css",
@@ -35,7 +34,15 @@
               "src/assets/login/vendor/daterangepicker/daterangepicker.css",
               "src/assets/login/css/util.css",
               "src/assets/login/css/main.css",
-              "src/assets/login/m/fonts/iconic/css/material-design-iconic-font.min.css"
+              "src/assets/login/m/fonts/iconic/css/material-design-iconic-font.min.css",
+              "src/assets/template/vendors/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/template/vendors/font-awesome/css/font-awesome.min.css",
+              "src/assets/template/vendors/nprogress/nprogress.css",
+              "src/assets/template/vendors/iCheck/skins/flat/green.css",
+              "src/assets/template/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
+              "src/assets/template/vendors/jqvmap/dist/jqvmap.min.css",
+              "src/assets/template/vendors/bootstrap-daterangepicker/daterangepicker.css",
+              "src/assets/template/build/css/custom.min.css"
             ],
             "scripts": [
               "src/assets/login/m/js/main.js",
@@ -47,7 +54,31 @@
               "src/assets/login/vendor/daterangepicker/moment.min.js",
               "src/assets/login/vendor/daterangepicker/daterangepicker.js",
               "src/assets/login/vendor/countdowntime/countdowntime.js",
-              "src/assets/login/js/main.js"
+              "src/assets/login/js/main.js",
+              "src/assets/template/vendors/jquery/dist/jquery.min.js",
+              "src/assets/template/vendors/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/template/vendors/fastclick/lib/fastclick.js",
+              "src/assets/template/vendors/nprogress/nprogress.js",
+              "src/assets/template/vendors/Chart.js/dist/Chart.min.js",
+              "src/assets/template/vendors/gauge.js/dist/gauge.min.js",
+              "src/assets/template/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
+              "src/assets/template/vendors/iCheck/icheck.min.js",
+              "src/assets/template/vendors/skycons/skycons.js",
+              "src/assets/template/vendors/Flot/jquery.flot.js",
+              "src/assets/template/vendors/Flot/jquery.flot.pie.js",
+              "src/assets/template/vendors/Flot/jquery.flot.time.js",
+              "src/assets/template/vendors/Flot/jquery.flot.stack.js",
+              "src/assets/template/vendors/Flot/jquery.flot.resize.js",
+              "src/assets/template/vendors/flot.orderbars/js/jquery.flot.orderBars.js",
+              "src/assets/template/vendors/flot-spline/js/jquery.flot.spline.min.js",
+              "src/assets/template/vendors/flot.curvedlines/curvedLines.js",
+              "src/assets/template/vendors/DateJS/build/date.js",
+              "src/assets/template/vendors/jqvmap/dist/jquery.vmap.js",
+              "src/assets/template/vendors/jqvmap/dist/maps/jquery.vmap.world.js",
+              "src/assets/template/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js",
+              "src/assets/template/vendors/moment/min/moment.min.js",
+              "src/assets/template/vendors/bootstrap-daterangepicker/daterangepicker.js",
+              "src/assets/template/build/js/custom.min.js"
             ]
           },
           "configurations": {
