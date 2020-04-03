@@ -9,10 +9,12 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { GlobalComponent } from './global/global.component';
 import { MenuComponent } from './menu/menu.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AuthentificationService } from './service/authentification.service';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'global', component: GlobalComponent },
+  { path: 'global/:id', component: GlobalComponent },
   {
     path: '',
     redirectTo: '/login',
@@ -31,9 +33,11 @@ const appRoutes: Routes = [
     MenuComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(appRoutes)
+    BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule
   ],
-  providers: [],
+  providers: [
+    AuthentificationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

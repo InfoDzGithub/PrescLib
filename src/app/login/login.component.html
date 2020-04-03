@@ -11,23 +11,37 @@
                 </span>
 
             </div>
+            <div *ngIf="mode!=0">
+                <div class="alert alert-danger alert-dismissible fade show" *ngIf="errorMessage">
+                    <strong>Error!</strong> A problem has been occurred while submitting your data.
+                    {{mode}}
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                <div class="alert alert-primary" role="alert" *ngIf="!errorMessage">
+                    This is a primary alert—check it out!
+                </div>
+            </div>
 
             <form class="login100-form validate-form">
-                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                    <span class="label-input100">Email</span>
-                    <input class="input100" type="text" name="username" placeholder="Entrer email ">
+                <div class=" wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    <span class=" label-input100">Email</span>
+                    <input class="input100" type="text" name="username" [(ngModel)]="username"
+                        placeholder="Entrer email " required>
                     <span class="focus-input100"></span>
+
                 </div>
+
                 <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
 
 
                     <span class="label-input100">Mot de passe</span>
 
 
-                    <span class="btn-show-pass" id="but">
+                    <!--span class="btn-show-pass" id="but">
                         <i class="zmdi zmdi-eye"></i>
-                    </span>
-                    <input class="input100" type="password" name="pass" placeholder="Entrer mot de passe">
+                    </span-->
+                    <input class="input100" type="password" name="password" [(ngModel)]="password"
+                        placeholder="Entrer mot de passe">
 
 
                     <span class="focus-input100"></span>
@@ -50,7 +64,7 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
+                    <button class="login100-form-btn" (click)="onLogin()">
                         Connexion
                     </button>
 
