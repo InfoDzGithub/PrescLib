@@ -4,12 +4,14 @@ import { User } from '../model/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
 
   private url: string = "http://localhost:8080";
+
   constructor(private http: HttpClient) { }
 
 
@@ -41,9 +43,21 @@ export class AuthentificationService {
 
 
   login(email: string, password: string): Observable<User> {
-    return this.http.get<User>(this.url + "/login?email=" + email + "&password=" + password);
+    let uuser = this.http.get<User>(this.url + "/login?email=" + email + "&password=" + password);
+    if (uuser != null) {
+      sessionStorage.setItem('email', email);
+      return uuser;
+    }
   }
 
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('email')
+    console.log(!(user === null))
+    return !(user === null)
+  }
 
+  logOut() {
+    sessionStorage.removeItem('email')
+  }
 
 }
