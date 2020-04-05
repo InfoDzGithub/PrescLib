@@ -3,7 +3,7 @@ import { AuthentificationService } from '../service/authentification.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
 import { Router } from "@angular/router";
-import { FormGroup, FormControl } from '@angular/forms';
+
 
 //declare const validate: any;
 @Component({
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   user: User;
   errorMessage: boolean;
   mode: number = 0;
+  requiredFieldErr: boolean = false;
   constructor(private authService: AuthentificationService, private http: HttpClient, private router: Router) {
 
   }
@@ -26,20 +27,28 @@ export class LoginComponent implements OnInit {
 
 
   onLogin() {
+    if (this.username || this.password) {
+      this.authService.login(this.username, this.password)
+        .subscribe(data => {
+          this.user = data;
 
-    this.authService.login(this.username, this.password)
-      .subscribe(data => {
-        this.user = data;
 
-        this.router.navigate(["/global/" + this.user.id]);
-        this.errorMessage = false;
-        this.mode += 1;
+          this.errorMessage = false;
+          this.router.navigate(["/global/" + this.user.id]);
+          this.mode += 1;
 
-      }, err => {
-        this.router.navigate(["/login"]);
-        this.errorMessage = true;
-        this.mode += 1;
-      })
+        }, err => {
+
+          this.errorMessage = true;
+          this.router.navigate(["/login"]);
+          this.mode += 1;
+        })
+      this.requiredFieldErr = false;
+    }
+    else {
+      this.requiredFieldErr = true;
+      this.mode = 0;
+    }
 
 
   }

@@ -42,7 +42,8 @@
               "src/assets/template/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
               "src/assets/template/vendors/jqvmap/dist/jqvmap.min.css",
               "src/assets/template/vendors/bootstrap-daterangepicker/daterangepicker.css",
-              "src/assets/template/build/css/custom.min.css"
+              "src/assets/template/build/css/custom.min.css",
+              "src/assets/template/vendors/animate.css/animate.min.css"
             ],
             "scripts": [
               "src/assets/login/vendor/jquery/jquery-3.2.1.min.js",
