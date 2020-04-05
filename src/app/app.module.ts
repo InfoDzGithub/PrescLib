@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: 'global/:id', component: GlobalComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'logout', component: LogoutComponent },
-
+  { path: 'header', component: LogoutComponent },
   {
     path: '',
     redirectTo: '/login',
