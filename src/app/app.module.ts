@@ -13,9 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthentificationService } from './service/authentification.service';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { UtilisateurService } from './service/utilisateur.service';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'global/:id', component: GlobalComponent },
+  { path: 'global', component: GlobalComponent },///:id
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'header', component: LogoutComponent },
@@ -41,7 +42,7 @@ const appRoutes: Routes = [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule
   ],
   providers: [
-    AuthentificationService
+    AuthentificationService, UtilisateurService
   ],
   bootstrap: [AppComponent]
 })

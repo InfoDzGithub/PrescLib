@@ -8,22 +8,32 @@
             <li><a href="profile.html"><i class="fa fa-user"></i> Profile </a>
             </li>
 
-            <li><a><i class="fa fa-hospital-o"></i> Services <span class="fa fa-chevron-down"></span></a>
+            <li *ngIf="user.role=='admin'"><a><i class="fa fa-hospital-o"></i> Services <span
+                        class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="service.html">LIST</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-users"></i> Membres <span class="fa fa-chevron-down"></span></a>
+            <li *ngIf="user.role=='admin'"><a><i class="fa fa-users"></i> Membres <span
+                        class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="listUser.html">LIST</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-female"></i> Secrétaires <span class="fa fa-chevron-down"></span></a>
+            <li *ngIf="user.role=='infirmier'"><a><i class="fa fa-female"></i> Prescription <span
+                        class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="data.html">LIST</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-heartbeat"></i> Infirmier <span class="fa fa-chevron-down"></span></a>
+            <li *ngIf="user.role=='infirmier'"><a><i class="fa fa-heartbeat"></i> Dossier Soin <span
+                        class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="data.html">LIST</a></li>
+                </ul>
+            </li>
+            <li *ngIf="user.role=='secretaire'"><a><i class="fa fa-heartbeat"></i> Patient <span
+                        class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="data.html">LIST</a></li>
                 </ul>

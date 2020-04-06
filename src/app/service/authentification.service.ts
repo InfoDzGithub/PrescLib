@@ -4,17 +4,22 @@ import { User } from '../model/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
-
+import { BehaviorSubject, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
 
   private url: string = "http://localhost:8080";
-
+  uuserr: User;
+  private messageSource = new BehaviorSubject(null);
+  currentMessage = this.messageSource.asObservable();
+  //
   constructor(private http: HttpClient) { }
 
-
+  changeMessage(message: number) {
+    this.messageSource.next(message)
+  }
 
   /*
     searchBookByIsbn(isbn: string): Observable<Book>{
