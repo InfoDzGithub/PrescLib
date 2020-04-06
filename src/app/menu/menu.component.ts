@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilisateurService } from '../service/utilisateur.service';
+import { Router } from '@angular/router';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+  email: string;
+  constructor(private userService: UtilisateurService,
+    private router: Router) { }
 
-  ngOnInit(): void {
+
+  ngOnInit() {
+    this.email = sessionStorage.getItem('email');
+    console.log("email: " + this.email)
+    this.userService.searchUserByEmail(this.email)
+      .subscribe(data => this.user = data);
+    console.log("nomComplet: " + this.user.nom)
+
   }
 
 }

@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
 import { Router } from "@angular/router";
 
-
 //declare const validate: any;
 @Component({
   selector: 'app-login',
@@ -18,23 +17,26 @@ export class LoginComponent implements OnInit {
   errorMessage: boolean;
   mode: number = 0;
   requiredFieldErr: boolean = false;
+  message: number;
+
+
   constructor(private authService: AuthentificationService, private http: HttpClient, private router: Router) {
 
   }
 
   ngOnInit(): void {
-  }
 
+  }
+  // newMessage() { this.authService.changeMessage(11) }
 
   onLogin() {
     if (this.username || this.password) {
       this.authService.login(this.username, this.password)
         .subscribe(data => {
           this.user = data;
-
-
           this.errorMessage = false;
-          this.router.navigate(["/global/" + this.user.id]);
+          this.router.navigate(["/global/"])// + this.user.id]);
+          this.authService.changeMessage(this.user.id);
           this.mode += 1;
 
         }, err => {
@@ -52,4 +54,7 @@ export class LoginComponent implements OnInit {
 
 
   }
+
+
+
 }

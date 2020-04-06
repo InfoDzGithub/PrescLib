@@ -1,8 +1,0 @@
-<ul class="navbar-nav">
-
-
-    <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/header" class="nav-link">Add New Employee</a></li>
-    <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/forgetPassword" class="nav-link">Login</a></li>
-    <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">LogOut</a></li>
-
-</ul>

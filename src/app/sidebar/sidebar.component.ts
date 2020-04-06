@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../model/user';
+import { UtilisateurService } from '../service/utilisateur.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+  email: string;
+  constructor(private userService: UtilisateurService,
+    private router: Router) { }
 
-  ngOnInit(): void {
+
+  ngOnInit() {
+    this.email = sessionStorage.getItem('email');
+    console.log("email: " + this.email)
+    this.userService.searchUserByEmail(this.email)
+      .subscribe(data => this.user = data);
+    console.log("nomComplet: " + this.user.nom)
+
   }
-
 }
