@@ -14,12 +14,17 @@ import { FormsModule } from '@angular/forms';
 import { AuthentificationService } from './service/authentification.service';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { UtilisateurService } from './service/utilisateur.service';
+import { UsersComponent } from './Admin/users/users.component';
+import { AddUserComponent } from './Admin/add-user/add-user.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },///:id
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'header', component: LogoutComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'addUser', component: AddUserComponent },
+
   {
     path: '',
     redirectTo: '/login',
@@ -36,7 +41,9 @@ const appRoutes: Routes = [
     SidebarComponent,
     GlobalComponent,
     MenuComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    UsersComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule
