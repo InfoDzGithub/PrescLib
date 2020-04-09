@@ -8,11 +8,8 @@
             <li><a href="profile.html"><i class="fa fa-user"></i> Profile </a>
             </li>
 
-            <li *ngIf="user.role=='admin'"><a><i class="fa fa-hospital-o"></i> Services <span
-                        class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="service.html">LIST</a></li>
-                </ul>
+            <li *ngIf="user.role=='admin'"><a><i class="fa fa-hospital-o"></i> Services </a>
+
             </li>
             <li *ngIf="user.role=='admin'"><a><i class="fa fa-users"></i> Membres <span
                         class="fa fa-chevron-down"></span></a>

@@ -12,6 +12,7 @@ export class GlobalComponent implements OnInit {
   id: number;
   message: number;
   email: string;
+
   constructor(private route: ActivatedRoute,
     private router: Router, private userService: UtilisateurService) { }
 
@@ -21,6 +22,7 @@ export class GlobalComponent implements OnInit {
     //this.id = +this.route.snapshot.params['id'];
     //this.authService.currentMessage.subscribe(message => this.message = message)
     this.email = sessionStorage.getItem('email');
+
   }
 
 }

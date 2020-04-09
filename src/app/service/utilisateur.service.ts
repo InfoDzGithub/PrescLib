@@ -19,7 +19,6 @@ export class UtilisateurService {
 
   searchUserById(id: number): Observable<User> {
     return this.http.get<User>(this.url + "/users/" + id)
-
   }
 
   searchUserByEmail(email: string): Observable<User> {
@@ -27,5 +26,36 @@ export class UtilisateurService {
 
   }
 
+  getUsers(motClet: string, page: number, size: number) {
+    return this.http.get(this.url + "/searchUser?mc=" + motClet + "&page=" + page + "&size=" + size)
 
+  }
+  handleErreur(errorResponse: HttpErrorResponse) {
+    if (errorResponse.error instanceof ErrorEvent) {
+      console.log(errorResponse.error.message);
+    }
+    else {
+      console.log(errorResponse.error.message);
+
+    }
+
+    return throwError('There is a problem with the service.We are notified & working on it.Please try again later');
+  }
+  archive(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/archiveUser/${id}`, { responseType: 'text' });
+    /*return this.http.delete(this.url + "/archiveUser/" + id)
+      .pipe(
+        catchError(this.handleErreur));*/
+
+
+  }
+
+  enable(id: number): Observable<any> {
+    return this.http.get(`${this.url}/enableUser/${id}`, { responseType: 'text' });
+    /*return this.http.delete(this.url + "/archiveUser/" + id)
+      .pipe(
+        catchError(this.handleErreur));*/
+
+
+  }
 }

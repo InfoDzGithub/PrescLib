@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  user: User;
+  user: any;
   email: string;
   constructor(private userService: UtilisateurService,
     private router: Router) { }
