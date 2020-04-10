@@ -25,25 +25,42 @@ export class ForgetPasswordComponent implements OnInit {
         .subscribe(
           data => {
             // this.emailMessage = true;
-            this.errMsg = false;
+            //this.errMsg = false;
             // this.username='';
-            this.mode = 1;
+            //this.mode = 1;
+            this.checkEmailBox();
           },
           err => {
-            this.mode = 1;
-            this.errMsg = true;
+            // this.mode = 1;
+            // this.errMsg = true;
+            this.boiteDialoge("Il y a pas de compte PrescLib avec ce pseudo")
           })
-      this.emailCheckBox = false;
+      //this.emailCheckBox = false;
       //this.username = '';
     }
     else {
-      this.mode = 0;
-      this.emailCheckBox = true;
+      // this.mode = 0;
+      //this.emailCheckBox = true;
+      this.boiteDialoge("Remplissez le champ vide svp")
     }
     console.log(this.username);
     //  .subscribe(() => this.router.navigate(["/login"]));
 
     //this.router.navigate(["/login"]);
 
+  }
+
+
+  checkEmailBox() {
+
+    if (confirm("Vérifier votre email pour se connecter à PrescLip: ")) {
+      this.router.navigate(["/login"]);
+    }
+  }
+  boiteDialoge(message: string) {
+
+    if (confirm(message)) {
+
+    }
   }
 }

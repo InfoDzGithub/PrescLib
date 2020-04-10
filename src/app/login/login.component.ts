@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   // newMessage() { this.authService.changeMessage(11) }
 
   onLogin() {
-    if (this.username || this.password) {
+    if (this.username && this.password) {
       this.authService.login(this.username, this.password)
         .subscribe(data => {
           this.user = data;
@@ -48,13 +48,20 @@ export class LoginComponent implements OnInit {
       this.requiredFieldErr = false;
     }
     else {
-      this.requiredFieldErr = true;
-      this.mode = 0;
+      /* this.requiredFieldErr = true;
+       this.mode = 0;*/
+      this.emptyField();
     }
 
 
   }
 
+  emptyField() {
+
+    if (confirm("Remplissez les champs vide svp: ")) {
+      this.router.navigate(["/login"]);
+    }
+  }
 
 
 }

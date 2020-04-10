@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
   curentPage: number = 0;
   size: number = 5;
   pages: Array<number>;
+  valeur: number;
   constructor(private router: Router, private userService: UtilisateurService, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -41,7 +42,7 @@ export class UsersComponent implements OnInit {
     this.doSearch();
   }
 
-  stopUser(id: number) {
+  desableUser(id: number) {
     this.userService.archive(id)
       .subscribe(
         data => {
@@ -73,6 +74,20 @@ export class UsersComponent implements OnInit {
           console.log(err)
         })
 
+  }
+
+  enableConfirme(c: any) {
+    if (confirm("Vouliez vous activer: " + c.nom + " " + c.prenom)) {
+      this.enableUser(c.id);
+      this.doSearch();
+    }
+  }
+
+  deleteConfirme(c: any) {
+    if (confirm("Vouliez vous désativer:  " + c.nom + " " + c.prenom)) {
+      this.desableUser(c.id);
+      this.doSearch();
+    }
   }
 
 }
