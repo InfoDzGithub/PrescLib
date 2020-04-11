@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   curentPage: number = 0;
   size: number = 5;
   pages: Array<number>;
-  valeur: number;
+
   constructor(private router: Router, private userService: UtilisateurService, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -46,14 +46,13 @@ export class UsersComponent implements OnInit {
     this.userService.archive(id)
       .subscribe(
         data => {
-
-          console.log("delete" + data + "id" + id)
+          this.releaseAllHisFonctionality(id);
+          //console.log("delete" + data + "id" + id)
           this.doSearch();
 
         },
         err => {
-          // this.mode = 1;
-          //this.errMsg = true;
+
           console.log(err)
         })
 
@@ -84,10 +83,21 @@ export class UsersComponent implements OnInit {
   }
 
   deleteConfirme(c: any) {
-    if (confirm("Vouliez vous désativer:  " + c.nom + " " + c.prenom)) {
+    if (confirm("Cette action va détacher L'utilisateur:  " + c.nom + " " + c.prenom + " de tous les services y appartient")) {
       this.desableUser(c.id);
       this.doSearch();
     }
   }
+
+  releaseAllHisFonctionality(id: number) {
+    this.userService.releaseUserFromAllActifService(id)
+      .subscribe(data => {
+      }, err => {
+
+        console.log(err)
+      })
+
+  }
+
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user';
 import { UtilisateurService } from '../service/utilisateur.service';
 import { Router } from '@angular/router';
+import { UsersComponent } from '../Admin/users/users.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,6 +13,12 @@ export class SidebarComponent implements OnInit {
 
   user: any;
   email: string;
+
+  pageUser: any;
+  motCle: string = "";
+  curentPage: number = 0;
+  size: number = 5;
+  pages: Array<number>;
   constructor(private userService: UtilisateurService,
     private router: Router) { }
 
@@ -22,6 +29,21 @@ export class SidebarComponent implements OnInit {
     this.userService.searchUserByEmail(this.email)
       .subscribe(data => this.user = data);
     console.log("nomComplet: " + this.user.nom)
+
+  }
+
+  gotoUsers() {
+    this.router.navigate(["/users"]);
+    this.userService.getUsers(this.motCle, this.curentPage, this.size)
+      .subscribe(data => {
+        this.pageUser = data;
+        this.pages = new Array(this.pageUser.totalPages)
+
+
+      }, err => {
+
+        console.log(err)
+      })
 
   }
 }

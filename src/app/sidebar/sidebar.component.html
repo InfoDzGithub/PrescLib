@@ -11,7 +11,7 @@
             <li *ngIf="user.role=='admin'"><a><i class="fa fa-hospital-o"></i> Services </a>
 
             </li>
-            <li *ngIf="user.role=='admin'"><a><i class="fa fa-users"></i> Membres <span
+            <li *ngIf="user.role=='admin'" (click)="gotoUsers()"><a><i class="fa fa-users"></i> Membres <span
                         class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="listUser.html">LIST</a></li>

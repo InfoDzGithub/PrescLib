@@ -43,19 +43,14 @@ export class UtilisateurService {
   }
   archive(id: number): Observable<any> {
     return this.http.delete(`${this.url}/archiveUser/${id}`, { responseType: 'text' });
-    /*return this.http.delete(this.url + "/archiveUser/" + id)
-      .pipe(
-        catchError(this.handleErreur));*/
-
-
   }
 
   enable(id: number): Observable<any> {
     return this.http.get(`${this.url}/enableUser/${id}`, { responseType: 'text' });
-    /*return this.http.delete(this.url + "/archiveUser/" + id)
-      .pipe(
-        catchError(this.handleErreur));*/
+  }
 
+  releaseUserFromAllActifService(id: number) {
+    return this.http.get(this.url + "/releaseUserFromAllActifService/" + id)
 
   }
 }
