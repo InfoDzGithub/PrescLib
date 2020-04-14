@@ -82,7 +82,7 @@
                                                                 <!--class="previousUser"-->
                                                                 <td>{{c.nom}}</td>
                                                                 <td>{{c.prenom}}</td>
-                                                                <td>{{c.date_naissance}}</td>
+                                                                <td>{{ c.date_naissance | date }} </td>
                                                                 <td>{{c.email}}</td>
                                                                 <td>{{c.role}}</td>
                                                                 <td>
@@ -104,7 +104,7 @@
                                                             <tr *ngIf="c.etat">
                                                                 <td>{{c.nom}}</td>
                                                                 <td>{{c.prenom}}</td>
-                                                                <td>{{c.date_naissance}}</td>
+                                                                <td>{{ c.date_naissance | date }} </td>
                                                                 <td>{{c.email}}</td>
                                                                 <td>{{c.role}}</td>
                                                                 <td>

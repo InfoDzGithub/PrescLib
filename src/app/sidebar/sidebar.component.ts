@@ -11,7 +11,7 @@ import { UsersComponent } from '../Admin/users/users.component';
 })
 export class SidebarComponent implements OnInit {
 
-  user: any;
+  user: User = new User();
   email: string;
 
   pageUser: any;

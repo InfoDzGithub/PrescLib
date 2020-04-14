@@ -10,7 +10,7 @@ import { User } from '../model/user';
 })
 export class MenuComponent implements OnInit {
 
-  user: any;
+  user: User = new User();
   email: string;
   constructor(private userService: UtilisateurService,
     private router: Router) { }

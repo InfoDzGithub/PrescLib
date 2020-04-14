@@ -56,25 +56,27 @@
                                 <div class="x_content">
                                     <br />
                                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
-                                        novalidate>
+                                        novalidate [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
 
 
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="inputNom4">Nom</label>
-                                                <input type="text" class="form-control" id="inputNom" placeholder="Nom">
+                                                <input type="text" id="lastName" class="form-control"
+                                                    formControlName="lastName" placeholder="Nom" required>
+
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inputPrenom4">Prénom</label>
-                                                <input type="password" class="form-control" id="inputPassword4"
-                                                    placeholder="Password">
+                                                <input type="text" placeholder="Prenom" id="firstName"
+                                                    class="form-control" formControlName="firstName" required>
                                             </div>
                                         </div>
                                         <br>
                                         <div class="form-group">
                                             <label>Date naissance</label>
                                             <input type="date" name="bday" max="3000-12-31" min="1000-01-01"
-                                                class="form-control">
+                                                id="dateNaissance" class="form-control" formControlName="dateNaissance">
                                         </div>
                                         <br>
 
@@ -85,14 +87,14 @@
                                             <div class="col-md-6">
                                                 <div class="custom-control custom-radio  ">
                                                     <input type="radio" class="custom-control-input" id="customRadio"
-                                                        name="example" value="customEx">
+                                                        formControlName="sexe" name="example" value="male" checked>
                                                     <label class="custom-control-label" for="customRadio">Male</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="custom-control custom-radio ">
                                                     <input type="radio" class="custom-control-input" id="customRadio2"
-                                                        name="example" value="customEx" checked>
+                                                        formControlName="sexe" name="example" value="female">
                                                     <label class="custom-control-label" for="customRadio2">Female
                                                     </label>
                                                 </div>
@@ -104,14 +106,14 @@
 
                                         <div class="form-group">
                                             <label for="inputAddress">Address</label>
-                                            <input type="text" class="form-control" id="inputAddress"
+                                            <input type="text" id="adress" class="form-control" formControlName="adress"
                                                 placeholder="1234 Main St">
                                         </div>
                                         <br>
                                         <div class="form-group">
                                             <label for="inputAddress2">Telephone</label>
-                                            <input type="tel" class="form-control" id="example-tel-input"
-                                                value="1-(555)-555-5555">
+                                            <input type="tel" id="telephone" class="form-control"
+                                                formControlName="telephone" value="1-(555)-555-5555" required>
 
                                         </div>
                                         <br>
@@ -119,14 +121,15 @@
                                             <div class="form-group col-md-6">
 
                                                 <label for="inputAddress2">Email</label>
-                                                <input type="email" class="form-control" id="inputEmail4"
-                                                    placeholder="Email">
+                                                <input type="email" id="email" class="form-control"
+                                                    formControlName="email" placeholder="Email" required>
 
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inputState">Rôle</label>
-                                                <select id="inputState" class="form-control">
-                                                    <option selected>Choose...</option>
+                                                <select id="role" class="form-control" formControlName="role"
+                                                    placeholder="Role">
+
                                                     <option>ADMIN</option>
                                                     <option>MEDECIN</option>
                                                     <option>SECRETAIRE</option>
@@ -135,14 +138,14 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="form-group">
+                                        <!--div class="form-group">
                                             <label for="exampleInputFile">Photo</label>
-                                            <input type="file" class="form-control-file" id="exampleInputFile"
+                                            <input type="file" id="photo" class="form-control" formControlName="photo"
                                                 aria-describedby="fileHelp">
-                                            <!--small id="fileHelp" class="form-text text-muted">This is some placeholder
+                                            <small id="fileHelp" class="form-text text-muted">This is some placeholder
                                                 block-level help text for the above input. It's a bit lighter and easily
-                                                wraps to a new line.</small-->
-                                        </div>
+                                                wraps to a new line.</small>
+                                        </div-->
                                         <br>
 
 
@@ -151,8 +154,9 @@
                                         <div class="ln_solid"></div>
                                         <div class="item form-group">
                                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                                <button class="btn btn-default" type="button">Annulé</button>
-                                                <button class="btn btn-primary" type="reset">Validé</button>
+                                                <button class="btn btn-default" type="reset">Annulé</button>
+                                                <button class="btn btn-primary" type="submit"
+                                                    [disabled]="userForm.invalid">Validé</button>
                                             </div>
                                         </div>
                                     </form>

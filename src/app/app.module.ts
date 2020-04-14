@@ -10,12 +10,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { GlobalComponent } from './global/global.component';
 import { MenuComponent } from './menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthentificationService } from './service/authentification.service';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { UtilisateurService } from './service/utilisateur.service';
 import { UsersComponent } from './Admin/users/users.component';
 import { AddUserComponent } from './Admin/add-user/add-user.component';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },///:id
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
     AddUserComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule
+    BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule, ReactiveFormsModule
   ],
   providers: [
     AuthentificationService, UtilisateurService

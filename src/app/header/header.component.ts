@@ -11,7 +11,7 @@ import { User } from '../model/user';
 })
 export class HeaderComponent implements OnInit {
   // @Input() id: number;
-  user: any;
+  user: User = new User();
   email: string;
   constructor(public authService: AuthentificationService, private userService: UtilisateurService,
     private router: Router) { }

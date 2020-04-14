@@ -11,6 +11,7 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 export class UtilisateurService {
   private url: string = "http://localhost:8080";
 
+
   constructor(private http: HttpClient) { }
 
 
@@ -52,5 +53,9 @@ export class UtilisateurService {
   releaseUserFromAllActifService(id: number) {
     return this.http.get(this.url + "/releaseUserFromAllActifService/" + id)
 
+  }
+
+  addUser(user: User) {
+    return this.http.post(this.url + "/users", user);
   }
 }

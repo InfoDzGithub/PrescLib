@@ -9,6 +9,7 @@ export class User {
     sexe: string;
     telephone: string;
     photo: string;
+    type_user: string;
 
 
     constructor() { }
