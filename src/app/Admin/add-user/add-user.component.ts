@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
 import { User } from 'src/app/model/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { DepartementService } from 'src/app/service/departement.service';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -14,11 +15,39 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AddUserComponent implements OnInit {
   user: User;
   userForm: FormGroup;
-  constructor(private router: Router, private userService: UtilisateurService, private http: HttpClient, private formBuilder: FormBuilder) { }
+  myForm: FormGroup;
+  services: any;
+  userSaved: User;
+
+
+  constructor(private router: Router, private depService: DepartementService, private userService: UtilisateurService, private http: HttpClient, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
     this.initForm();
+    this.getServices();
+
+
+
   }
+  selected = [
+
+  ];
+
+  getServices() {
+    this.depService.getServices()
+      .subscribe(data => {
+        this.services = data;
+
+        console.log(this.services)
+
+
+      }, err => {
+
+        console.log(err)
+      })
+  }
+
 
   initForm() {
     this.userForm = this.formBuilder.group({
@@ -30,7 +59,10 @@ export class AddUserComponent implements OnInit {
       adress: ['', Validators.required],
       telephone: ['', [Validators.required, Validators.pattern("[0-9 ]{11}")]],
       //photo: ['', Validators.required],
-      sexe: ['', Validators.required]
+      sexe: ['', Validators.required],
+      //city: ['', Validators.required],
+      selected: ['', Validators.required]
+
 
 
     });
@@ -51,6 +83,9 @@ export class AddUserComponent implements OnInit {
     //this.user.photo = formValue['photo'];
     this.user.sexe = formValue['sexe'];
     this.user.adress = formValue['adress'];
+    console.log("les service selectionner" + formValue['selected'])
+    this.selected = formValue['selected'];
+
     if (formValue['role'] == "ADMIN") this.user.type_user = "ADM";
     else if (formValue['role'] == "MEDECIN") this.user.type_user = "MED";
     else if (formValue['role'] == "SECRETAIRE") this.user.type_user = "SCR";
@@ -59,19 +94,65 @@ export class AddUserComponent implements OnInit {
     this.userService.addUser(this.user)
       .subscribe(data => {
         //this.user = data;
+
         this.infoBox("L'utilisateur est ajouté avec succes");
+        this.findUserSaved(this.user.email)
       }, err => {
         this.infoBox("Desolé! utilisateur non ajouté");
 
       })
 
+
+
+
+
   }
+
 
   infoBox(message: string) {
 
     if (confirm(message)) {
       this.router.navigate(["/login"]);
     }
+  }
+
+  affectUserToService(idU: number, idS: number) {
+    this.depService.AffectUserToService(idU, idS)
+      .subscribe(data => {
+
+
+        console.log("termiiiiiiiiiiiiiiiiiiiii")
+
+
+      }, err => {
+
+        console.log(err)
+      })
+
+  }
+
+  findUserSaved(email: string) {
+
+    this.userService.searchUserByEmail(email)
+      .subscribe(data => {
+
+
+        this.userSaved = data;
+        console.log("user saved" + this.userSaved)
+        for (let index = 0; index < this.selected.length; index++) {
+          let service = this.selected[index];
+          console.log("id service" + service.id)
+          console.log("l'objet service" + service)
+          this.affectUserToService(this.userSaved.id, service.id)
+
+        }
+
+
+
+      }, err => {
+
+        console.log(err)
+      })
   }
 
 }

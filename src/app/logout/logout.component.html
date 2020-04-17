@@ -1,0 +1,7 @@
+<div style="display: flex; margin: 10px">
+    <label> List of user</label>
+
+    <ng-select [items]="items.content" bindLabel="nom" placeholder="Select item" appendTo="body" multiple="true"
+        [(ngModel)]="selected">
+    </ng-select>
+</div>

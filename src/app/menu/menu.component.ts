@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
     console.log("email: " + this.email)
     this.userService.searchUserByEmail(this.email)
       .subscribe(data => this.user = data);
-    console.log("nomComplet: " + this.user.nom)
+    // console.log("nomComplet: " + this.user.nom)
 
   }
 

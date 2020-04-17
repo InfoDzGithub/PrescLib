@@ -16,7 +16,11 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { UtilisateurService } from './service/utilisateur.service';
 import { UsersComponent } from './Admin/users/users.component';
 import { AddUserComponent } from './Admin/add-user/add-user.component';
-
+//import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+//import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown-angular7';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { DepartementService } from './service/departement.service';
+import { DetailUserComponent } from './Admin/detail-user/detail-user.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },///:id
@@ -25,6 +29,7 @@ const appRoutes: Routes = [
   { path: 'header', component: LogoutComponent },
   { path: 'users', component: UsersComponent },
   { path: 'addUser', component: AddUserComponent },
+  { path: 'detailUser', component: DetailUserComponent },
 
   {
     path: '',
@@ -44,13 +49,15 @@ const appRoutes: Routes = [
     MenuComponent,
     ForgetPasswordComponent,
     UsersComponent,
-    AddUserComponent
+    AddUserComponent,
+    DetailUserComponent
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule, ReactiveFormsModule
+    BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,
+    ReactiveFormsModule, NgSelectModule
   ],
   providers: [
-    AuthentificationService, UtilisateurService
+    AuthentificationService, UtilisateurService, DepartementService
   ],
   bootstrap: [AppComponent]
 })
