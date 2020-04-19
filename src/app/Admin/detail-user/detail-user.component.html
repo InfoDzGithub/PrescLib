@@ -1,1 +1,348 @@
-<p>detail-user works!</p>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>User Profile</h3>
+                        </div>
+
+                        <!--div class="title_right">
+                            <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div-->
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>User Report <small>Activity report</small></h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Settings 1</a>
+                                                <a class="dropdown-item" href="#">Settings 2</a>
+                                            </div>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="col-md-3 col-sm-3  profile_left">
+                                        <div class="profile_img">
+                                            <div id="crop-avatar" *ngIf="user?.sexe=='male'">
+                                                <!-- Current avatar -->
+
+
+
+                                                <img class="img-responsive avatar-view"
+                                                    src="../assets/template/images/userPicture.png" alt="Avatar"
+                                                    title="Change the avatar">
+                                            </div>
+                                            <div id="crop-avatar" *ngIf="user?.sexe=='female'">
+                                                <img class="img-responsive avatar-view"
+                                                    src="../assets/template/images/femmePic.png" alt="Avatar"
+                                                    title="Change the avatar">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <h6 id="blue"> Coordonnées personnelles</h6>
+
+
+                                        <ul class="list-unstyled user_data" id="blue">
+                                            <li>
+                                                <i class="fa fa-briefcase user-profile-icon" id="vert"></i>
+                                                &nbsp;{{user?.role}}
+                                            </li>
+                                            <li><i class="fa fa-phone user-profile-icon" id="vert"></i>
+                                                &nbsp; {{user?.telephone}}
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-envelope user-profile-icon" id="vert"></i>
+                                                &nbsp;{{user?.email}}
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-venus user-profile-icon" id="vert"></i> &nbsp;
+                                                {{user?.sexe}}
+                                            </li>
+                                        </ul>
+
+                                        <!--a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                                        <br /-->
+
+
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 ">
+                                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                                <li role="presentation" class="active"><a href="#tab_content1"
+                                                        id="home-tab" role="tab" data-toggle="tab"
+                                                        aria-expanded="true">Profile</a>
+                                                </li>
+
+                                                <li role="presentation" class=""><a href="#tab_content3" role="tab"
+                                                        id="profile-tab2" data-toggle="tab"
+                                                        aria-expanded="false">Historique</a>
+                                                </li>
+                                            </ul>
+                                            <div id="myTabContent" class="tab-content">
+                                                <div role="tabpanel" class="tab-pane active " id="tab_content1"
+                                                    aria-labelledby="home-tab">
+
+                                                    <!-- start recent activity -->
+                                                    <ul class="messages">
+                                                        <li>
+                                                            <img src="../assets/template/images/profile.png"
+                                                                class="avatar" alt="Avatar">
+
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">Nom et prénom</h4>
+                                                                <blockquote class="message">
+                                                                    {{user?.nom}} &nbsp; &nbsp; {{user?.prenom}}.
+                                                                </blockquote>
+                                                                <br />
+
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <img src="../assets/template/images/dateN.jpg"
+                                                                class="avatar" alt="Avatar">
+
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">Date de naissance</h4>
+                                                                <blockquote class="message">
+                                                                    {{user?.date_naissance | date }}
+                                                                </blockquote>
+                                                                <br />
+
+                                                            </div>
+                                                        </li>
+                                                        <!--li>
+                                                            <img src="../assets/template/images/tel.png" class="avatar"
+                                                                alt="Avatar">
+                                                            <div class="message_date">
+                                                                <h3 class="date text-error">21</h3>
+                                                                <p class="month">May</p>
+                                                            </div>
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">Téléphone</h4>
+                                                                <blockquote class="message">Raw denim you probably
+                                                                    haven't heard of them jean shorts Austin. Nesciunt
+                                                                    tofu stumptown aliqua butcher retro keffiyeh
+                                                                    dreamcatcher synth.</blockquote>
+                                                                <br />
+                                                                <p class="url">
+                                                                    <span class="fs1" aria-hidden="true"
+                                                                        data-icon=""></span>
+                                                                    <a href="#" data-original-title="">Download</a>
+                                                                </p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <img src="../assets/template/images/email.png"
+                                                                class="avatar" alt="Avatar">
+                                                            <div class="message_date">
+                                                                <h3 class="date text-info">24</h3>
+                                                                <p class="month">May</p>
+                                                            </div>
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">E-mail</h4>
+                                                                <blockquote class="message">Raw denim you probably
+                                                                    haven't heard of them jean shorts Austin. Nesciunt
+                                                                    tofu stumptown aliqua butcher retro keffiyeh
+                                                                    dreamcatcher synth.</blockquote>
+                                                                <br />
+                                                                <p class="url">
+                                                                    <span class="fs1 text-info" aria-hidden="true"
+                                                                        data-icon=""></span>
+                                                                    <a href="#"><i class="fa fa-paperclip"></i> User
+                                                                        Acceptance Test.doc </a>
+                                                                </p>
+                                                            </div>
+                                                        </li-->
+                                                        <li>
+                                                            <img src="../assets/template/images/adress.png"
+                                                                class="avatar" alt="Avatar">
+
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">Adresse</h4>
+                                                                <blockquote class="message">{{user?.adress}}.
+                                                                </blockquote>
+                                                                <br />
+
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <img src="../assets/template/images/role.png" class="avatar"
+                                                                alt="Avatar">
+
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">Profession</h4>
+                                                                <blockquote class="message">{{user?.role}}.</blockquote>
+                                                                <br />
+
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <img src="../assets/template/images/service.png"
+                                                                class="avatar" alt="Avatar">
+
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">Travaille au service</h4>
+                                                                <blockquote class="message"
+                                                                    *ngIf="servicesOccupied.length>0">
+                                                                    <p *ngIf="user?.sexe=='male'">Les service de soin
+                                                                        dont Mr: &nbsp;{{user?.nom}} &nbsp;
+                                                                        {{user?.prenom}} est attaché:
+                                                                    </p>
+                                                                    <p *ngIf="user?.sexe=='female'"> Les service de soin
+                                                                        dont Mme: &nbsp;{{user?.nom}} &nbsp;
+                                                                        {{user?.prenom}} est attachée:
+                                                                    </p>
+
+
+                                                                    <ul style="margin-left: 40px;"
+                                                                        *ngFor="let item of  servicesOccupied">
+                                                                        <li *ngIf="item.etat">
+                                                                            {{item.service.nom}} &nbsp; &nbsp;
+                                                                            &nbsp;&nbsp;
+
+                                                                            <span
+                                                                                class="badge badge-pill badge-secondary">{{item.dateE}}</span>
+                                                                        </li>
+
+                                                                    </ul>
+                                                                </blockquote>
+                                                                <blockquote class="message"
+                                                                    *ngIf="servicesOccupied.length==0">
+                                                                    <p *ngIf="user?.sexe=='male'"> Mr:
+                                                                        &nbsp;{{user?.nom}} &nbsp;
+                                                                        {{user?.prenom}} n'est pas encore attaché à
+                                                                        aucun service
+                                                                    </p>
+                                                                    <p *ngIf="user?.sexe=='female'"> Mme:
+                                                                        &nbsp;{{user?.nom}} &nbsp;
+                                                                        {{user?.prenom}} n'est pas encore attachée à
+                                                                        aucun service
+                                                                    </p>
+
+
+                                                                    <ul style="margin-left: 40px;"
+                                                                        *ngFor="let item of  servicesOccupied">
+                                                                        <li *ngIf="item.etat">
+                                                                            {{item.service.nom}} &nbsp; &nbsp;
+                                                                            &nbsp;&nbsp;
+
+                                                                            <span
+                                                                                class="badge badge-pill badge-secondary">{{item.dateE}}</span>
+                                                                        </li>
+
+                                                                    </ul>
+                                                                </blockquote>
+
+
+
+                                                                <br />
+                                                                <p class="url">
+                                                                    <span class="fs1" aria-hidden="true"
+                                                                        data-icon=""></span>
+                                                                    <a href="#" data-original-title="">Historique</a>
+                                                                </p>
+                                                            </div>
+                                                        </li>
+
+                                                    </ul>
+
+                                                    <!-- end recent activity -->
+
+                                                </div>
+
+                                                <div role="tabpanel" class="tab-pane fade" id="tab_content3"
+                                                    aria-labelledby="profile-tab">
+                                                    <br>
+
+                                                    <blockquote class="message"
+                                                        *ngIf="historiqueServicesOccupied.length==0" id="decaler">
+                                                        <p *ngIf="user?.sexe=='male'"> Mr: &nbsp;{{user?.nom}} &nbsp;
+                                                            {{user?.prenom}} n'a pas encore un
+                                                            historique.</p>
+                                                        <p *ngIf="user?.sexe=='female'"> Mme: &nbsp;{{user?.nom}} &nbsp;
+                                                            {{user?.prenom}} n'a pas encore un
+                                                            historique.</p>
+                                                    </blockquote>
+                                                    <br />
+                                                    <div *ngIf="historiqueServicesOccupied.length>0">
+                                                        <table class="table table-hover col-md-7" id="decaler">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">Service</th>
+                                                                    <th scope="col">Date entre</th>
+                                                                    <th scope="col">Date sortir</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <ng-container
+                                                                    *ngFor="let item of  historiqueServicesOccupied; let i=index">
+                                                                    <tr *ngIf="!item.etat">
+                                                                        <th scope="row">{{i}}</th>
+                                                                        <td>{{item.service.nom}}</td>
+                                                                        <td>{{item.dateE}}</td>
+                                                                        <td>{{item.dateS}}</td>
+                                                                    </tr>
+                                                                </ng-container>
+
+                                                            </tbody>
+                                                        </table>
+                                                        <nav aria-label="Page navigation example">
+                                                            <ul class="pagination justify-content-end">
+
+                                                                <li class="page-item"
+                                                                    *ngFor="let p of pages; let i=index"
+                                                                    [ngClass]="{'active':i==curentPage}">
+                                                                    <a class="page-link clickable"
+                                                                        (click)="gotoPage(i)">{{i}}</a></li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+
+            <!-- footer content -->
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

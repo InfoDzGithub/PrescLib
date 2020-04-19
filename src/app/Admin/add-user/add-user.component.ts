@@ -112,18 +112,14 @@ export class AddUserComponent implements OnInit {
   infoBox(message: string) {
 
     if (confirm(message)) {
-      this.router.navigate(["/login"]);
+      this.router.navigate(["/users"]);
     }
   }
 
   affectUserToService(idU: number, idS: number) {
     this.depService.AffectUserToService(idU, idS)
       .subscribe(data => {
-
-
-        console.log("termiiiiiiiiiiiiiiiiiiiii")
-
-
+        console.log("affecteeeeee")
       }, err => {
 
         console.log(err)

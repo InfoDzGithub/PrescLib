@@ -86,10 +86,11 @@
                                                                 <td>{{c.email}}</td>
                                                                 <td>{{c.role}}</td>
                                                                 <td>
-                                                                    <a href="#" class="btn btn-primary btn-xs"
-                                                                        title="view"><i class="fa fa-folder"></i> </a>
-                                                                    <a href="#" class="btn btn-info btn-xs"
-                                                                        title="edit"><i class="fa fa-pencil"></i> </a>
+                                                                    <a class="btn btn-primary btn-xs"
+                                                                        (click)="detailUser(c.id)" title="view"><i
+                                                                            class="fa fa-folder"></i> </a>
+                                                                    <!--a href="#" class="btn btn-info btn-xs"
+                                                                        title="edit"><i class="fa fa-pencil"></i> </a-->
 
                                                                     <button type="button" class="btn btn-warning btn-xs"
                                                                         title="enable" (click)="enableConfirme(c)">
@@ -108,10 +109,11 @@
                                                                 <td>{{c.email}}</td>
                                                                 <td>{{c.role}}</td>
                                                                 <td>
-                                                                    <a href="#" class="btn btn-primary btn-xs"
-                                                                        title="view"><i class="fa fa-folder"></i> </a>
-                                                                    <a href="#" class="btn btn-info btn-xs"
-                                                                        title="edit"><i class="fa fa-pencil"></i> </a>
+                                                                    <a class="btn btn-primary btn-xs"
+                                                                        (click)="detailUser(c.id)" title="view"><i
+                                                                            class="fa fa-folder"></i> </a>
+                                                                    <a class="btn btn-info btn-xs" title="edit"><i
+                                                                            class="fa fa-pencil"></i> </a>
                                                                     <a class="btn btn-danger btn-xs" title="delete"
                                                                         (click)="deleteConfirme(c)">
                                                                         <i class="fa fa-trash-o"></i>

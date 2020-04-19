@@ -58,4 +58,9 @@ export class UtilisateurService {
   addUser(user: User) {
     return this.http.post(this.url + "/users", user);
   }
+
+  servicesOccupiedByUser(idU: number, page: number, size: number) {
+    return this.http.get(this.url + "/servicesOccupiedByUser?id=" + idU + "&page=" + page + "&size=" + size)
+
+  }
 }

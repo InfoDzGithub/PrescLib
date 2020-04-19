@@ -23,13 +23,13 @@ import { DepartementService } from './service/departement.service';
 import { DetailUserComponent } from './Admin/detail-user/detail-user.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'global', component: GlobalComponent },///:id
+  { path: 'global', component: GlobalComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'header', component: LogoutComponent },
   { path: 'users', component: UsersComponent },
   { path: 'addUser', component: AddUserComponent },
-  { path: 'detailUser', component: DetailUserComponent },
+  { path: 'detailUser/:id', component: DetailUserComponent },
 
   {
     path: '',
