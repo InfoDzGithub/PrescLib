@@ -55,12 +55,24 @@ export class UtilisateurService {
 
   }
 
+  //release user idU from on service idS
+  releaseUserFromActifService(idU: number, idS: number) {
+    return this.http.get(this.url + "/releaseUser/" + idU + "/FromService/" + idS);
+
+
+  }
+
   addUser(user: User) {
     return this.http.post(this.url + "/users", user);
   }
 
   servicesOccupiedByUser(idU: number, page: number, size: number) {
     return this.http.get(this.url + "/servicesOccupiedByUser?id=" + idU + "&page=" + page + "&size=" + size)
+
+  }
+
+  historiqueServicesOccupiedByUser(idU: number, page: number, size: number) {
+    return this.http.get(this.url + "/historiqueServicesOccupiedByUser?id=" + idU + "&page=" + page + "&size=" + size)
 
   }
 }

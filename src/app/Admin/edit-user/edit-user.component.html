@@ -1,0 +1,307 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>Profile d'employer</h3>
+                        </div>
+
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Modifier les information <small>d'employer</small></h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Settings 1</a>
+                                                <a class="dropdown-item" href="#">Settings 2</a>
+                                            </div>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="col-md-3 col-sm-3  profile_left">
+                                        <div class="profile_img">
+                                            <div id="crop-avatar" *ngIf="user?.sexe=='male'">
+                                                <!-- Current avatar -->
+
+
+
+                                                <img class="img-responsive avatar-view"
+                                                    src="../assets/template/images/userPicture.png" alt="Avatar"
+                                                    title="Change the avatar">
+                                            </div>
+                                            <div id="crop-avatar" *ngIf="user?.sexe=='female'">
+                                                <img class="img-responsive avatar-view"
+                                                    src="../assets/template/images/femmePic.png" alt="Avatar"
+                                                    title="Change the avatar">
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<button
+                                            class="btn btn-success">Detaille</button>
+
+
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 ">
+                                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                                <li role="presentation" class="active"><a href="#tab_content1"
+                                                        id="home-tab" role="tab" data-toggle="tab"
+                                                        aria-expanded="true">Profile</a>
+                                                </li>
+
+                                                <li role="presentation" class=""><a href="#tab_content3" role="tab"
+                                                        id="profile-tab2" data-toggle="tab" aria-expanded="false">Les
+                                                        accés</a>
+                                                </li>
+                                            </ul>
+                                            <div id="myTabContent" class="tab-content">
+                                                <div role="tabpanel" class="tab-pane active " id="tab_content1"
+                                                    aria-labelledby="home-tab">
+
+                                                    <!-- start recent activity -->
+                                                    <hr>
+                                                    <form id="demo-form2" data-parsley-validate
+                                                        class="form-horizontal form-label-left" novalidate
+                                                        [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+
+                                                        <!--Nom & prenom-->
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputNom4">Nom</label>
+                                                                <input type="text" id="lastName" class="form-control"
+                                                                    formControlName="lastName" placeholder="Nom"
+                                                                    value="{{user?.nom}}" required>
+
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputPrenom4">Prénom</label>
+                                                                <input type="text" placeholder="Prenom" id="firstName"
+                                                                    class="form-control" formControlName="firstName"
+                                                                    value="{{user?.prenom}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <!--Datenaissance & adress-->
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label>Date naissance</label>
+                                                                <input type="date" name="bday" max="3000-12-31"
+                                                                    min="1000-01-01" id="dateNaissance"
+                                                                    class="form-control" formControlName="dateNaissance"
+                                                                    value="{{ user?.date_naissance | date:'yyyy-MM-dd' }}"
+                                                                    required>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputAddress">Address</label>
+                                                                <input type="text" id="adress" class="form-control"
+                                                                    formControlName="adress" value="{{user?.adress}}"
+                                                                    required>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                        <br>
+                                                        <!--tel & email-->
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputAddress2">Telephone</label>
+                                                                <input type="tel" id="telephone" class="form-control"
+                                                                    formControlName="telephone"
+                                                                    value="{{user?.telephone}}" required>
+
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+
+                                                                <label for="inputAddress2">Email</label>
+                                                                <input type="email" id="email" class="form-control"
+                                                                    formControlName="email" value="{{user?.email}}"
+                                                                    required>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        <br>
+                                                        <!--sexe-->
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+
+                                                                <label>Sexe</label><br>
+                                                                <div class="col-md-3">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" class="custom-control-input"
+                                                                            id="customRadio" formControlName="sexe"
+                                                                            name="sexe" value="male"
+                                                                            [checked]="user?.sexe=='male'">
+                                                                        <label class="custom-control-label"
+                                                                            for="customRadio">Male</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" class="custom-control-input"
+                                                                            id="customRadio2" formControlName="sexe"
+                                                                            name="sexe" value="female"
+                                                                            [checked]="user?.sexe=='female'">
+                                                                        <label class="custom-control-label"
+                                                                            for="customRadio2">Female
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputState">Rôle</label>
+                                                                <select id="role" class="form-control"
+                                                                    formControlName="role" required>
+                                                                    <option>{{user?.role}}</option>
+                                                                    <option>ADMIN</option>
+                                                                    <option>MEDECIN</option>
+                                                                    <option>SECRETAIRE</option>
+                                                                    <option>INFIRMIER</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <br><br><br><br><br>
+                                                        <div class="ln_solid"></div>
+                                                        <div class="item form-group col-md-6">
+
+                                                            <button class="btn btn-default" type="reset">Annulé</button>
+                                                            <button class="btn btn-primary" type="submit"
+                                                                [disabled]="userForm.invalid">Modifier</button>
+
+                                                        </div>
+
+                                                    </form>
+
+                                                    <!-- end recent activity -->
+
+                                                </div>
+
+                                                <div role="tabpanel" class="tab-pane fade" id="tab_content3"
+                                                    aria-labelledby="profile-tab">
+                                                    <br>
+                                                    <div id="decaler2">
+                                                        <!-- service-->
+                                                        <div class="row">
+
+                                                            <div class="form-group col-md-8">
+                                                                <label> Affecter au {{user?.nom}} de nouveaux
+                                                                    services</label><br>
+                                                                <!--div class="input-group "-->
+                                                                <ng-select [items]="services" bindLabel="nom"
+                                                                    placeholder="Select item" appendTo="body"
+                                                                    [(ngModel)]="acces" multiple="true" required>
+                                                                </ng-select>
+
+                                                                <button class="btn" id="add"
+                                                                    (click)="onAddNewAcess()"><i
+                                                                        class="fa fa-plus"></i></button>
+
+                                                                <!--/div-->
+
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="message_wrapper"
+                                                                *ngIf="servicesOccupied?.totalElements>0">
+
+                                                                <blockquote class="message" id="decaler">
+                                                                    <p>Changement des accés au services du soin: </p>
+                                                                </blockquote>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div *ngIf="servicesOccupied?.totalElements>0">
+                                                                <table class="table table-hover col-md-7" id="decaler">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Service</th>
+                                                                            <th scope="col">Date entre</th>
+                                                                            <th scope="col">Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <ng-container
+                                                                            *ngFor="let item of  servicesOccupied?.content; let i=index">
+                                                                            <tr *ngIf="item.etat">
+                                                                                <th scope="row">{{i}}</th>
+                                                                                <td>{{item.service.nom}}</td>
+                                                                                <td>{{item.dateE}}</td>
+                                                                                <td><a class="btn btn-danger btn-xs"
+                                                                                        title="delete"
+                                                                                        (click)="detachUserFromServiceConfirm(item)">
+                                                                                        <i class="fa fa-trash-o"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </ng-container>
+
+                                                                    </tbody>
+                                                                </table><br>
+
+                                                                <nav aria-label="Page navigation example" id="decalNav">
+                                                                    <ul class="pagination justify-content-end">
+
+                                                                        <li class="page-item"
+                                                                            *ngFor="let p of pages; let i=index"
+                                                                            [ngClass]="{'active':i==curentPage}">
+                                                                            <a class="page-link clickable"
+                                                                                (click)="gotoPage(i)">{{i}}</a></li>
+                                                                    </ul>
+                                                                </nav>
+                                                                <br />
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+
+            <!-- footer content -->
+
+            <app-footer></app-footer>
+
+        </div>
+    </div>
+</body>

@@ -103,4 +103,9 @@ export class UsersComponent implements OnInit {
 
     this.router.navigate(["/detailUser", id]);
   }
+
+  editUser(id: number) {
+
+    this.router.navigate(["/editUser", id]);
+  }
 }

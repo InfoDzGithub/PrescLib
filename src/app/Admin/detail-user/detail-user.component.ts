@@ -10,13 +10,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DetailUserComponent implements OnInit {
   user: any;
   id: number;
-  servicesOccupied = [];
-  historiqueServicesOccupied = [];
+  servicesOccupied: any;
+  historiqueServicesOccupied: any;
   service_user: any;
-  totalElement: number;
+  //totalElement: number;
   curentPage: number = 0;
+  curentPageH: number = 0;
   size: number = 3;
   pages: Array<number>;
+  pagesH: Array<number>;
   constructor(private route: ActivatedRoute, private router: Router, private userService: UtilisateurService) { }
 
   ngOnInit(): void {
@@ -25,24 +27,47 @@ export class DetailUserComponent implements OnInit {
       .subscribe(data => this.user = data);
     console.log("user de id" + this.id)
     this.getServicesOccupied();
+    this.getHistoriqueServicesOccupied();
 
   }
 
   getServicesOccupied() {
     this.userService.servicesOccupiedByUser(this.id, this.curentPage, this.size)
       .subscribe(data => {
-        this.service_user = data;
-        this.totalElement = this.service_user.numberOfElements;
-        this.pages = new Array(this.service_user.totalPages)
-        for (let i = 0; i < this.totalElement; i++) {
+        // this.service_user = data;
+        this.servicesOccupied = data;
+        // this.totalElement = this.service_user.totalElements;
+        this.pages = new Array(this.servicesOccupied.totalPages)
+        //this.servicesOccupied = [];
+        /* for (let i = 0; i < this.totalElement; i++) {
+          /*if (this.service_user.content[i].etat == true) {
+             this.servicesOccupied.push(this.service_user.content[i]);
+             console.log("true")
+           }
+           else if (this.service_user.content[i].etat == false) {
+             this.historiqueServicesOccupied.push(this.service_user.content[i]);
+             console.log("false")
+           }
+ 
+ 
+           //console.log("hist false" + this.historiqueServicesOccupied)
+ 
+         }*/
 
-          if (this.service_user.content[i].etat == true) { this.servicesOccupied.push(this.service_user.content[i]); }
-          else if (this.service_user.content[i].etat == false) { this.historiqueServicesOccupied.push(this.service_user.content[i]); }
 
-          console.log("obj user" + this.servicesOccupied)
-          console.log("obj etat" + this.servicesOccupied[i].etat)
 
-        }
+      }, err => {
+
+        console.log(err)
+      })
+  }
+  getHistoriqueServicesOccupied() {
+    this.userService.historiqueServicesOccupiedByUser(this.id, this.curentPageH, this.size)
+      .subscribe(data => {
+
+        this.historiqueServicesOccupied = data;
+
+        this.pagesH = new Array(this.historiqueServicesOccupied.totalPages)
 
 
 
@@ -54,17 +79,13 @@ export class DetailUserComponent implements OnInit {
 
   gotoPage(i: number) {
     this.curentPage = i;
-    this.userService.servicesOccupiedByUser(this.id, this.curentPage, this.size)
-      .subscribe(data => {
-        this.service_user = data;
-        this.totalElement = this.service_user.numberOfElements;
-        this.pages = new Array(this.service_user.totalPages)
+    this.getServicesOccupied();
 
+  }
 
+  gotoPageH(i: number) {
+    this.curentPageH = i;
+    this.getHistoriqueServicesOccupied();
 
-      }, err => {
-
-        console.log(err)
-      })
   }
 }

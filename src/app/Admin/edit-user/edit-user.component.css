@@ -1,0 +1,30 @@
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+
+  #decaler{
+    margin-left: 40px;
+}
+#decaler2{
+  margin-left: 100px;
+}
+.clickable
+{
+    cursor: pointer;
+}
+#decalNav{
+    /*margin-right: 250px;*/
+    margin-top: 190px;
+
+}
+#add{
+  margin-left: 430px;
+  /*margin-bottom: -100px;*/
+  margin-top: -37px;
+  font-size: 27px;
+  color: #2A3F54;
+}

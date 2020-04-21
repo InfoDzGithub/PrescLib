@@ -21,6 +21,7 @@ import { AddUserComponent } from './Admin/add-user/add-user.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DepartementService } from './service/departement.service';
 import { DetailUserComponent } from './Admin/detail-user/detail-user.component';
+import { EditUserComponent } from './Admin/edit-user/edit-user.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'addUser', component: AddUserComponent },
   { path: 'detailUser/:id', component: DetailUserComponent },
+  { path: 'editUser/:id', component: EditUserComponent },
 
   {
     path: '',
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     ForgetPasswordComponent,
     UsersComponent,
     AddUserComponent,
-    DetailUserComponent
+    DetailUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

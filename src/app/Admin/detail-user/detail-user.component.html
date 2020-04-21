@@ -9,7 +9,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>User Profile</h3>
+                            <h3>Profile d'employer</h3>
                         </div>
 
                         <!--div class="title_right">
@@ -30,7 +30,7 @@
                         <div class="col-md-12 col-sm-12 ">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>User Report <small>Activity report</small></h2>
+                                    <h2>Rapport <small>sur l'employer</small></h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -212,7 +212,7 @@
                                                             <div class="message_wrapper">
                                                                 <h4 class="heading">Travaille au service</h4>
                                                                 <blockquote class="message"
-                                                                    *ngIf="servicesOccupied.length>0">
+                                                                    *ngIf="servicesOccupied?.totalElements>0; else showExcuse">
                                                                     <p *ngIf="user?.sexe=='male'">Les service de soin
                                                                         dont Mr: &nbsp;{{user?.nom}} &nbsp;
                                                                         {{user?.prenom}} est attaché:
@@ -224,7 +224,7 @@
 
 
                                                                     <ul style="margin-left: 40px;"
-                                                                        *ngFor="let item of  servicesOccupied">
+                                                                        *ngFor="let item of  servicesOccupied?.content">
                                                                         <li *ngIf="item.etat">
                                                                             {{item.service.nom}} &nbsp; &nbsp;
                                                                             &nbsp;&nbsp;
@@ -234,42 +234,37 @@
                                                                         </li>
 
                                                                     </ul>
+                                                                    <nav aria-label="Page navigation example">
+                                                                        <ul class="pagination justify-content-end">
+
+                                                                            <li class="page-item"
+                                                                                *ngFor="let p of pages; let i=index"
+                                                                                [ngClass]="{'active':i==curentPage}">
+                                                                                <a class="page-link clickable"
+                                                                                    (click)="gotoPage(i)">{{i}}</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </nav>
                                                                 </blockquote>
-                                                                <blockquote class="message"
-                                                                    *ngIf="servicesOccupied.length==0">
-                                                                    <p *ngIf="user?.sexe=='male'"> Mr:
-                                                                        &nbsp;{{user?.nom}} &nbsp;
-                                                                        {{user?.prenom}} n'est pas encore attaché à
-                                                                        aucun service
-                                                                    </p>
-                                                                    <p *ngIf="user?.sexe=='female'"> Mme:
-                                                                        &nbsp;{{user?.nom}} &nbsp;
-                                                                        {{user?.prenom}} n'est pas encore attachée à
-                                                                        aucun service
-                                                                    </p>
+                                                                <ng-template #showExcuse>
+                                                                    <blockquote class="message">
+                                                                        <!-- *ngIf="servicesOccupied.totalElements==0"-->
+                                                                        <p *ngIf="user?.sexe=='male'"> Mr:
+                                                                            &nbsp;{{user?.nom}} &nbsp;
+                                                                            {{user?.prenom}} n'est pas encore attaché à
+                                                                            aucun service
+                                                                        </p>
+                                                                        <p *ngIf="user?.sexe=='female'"> Mme:
+                                                                            &nbsp;{{user?.nom}} &nbsp;
+                                                                            {{user?.prenom}} n'est pas encore attachée à
+                                                                            aucun service
+                                                                        </p>
 
-
-                                                                    <ul style="margin-left: 40px;"
-                                                                        *ngFor="let item of  servicesOccupied">
-                                                                        <li *ngIf="item.etat">
-                                                                            {{item.service.nom}} &nbsp; &nbsp;
-                                                                            &nbsp;&nbsp;
-
-                                                                            <span
-                                                                                class="badge badge-pill badge-secondary">{{item.dateE}}</span>
-                                                                        </li>
-
-                                                                    </ul>
-                                                                </blockquote>
+                                                                    </blockquote>
+                                                                </ng-template>
 
 
 
-                                                                <br />
-                                                                <p class="url">
-                                                                    <span class="fs1" aria-hidden="true"
-                                                                        data-icon=""></span>
-                                                                    <a href="#" data-original-title="">Historique</a>
-                                                                </p>
                                                             </div>
                                                         </li>
 
@@ -283,17 +278,8 @@
                                                     aria-labelledby="profile-tab">
                                                     <br>
 
-                                                    <blockquote class="message"
-                                                        *ngIf="historiqueServicesOccupied.length==0" id="decaler">
-                                                        <p *ngIf="user?.sexe=='male'"> Mr: &nbsp;{{user?.nom}} &nbsp;
-                                                            {{user?.prenom}} n'a pas encore un
-                                                            historique.</p>
-                                                        <p *ngIf="user?.sexe=='female'"> Mme: &nbsp;{{user?.nom}} &nbsp;
-                                                            {{user?.prenom}} n'a pas encore un
-                                                            historique.</p>
-                                                    </blockquote>
-                                                    <br />
-                                                    <div *ngIf="historiqueServicesOccupied.length>0">
+                                                    <div
+                                                        *ngIf="historiqueServicesOccupied?.totalElements>0; else showHistorique">
                                                         <table class="table table-hover col-md-7" id="decaler">
                                                             <thead>
                                                                 <tr>
@@ -305,8 +291,8 @@
                                                             </thead>
                                                             <tbody>
                                                                 <ng-container
-                                                                    *ngFor="let item of  historiqueServicesOccupied; let i=index">
-                                                                    <tr *ngIf="!item.etat">
+                                                                    *ngFor="let item of  historiqueServicesOccupied?.content; let i=index">
+                                                                    <tr>
                                                                         <th scope="row">{{i}}</th>
                                                                         <td>{{item.service.nom}}</td>
                                                                         <td>{{item.dateE}}</td>
@@ -315,18 +301,30 @@
                                                                 </ng-container>
 
                                                             </tbody>
-                                                        </table>
-                                                        <nav aria-label="Page navigation example">
+                                                        </table><br>
+                                                        <nav aria-label="Page navigation example" id="decalNav">
                                                             <ul class="pagination justify-content-end">
 
                                                                 <li class="page-item"
-                                                                    *ngFor="let p of pages; let i=index"
-                                                                    [ngClass]="{'active':i==curentPage}">
+                                                                    *ngFor="let p of pagesH; let i=index"
+                                                                    [ngClass]="{'active':i==curentPageH}">
                                                                     <a class="page-link clickable"
-                                                                        (click)="gotoPage(i)">{{i}}</a></li>
+                                                                        (click)="gotoPageH(i)">{{i}}</a></li>
                                                             </ul>
                                                         </nav>
                                                     </div>
+                                                    <ng-template #showHistorique>
+                                                        <blockquote class="message" id="decaler">
+                                                            <p *ngIf="user?.sexe=='male'"> Mr: &nbsp;{{user?.nom}}
+                                                                &nbsp;
+                                                                {{user?.prenom}} n'a pas encore un
+                                                                historique.</p>
+                                                            <p *ngIf="user?.sexe=='female'"> Mme: &nbsp;{{user?.nom}}
+                                                                &nbsp;
+                                                                {{user?.prenom}} n'a pas encore un
+                                                                historique.</p>
+                                                        </blockquote>
+                                                    </ng-template>
                                                 </div>
                                             </div>
                                         </div>
