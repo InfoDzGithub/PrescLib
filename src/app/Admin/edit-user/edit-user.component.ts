@@ -71,63 +71,49 @@ export class EditUserComponent implements OnInit {
     });
   }
 
-  onSubmitForm() { }
+  onSubmitForm() {
+    const formValue = this.userForm.value;
 
-  /*getServicesOccupied() {
-    this.userService.servicesOccupiedByUser(this.id, this.curentPage, this.size)
+    this.user = new User();
+    this.user.nom = formValue['lastName'];
+    this.user.prenom = formValue['firstName'];
+    this.user.email = formValue['email'];
+    this.user.date_naissance = formValue['dateNaissance'];
+    this.user.role = formValue['role'];
+    // this.user.type_user = formValue['role'];
+    this.user.telephone = formValue['telephone'];
+    //this.user.photo = formValue['photo'];
+    this.user.sexe = formValue['sexe'];
+    this.user.adress = formValue['adress'];
+
+    if (formValue['role'] == "ADMIN") this.user.type_user = "ADM";
+    else if (formValue['role'] == "MEDECIN") this.user.type_user = "MED";
+    else if (formValue['role'] == "SECRETAIRE") this.user.type_user = "SCR";
+    else if (formValue['role'] == "INFIRMIER") this.user.type_user = "INF";
+
+    this.userService.editUser(this.user, this.id)
       .subscribe(data => {
-        this.service_user = data;
-        this.totalElement = this.service_user.numberOfElements;
-        this.pages = new Array(this.service_user.totalPages)
-        this.selected = [];
-        for (let i = 0; i < this.totalElement; i++) {
-
-          if (this.service_user.content[i].etat == true) {
-            this.selected.push(this.service_user.content[i]);
-            console.log("s" + this.selected)
-
-
-          }
-
-
-
-        }
-
-
+        this.infoBox("L'utilisateur a était modifier avec succes");
 
       }, err => {
+        this.infoBox("Desolé! utilisateur n' a pas était modifier");
 
-        console.log(err)
       })
-  }*/
 
-  /*gotoPage(i: number) {
-    this.curentPage = i;
-    this.getServicesOccupied();
-    /* this.userService.servicesOccupiedByUser(this.id, this.curentPage, this.size)
-       .subscribe(data => {
-         this.service_user = data;
-         this.totalElement = this.service_user.totalElements;
-         this.pages = new Array(this.service_user.totalPages)
-         //this.selected = [];
-         for (let i = 0; i < this.totalElement; i++) {
- 
-           if (this.service_user.content[i].etat == true) {
-             this.selected.push(this.service_user.content[i]);
-             console.log("s" + this.selected)
- 
- 
-           }
- 
- 
- 
-         }
- 
-       }, err => {
- 
-         console.log(err)
-       })
-  }*/
+  }
+
+  infoBox(message: string) {
+
+    if (confirm(message)) {
+      this.router.navigate(["/users"]);
+    }
+  }
+
+
+  detailUser(id: number) {
+
+    this.router.navigate(["/detailUser", id]);
+  }
 
   gotoPage(i: number) {
     this.curentPage = i;

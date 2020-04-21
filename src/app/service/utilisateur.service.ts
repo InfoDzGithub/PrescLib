@@ -66,6 +66,10 @@ export class UtilisateurService {
     return this.http.post(this.url + "/users", user);
   }
 
+  editUser(user: User, id: number) {
+    return this.http.put(this.url + "/users/" + id, user);
+  }
+
   servicesOccupiedByUser(idU: number, page: number, size: number) {
     return this.http.get(this.url + "/servicesOccupiedByUser?id=" + idU + "&page=" + page + "&size=" + size)
 

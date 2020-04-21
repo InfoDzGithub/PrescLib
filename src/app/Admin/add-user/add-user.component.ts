@@ -95,10 +95,10 @@ export class AddUserComponent implements OnInit {
       .subscribe(data => {
         //this.user = data;
 
-        this.infoBox("L'utilisateur est ajouté avec succes");
+        this.infoBox("L'utilisateur a était ajouté avec succes");
         this.findUserSaved(this.user.email)
       }, err => {
-        this.infoBox("Desolé! utilisateur non ajouté");
+        this.infoBox("Desolé! utilisateur n'a pas était ajouté");
 
       })
 
