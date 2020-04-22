@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  user: any;
+  user: User;
   id: number;
   acces: any;
   //service_user: any;
@@ -24,9 +24,12 @@ export class EditUserComponent implements OnInit {
   userForm: FormGroup;
   services: any;
   //selected = [];
+  email: string;
+  ownerAccount: User;
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private depService: DepartementService, private router: Router, private userService: UtilisateurService) { }
 
   ngOnInit(): void {
+    this.user = new User();
     this.id = this.route.snapshot.params['id'];
     this.userService.searchUserById(this.id)
       .subscribe(data => this.user = data);
@@ -34,6 +37,17 @@ export class EditUserComponent implements OnInit {
     this.getServices();
     this.getServicesOccupied();
 
+    this.getAccountOwner();
+
+
+
+
+  }
+
+  getAccountOwner() {
+    this.email = sessionStorage.getItem('email');
+    this.userService.searchUserByEmail(this.email)
+      .subscribe(data => this.ownerAccount = data);
 
   }
 
@@ -58,38 +72,37 @@ export class EditUserComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      dateNaissance: ['', Validators.required],
+      sexe: [''],
       role: ['', Validators.required],
+
       adress: ['', Validators.required],
       telephone: ['', [Validators.required, Validators.pattern("[0-9 ]{11}")]],
 
-      sexe: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      dateNaissance: ['', Validators.required]
+
 
 
 
     });
   }
 
+
+
+
   onSubmitForm() {
     const formValue = this.userForm.value;
 
-    this.user = new User();
     this.user.nom = formValue['lastName'];
     this.user.prenom = formValue['firstName'];
+    this.user.role = formValue['role'];
+
+    this.user.telephone = formValue['telephone'];
+    this.user.adress = formValue['adress'];
     this.user.email = formValue['email'];
     this.user.date_naissance = formValue['dateNaissance'];
-    this.user.role = formValue['role'];
-    // this.user.type_user = formValue['role'];
-    this.user.telephone = formValue['telephone'];
-    //this.user.photo = formValue['photo'];
     this.user.sexe = formValue['sexe'];
-    this.user.adress = formValue['adress'];
 
-    if (formValue['role'] == "ADMIN") this.user.type_user = "ADM";
-    else if (formValue['role'] == "MEDECIN") this.user.type_user = "MED";
-    else if (formValue['role'] == "SECRETAIRE") this.user.type_user = "SCR";
-    else if (formValue['role'] == "INFIRMIER") this.user.type_user = "INF";
 
     this.userService.editUser(this.user, this.id)
       .subscribe(data => {

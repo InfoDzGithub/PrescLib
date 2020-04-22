@@ -71,8 +71,9 @@
                                                         aria-expanded="true">Profile</a>
                                                 </li>
 
-                                                <li role="presentation" class=""><a href="#tab_content3" role="tab"
-                                                        id="profile-tab2" data-toggle="tab" aria-expanded="false">Les
+                                                <li role="presentation" class="" *ngIf="ownerAccount?.role=='admin'"><a
+                                                        href="#tab_content3" role="tab" id="profile-tab2"
+                                                        data-toggle="tab" aria-expanded="false">Les
                                                         accés</a>
                                                 </li>
                                             </ul>
@@ -92,14 +93,14 @@
                                                                 <label for="inputNom4">Nom</label>
                                                                 <input type="text" id="lastName" class="form-control"
                                                                     formControlName="lastName" placeholder="Nom"
-                                                                    value="{{user?.nom}}" required>
+                                                                    [(ngModel)]="user.nom" required>
 
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label for="inputPrenom4">Prénom</label>
                                                                 <input type="text" placeholder="Prenom" id="firstName"
                                                                     class="form-control" formControlName="firstName"
-                                                                    value="{{user?.prenom}}" required>
+                                                                    [(ngModel)]="user.prenom" required>
                                                             </div>
                                                         </div>
                                                         <br>
@@ -110,13 +111,14 @@
                                                                 <input type="date" name="bday" max="3000-12-31"
                                                                     min="1000-01-01" id="dateNaissance"
                                                                     class="form-control" formControlName="dateNaissance"
-                                                                    value="{{ user?.date_naissance | date:'yyyy-MM-dd' }}"
-                                                                    required>
+                                                                    [(ngModel)]="user.date_naissance" required>
+                                                                <!-- value="{{ user?.date_naissance | date:'yyyy-MM-dd' }}"-->
+
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label for="inputAddress">Address</label>
                                                                 <input type="text" id="adress" class="form-control"
-                                                                    formControlName="adress" value="{{user?.adress}}"
+                                                                    formControlName="adress" [(ngModel)]="user.adress"
                                                                     required>
                                                             </div>
 
@@ -130,14 +132,14 @@
                                                                 <label for="inputAddress2">Telephone</label>
                                                                 <input type="tel" id="telephone" class="form-control"
                                                                     formControlName="telephone"
-                                                                    value="{{user?.telephone}}" required>
+                                                                    [(ngModel)]="user.telephone" required>
 
                                                             </div>
                                                             <div class="form-group col-md-6">
 
                                                                 <label for="inputAddress2">Email</label>
                                                                 <input type="email" id="email" class="form-control"
-                                                                    formControlName="email" value="{{user?.email}}"
+                                                                    formControlName="email" [(ngModel)]="user.email"
                                                                     required>
 
                                                             </div>
@@ -145,7 +147,7 @@
 
                                                         </div>
                                                         <br>
-                                                        <!--sexe-->
+                                                        <!--sexe & role-->
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">
 
@@ -155,7 +157,7 @@
                                                                         <input type="radio" class="custom-control-input"
                                                                             id="customRadio" formControlName="sexe"
                                                                             name="sexe" value="male"
-                                                                            [checked]="user?.sexe=='male'">
+                                                                            [ngModel]="user.sexe">
                                                                         <label class="custom-control-label"
                                                                             for="customRadio">Male</label>
                                                                     </div>
@@ -165,7 +167,7 @@
                                                                         <input type="radio" class="custom-control-input"
                                                                             id="customRadio2" formControlName="sexe"
                                                                             name="sexe" value="female"
-                                                                            [checked]="user?.sexe=='female'">
+                                                                            [ngModel]="user.sexe">
                                                                         <label class="custom-control-label"
                                                                             for="customRadio2">Female
                                                                         </label>
@@ -176,12 +178,26 @@
                                                             <div class="form-group col-md-6">
                                                                 <label for="inputState">Rôle</label>
                                                                 <select id="role" class="form-control"
-                                                                    formControlName="role" required>
-                                                                    <option>{{user?.role}}</option>
-                                                                    <option>ADMIN</option>
-                                                                    <option>MEDECIN</option>
-                                                                    <option>SECRETAIRE</option>
-                                                                    <option>INFIRMIER</option>
+                                                                    formControlName="role" [(ngModel)]="user.role"
+                                                                    required>
+
+                                                                    <!--option value="admin"
+                                                                        [selected]="'admin' == user.role">admin
+                                                                    </option>
+                                                                    <option value="medecin"
+                                                                        [selected]="'medecin' == user.role">medecin
+                                                                    </option>
+                                                                    <option value="secretaire"
+                                                                        [selected]="'secretaire' == user.role">
+                                                                        secretaire</option>
+                                                                    <option value="infirmier"
+                                                                        [selected]="'infirmier' == user.role">infirmier
+                                                                    </option-->
+
+                                                                    <option value="infirmier">infirmier</option>
+                                                                    <option value="admin">admin</option>
+                                                                    <option value="secretaire">secretaire</option>
+                                                                    <option value="medecin">medecin</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -204,7 +220,7 @@
                                                 </div>
 
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content3"
-                                                    aria-labelledby="profile-tab">
+                                                    aria-labelledby="profile-tab" *ngIf="ownerAccount?.role=='admin'">
                                                     <br>
                                                     <div id="decaler2">
                                                         <!-- service-->

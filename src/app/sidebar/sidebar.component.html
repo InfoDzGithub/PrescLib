@@ -5,7 +5,7 @@
         <ul class="nav side-menu">
             <li class="active"><a href="admin.html"><i class="fa fa-home"></i> Home </a>
             </li>
-            <li><a href="profile.html"><i class="fa fa-user"></i> Profile </a>
+            <li><a (click)="profileUser(user.id)"><i class="fa fa-user"></i> Profile </a>
             </li>
 
             <li *ngIf="user.role=='admin'"><a><i class="fa fa-hospital-o"></i> Services </a>
@@ -35,7 +35,7 @@
                     <li><a href="data.html">LIST</a></li>
                 </ul>
             </li>
-            <li><a href="profile.html"><i class="fa fa-cogs"></i> Paramètre </a>
+            <li><a (click)="settingUser(user.id)"><i class="fa fa-cogs"></i> Paramètre </a>
             </li>
 
         </ul>

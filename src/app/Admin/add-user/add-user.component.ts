@@ -86,10 +86,10 @@ export class AddUserComponent implements OnInit {
     console.log("les service selectionner" + formValue['selected'])
     this.selected = formValue['selected'];
 
-    if (formValue['role'] == "ADMIN") this.user.type_user = "ADM";
-    else if (formValue['role'] == "MEDECIN") this.user.type_user = "MED";
-    else if (formValue['role'] == "SECRETAIRE") this.user.type_user = "SCR";
-    else if (formValue['role'] == "INFIRMIER") this.user.type_user = "INF";
+    if (formValue['role'] == "admin") this.user.type_user = "ADM";
+    else if (formValue['role'] == "medecin") this.user.type_user = "MED";
+    else if (formValue['role'] == "secretaire") this.user.type_user = "SCR";
+    else if (formValue['role'] == "infirmier") this.user.type_user = "INF";
 
     this.userService.addUser(this.user)
       .subscribe(data => {
@@ -98,7 +98,7 @@ export class AddUserComponent implements OnInit {
         this.infoBox("L'utilisateur a était ajouté avec succes");
         this.findUserSaved(this.user.email)
       }, err => {
-        this.infoBox("Desolé! utilisateur n'a pas était ajouté");
+        this.infoBox("Desolé! utilisateur n'a pas était ajouté, vérifier s'il est nouveau ");
 
       })
 

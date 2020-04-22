@@ -9,6 +9,8 @@ export class User {
     sexe: string;
     telephone: string;
     photo: string;
+    password: string;
+
     type_user: string;
 
 

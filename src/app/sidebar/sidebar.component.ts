@@ -46,4 +46,14 @@ export class SidebarComponent implements OnInit {
       })
 
   }
+
+  profileUser(id: number) {
+
+    this.router.navigate(["/detailUser", id]);
+  }
+
+  settingUser(id: number) {
+
+    this.router.navigate(["/editUser", id]);
+  }
 }
