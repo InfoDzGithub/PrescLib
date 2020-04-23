@@ -1,0 +1,168 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>Profile de {{user?.nom}} &nbsp; {{user?.prenom}}</h3>
+                        </div>
+
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>paramétrer Vos propres information </h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Settings 1</a>
+                                                <a class="dropdown-item" href="#">Settings 2</a>
+                                            </div>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="col-md-3 col-sm-3  profile_left">
+                                        <div class="profile_img">
+                                            <div id="crop-avatar" *ngIf="user?.sexe=='male'">
+                                                <!-- Current avatar -->
+
+
+
+                                                <img class="img-responsive avatar-view"
+                                                    src="../assets/template/images/userPicture.png" alt="Avatar"
+                                                    title="Change the avatar">
+                                            </div>
+                                            <div id="crop-avatar" *ngIf="user?.sexe=='female'">
+                                                <img class="img-responsive avatar-view"
+                                                    src="../assets/template/images/femmePic.png" alt="Avatar"
+                                                    title="Change the avatar">
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<button class="btn btn-success"
+                                            (click)="detailUser(user?.id)">Detaille</button>
+
+
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 ">
+                                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                                <li role="presentation" class="active"><a href="#tab_content1"
+                                                        id="home-tab" role="tab" data-toggle="tab"
+                                                        aria-expanded="true">Parametre</a>
+                                                </li>
+
+
+                                            </ul>
+                                            <div id="myTabContent" class="tab-content">
+                                                <div role="tabpanel" class="tab-pane active " id="tab_content1"
+                                                    aria-labelledby="home-tab">
+
+                                                    <!-- start recent activity -->
+                                                    <hr>
+                                                    <form id="demo-form2" data-parsley-validate
+                                                        class="form-horizontal form-label-left" novalidate
+                                                        [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+
+
+
+                                                        <!--Datenaissance & adress-->
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label>Date naissance</label>
+                                                                <input type="date" name="bday" max="3000-12-31"
+                                                                    min="1000-01-01" id="dateNaissance"
+                                                                    class="form-control" formControlName="dateNaissance"
+                                                                    [(ngModel)]="user.date_naissance" required>
+                                                                <!-- value="{{ user?.date_naissance | date:'yyyy-MM-dd' }}"-->
+
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputAddress">Address</label>
+                                                                <input type="text" id="adress" class="form-control"
+                                                                    formControlName="adress" [(ngModel)]="user.adress"
+                                                                    required>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                        <br>
+                                                        <!--tel & email-->
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputAddress2">Telephone</label>
+                                                                <input type="tel" id="telephone" class="form-control"
+                                                                    formControlName="telephone"
+                                                                    [(ngModel)]="user.telephone" required>
+
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+
+                                                                <label for="inputAddress2">Email</label>
+                                                                <input type="email" id="email" class="form-control"
+                                                                    formControlName="email" [(ngModel)]="user.email"
+                                                                    required>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        <br>
+
+
+
+                                                        <br><br><br><br><br>
+                                                        <div class="ln_solid"></div>
+                                                        <div class="item form-group col-md-6">
+
+                                                            <button class="btn btn-default" type="reset">Annulé</button>
+                                                            <button class="btn btn-primary" type="submit"
+                                                                [disabled]="userForm.invalid">Modifier</button>
+
+                                                        </div>
+
+                                                    </form>
+
+                                                    <!-- end recent activity -->
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+
+            <!-- footer content -->
+
+            <app-footer></app-footer>
+
+        </div>
+    </div>
+</body>

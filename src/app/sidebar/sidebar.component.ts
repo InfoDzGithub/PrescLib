@@ -54,6 +54,10 @@ export class SidebarComponent implements OnInit {
 
   settingUser(id: number) {
 
-    this.router.navigate(["/editUser", id]);
+    this.router.navigate(["/parametre", id]);
+  }
+
+  home() {
+    this.router.navigate(["/global"]);
   }
 }
