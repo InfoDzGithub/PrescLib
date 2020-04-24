@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpRequest } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 
@@ -9,7 +9,7 @@ import { throwError } from 'rxjs/internal/observable/throwError';
   providedIn: 'root'
 })
 export class UtilisateurService {
-  private url: string = "http://localhost:8080";
+  public url: string = "http://localhost:8080";
 
 
   constructor(private http: HttpClient) { }
@@ -79,4 +79,16 @@ export class UtilisateurService {
     return this.http.get(this.url + "/historiqueServicesOccupiedByUser?id=" + idU + "&page=" + page + "&size=" + size)
 
   }
+
+  uploadPhotoUser(file: File, idProduct): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+    const req = new HttpRequest('POST', this.url + '/uploadPhoto/' + idProduct, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req);
+  }
 }
+
+

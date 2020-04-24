@@ -4,7 +4,7 @@ import { UtilisateurService } from 'src/app/service/utilisateur.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { DepartementService } from 'src/app/service/departement.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-user',
@@ -26,6 +26,10 @@ export class EditUserComponent implements OnInit {
   //selected = [];
   email: string;
   ownerAccount: User;
+  //
+  selectedFiles;
+  progress: number;
+  currentFileUpload: any;
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private depService: DepartementService, private router: Router, private userService: UtilisateurService) { }
 
   ngOnInit(): void {
@@ -106,6 +110,8 @@ export class EditUserComponent implements OnInit {
 
     this.userService.editUser(this.user, this.id)
       .subscribe(data => {
+
+        this.uploadPhoto();
         this.infoBox("L'utilisateur a était modifier avec succes");
 
       }, err => {
@@ -120,6 +126,31 @@ export class EditUserComponent implements OnInit {
     if (confirm(message)) {
       this.router.navigate(["/users"]);
     }
+  }
+
+  //photo
+  onSelectedFile(event) {
+    this.selectedFiles = event.target.files;
+    //this.addPhoto = true;
+  }
+  uploadPhoto() {
+    this.progress = 0;
+    this.currentFileUpload = this.selectedFiles.item(0)
+    this.userService.uploadPhotoUser(this.currentFileUpload, this.id).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+
+        // this.currentTime=Date.now();
+        //this.editPhoto=false;
+      }
+    }, err => {
+      alert("Problème de chargement");
+    })
+
+
+
+    this.selectedFiles = undefined
   }
 
 

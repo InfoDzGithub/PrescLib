@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
 
   user: User = new User();
   email: string;
-  constructor(private userService: UtilisateurService,
+  constructor(public userService: UtilisateurService,
     private router: Router) { }
 
 

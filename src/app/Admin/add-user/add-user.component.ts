@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
 import { User } from 'src/app/model/user';
@@ -18,12 +18,18 @@ export class AddUserComponent implements OnInit {
   myForm: FormGroup;
   services: any;
   userSaved: User;
+  //
 
+  selectedFiles;
+  progress: number;
+  currentFileUpload: any;
+  addPhoto: boolean;
 
   constructor(private router: Router, private depService: DepartementService, private userService: UtilisateurService, private http: HttpClient, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
+    this.addPhoto = false;
     this.initForm();
     this.getServices();
 
@@ -85,6 +91,10 @@ export class AddUserComponent implements OnInit {
     this.user.adress = formValue['adress'];
     console.log("les service selectionner" + formValue['selected'])
     this.selected = formValue['selected'];
+    if (formValue['sexe'] == 'female') { this.user.photo = "femmePic.png"; }
+    else {
+      this.user.photo = "userPicture.png";
+    }
 
     if (formValue['role'] == "admin") this.user.type_user = "ADM";
     else if (formValue['role'] == "medecin") this.user.type_user = "MED";
@@ -142,6 +152,9 @@ export class AddUserComponent implements OnInit {
           this.affectUserToService(this.userSaved.id, service.id)
 
         }
+        // if (this.addPhoto) { 
+        this.uploadPhoto();// }
+
 
 
 
@@ -150,5 +163,33 @@ export class AddUserComponent implements OnInit {
         console.log(err)
       })
   }
+
+  //photo part
+  onSelectedFile(event) {
+    this.selectedFiles = event.target.files;
+    //this.addPhoto = true;
+  }
+  uploadPhoto() {
+    this.progress = 0;
+    this.currentFileUpload = this.selectedFiles.item(0)
+    this.userService.uploadPhotoUser(this.currentFileUpload, this.userSaved.id).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+
+        // this.currentTime=Date.now();
+        //this.editPhoto=false;
+      }
+    }, err => {
+      alert("Problème de chargement");
+    })
+
+
+
+    this.selectedFiles = undefined
+  }
+
+
+
 
 }

@@ -3,7 +3,7 @@ import { User } from 'src/app/model/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartementService } from 'src/app/service/departement.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
 
 @Component({
@@ -27,6 +27,10 @@ export class ParametreComponent implements OnInit {
   //selected = [];
   email: string;
   ownerAccount: User;
+  //
+  selectedFiles;
+  progress: number;
+  currentFileUpload: any;
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: UtilisateurService) { }
 
 
@@ -78,6 +82,7 @@ export class ParametreComponent implements OnInit {
 
     this.userService.editUser(this.user, this.id)
       .subscribe(data => {
+        this.uploadPhoto();
         this.infoBox("Votre profile a été modifier");
 
       }, err => {
@@ -95,6 +100,30 @@ export class ParametreComponent implements OnInit {
     }
   }
 
+  //photo
+  onSelectedFile(event) {
+    this.selectedFiles = event.target.files;
+    //this.addPhoto = true;
+  }
+  uploadPhoto() {
+    this.progress = 0;
+    this.currentFileUpload = this.selectedFiles.item(0)
+    this.userService.uploadPhotoUser(this.currentFileUpload, this.id).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+
+        // this.currentTime=Date.now();
+        //this.editPhoto=false;
+      }
+    }, err => {
+      alert("Problème de chargement");
+    })
+
+
+
+    this.selectedFiles = undefined
+  }
 
   detailUser(id: number) {
 

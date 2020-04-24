@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   // @Input() id: number;
   user: User = new User();
   email: string;
-  constructor(public authService: AuthentificationService, private userService: UtilisateurService,
+  constructor(public authService: AuthentificationService, public userService: UtilisateurService,
     private router: Router) { }
 
 
