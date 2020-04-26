@@ -23,5 +23,9 @@ export class DepartementService {
     return this.http.get(this.url + "/user/" + idU + "/service/" + idS)
 
   }
+  getAllServices(page: number, size: number) {
+    return this.http.get(this.url + "/AllServices?page=" + page + "&size=" + size)
+
+  }
 
 }

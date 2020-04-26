@@ -41,20 +41,13 @@
                                 <div class="x_content">
                                     <div class="col-md-3 col-sm-3  profile_left">
                                         <div class="profile_img">
-                                            <div id="crop-avatar" *ngIf="user?.sexe=='male'">
-                                                <!-- Current avatar -->
 
-
-
+                                            <div id="crop-avatar">
                                                 <img class="img-responsive avatar-view"
-                                                    src="../assets/template/images/userPicture.png" alt="Avatar"
-                                                    title="Change the avatar">
+                                                    [src]="this.userService.url+'/photoUser/'+user.id" alt="Avatar"
+                                                    title="Change the avatar" style="height: 230px;width: 200px;">
                                             </div>
-                                            <div id="crop-avatar" *ngIf="user?.sexe=='female'">
-                                                <img class="img-responsive avatar-view"
-                                                    src="../assets/template/images/femmePic.png" alt="Avatar"
-                                                    title="Change the avatar">
-                                            </div>
+
                                         </div>
                                         <br>
 

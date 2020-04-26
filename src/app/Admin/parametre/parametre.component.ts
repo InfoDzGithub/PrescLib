@@ -31,7 +31,7 @@ export class ParametreComponent implements OnInit {
   selectedFiles;
   progress: number;
   currentFileUpload: any;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: UtilisateurService) { }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, public userService: UtilisateurService) { }
 
 
   ngOnInit(): void {

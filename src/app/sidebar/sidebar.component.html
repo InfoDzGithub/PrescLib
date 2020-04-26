@@ -8,7 +8,7 @@
             <li><a (click)="profileUser(user.id)"><i class="fa fa-user"></i> Profile </a>
             </li>
 
-            <li *ngIf="user.role=='admin'"><a><i class="fa fa-hospital-o"></i> Services </a>
+            <li *ngIf="user.role=='admin'" (click)="services()"><a><i class="fa fa-hospital-o"></i> Services </a>
 
             </li>
             <li *ngIf="user.role=='admin'" (click)="gotoUsers()"><a><i class="fa fa-users"></i> Membres <span

@@ -1,0 +1,15 @@
+#vert{
+    color:#1ABB9C  ;
+    /*font-size: 20px;*/
+    
+    }
+    #blue{
+    color: #2A3F54;
+    }
+    #decaler{
+        margin-left: 20px;
+    }
+    .clickable
+    {
+        cursor: pointer;
+    }

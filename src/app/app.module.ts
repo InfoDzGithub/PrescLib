@@ -23,6 +23,7 @@ import { DepartementService } from './service/departement.service';
 import { DetailUserComponent } from './Admin/detail-user/detail-user.component';
 import { EditUserComponent } from './Admin/edit-user/edit-user.component';
 import { ParametreComponent } from './Admin/parametre/parametre.component';
+import { ServicesComponent } from './Admin/services/services.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   { path: 'detailUser/:id', component: DetailUserComponent },
   { path: 'editUser/:id', component: EditUserComponent },
   { path: 'parametre/:id', component: ParametreComponent },
+  { path: 'services', component: ServicesComponent },
 
   {
     path: '',
@@ -56,7 +58,8 @@ const appRoutes: Routes = [
     AddUserComponent,
     DetailUserComponent,
     EditUserComponent,
-    ParametreComponent
+    ParametreComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

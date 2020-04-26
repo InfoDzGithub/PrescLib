@@ -1,0 +1,194 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3> Les Services </h3>
+                        </div>
+
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Liste des services <small> soins</small></h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Settings 1</a>
+                                                <a class="dropdown-item" href="#">Settings 2</a>
+                                            </div>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+
+                                    <div class="row">
+                                        <ng-container *ngFor="let c of services?.content">
+                                            <div class="col-md-3   widget widget_tally_box " *ngIf="c.etat">
+                                                <div class="x_panel fixed_height_390 bg-light">
+                                                    <div class="x_title">
+                                                        <h2>{{c.nom}}</h2>
+                                                        <ul class="nav navbar-right panel_toolbox">
+                                                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                                                            <li><a class="close-link"><i class="fa fa-pencil"></i></a>
+                                                            </li>
+                                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                                            </li>
+
+
+
+                                                        </ul>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="x_content">
+                                                        <p>Chef service:</p>
+                                                        <div class="flex">
+                                                            <ul class="list-inline widget_profile_box">
+
+                                                                <li style="margin-right: 100px;">
+                                                                    <img [src]="this.userService.url+'/photoUser/'+c.chefService.id"
+                                                                        alt="..." class="img-circle profile_img">
+                                                                </li>
+
+
+                                                            </ul>
+
+                                                        </div>
+
+                                                        <h2 class="name" style="font-size: medium;">
+                                                            {{c?.chefService.nom}}
+                                                            {{c?.chefService.prenom}}
+
+                                                            <p style="font-size:small;">
+
+                                                                &nbsp;{{c?.chefService.email}}
+                                                            </p>
+                                                        </h2>
+                                                        <div class="divider"></div>
+
+                                                        <div class="flex" id="decaler">
+                                                            <ul class="list-unstyled user_data" id="blue">
+
+                                                                <li><i class="fa fa-phone user-profile-icon"
+                                                                        id="vert"></i>
+                                                                    &nbsp; &nbsp;&nbsp; {{c.telephone}}
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--etat false-->
+                                            <div class="col-md-3   widget widget_tally_box " *ngIf="!c.etat">
+                                                <div class="x_panel fixed_height_390 bg-warning">
+                                                    <div class="x_title">
+                                                        <h2>{{c.nom}}</h2>
+                                                        <ul class="nav navbar-right panel_toolbox">
+                                                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                                                            <li><a class="close-link"><i class="fa fa-share"></i></a>
+                                                            </li>
+
+                                                        </ul>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="x_content">
+                                                        <p>Chef service:</p>
+                                                        <div class="flex">
+                                                            <ul class="list-inline widget_profile_box">
+
+                                                                <li style="margin-right: 100px;">
+                                                                    <img [src]="this.userService.url+'/photoUser/'+c.chefService.id"
+                                                                        alt="..." class="img-circle profile_img">
+                                                                </li>
+
+
+                                                            </ul>
+
+                                                        </div>
+
+                                                        <h2 class="name" style="font-size: medium;">
+                                                            {{c?.chefService.nom}}
+                                                            {{c?.chefService.prenom}}
+
+                                                            <p style="font-size:small;">
+
+                                                                &nbsp;{{c?.chefService.email}}
+                                                            </p>
+                                                        </h2>
+                                                        <div class="divider"></div>
+
+                                                        <div class="flex" id="decaler">
+                                                            <ul class="list-unstyled user_data" id="blue">
+
+                                                                <li><i class="fa fa-phone user-profile-icon"
+                                                                        id="vert"></i>
+                                                                    &nbsp; &nbsp;&nbsp; {{c.telephone}}
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/etat false-->
+                                        </ng-container>
+                                    </div>
+                                    <div class="row">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-end">
+
+                                                <li class="page-item" *ngFor="let p of  total_pages; let i=index"
+                                                    [ngClass]="{'active':i==curentPage}">
+                                                    <a class="page-link clickable" (click)="gotoPage(i)">{{i}}</a></li>
+
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+
+
+
+
+                                    <!--/div-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

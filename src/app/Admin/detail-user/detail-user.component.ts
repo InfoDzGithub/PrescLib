@@ -19,7 +19,7 @@ export class DetailUserComponent implements OnInit {
   size: number = 3;
   pages: Array<number>;
   pagesH: Array<number>;
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UtilisateurService) { }
+  constructor(private route: ActivatedRoute, private router: Router, public userService: UtilisateurService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];

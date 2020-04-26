@@ -39,8 +39,7 @@ export class GlobalComponent implements OnInit {
     this.router.navigate(["/users"]);
   }
 
-  service() {
-    this.router.navigate(["/"]);//pas encore 
+  services() {
+    this.router.navigate(["/services"]);
   }
-
 }
