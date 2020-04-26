@@ -24,6 +24,7 @@ import { DetailUserComponent } from './Admin/detail-user/detail-user.component';
 import { EditUserComponent } from './Admin/edit-user/edit-user.component';
 import { ParametreComponent } from './Admin/parametre/parametre.component';
 import { ServicesComponent } from './Admin/services/services.component';
+import { AddServiceComponent } from './Admin/add-service/add-service.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'editUser/:id', component: EditUserComponent },
   { path: 'parametre/:id', component: ParametreComponent },
   { path: 'services', component: ServicesComponent },
+  { path: 'addService', component: AddServiceComponent },
 
   {
     path: '',
@@ -59,7 +61,8 @@ const appRoutes: Routes = [
     DetailUserComponent,
     EditUserComponent,
     ParametreComponent,
-    ServicesComponent
+    ServicesComponent,
+    AddServiceComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

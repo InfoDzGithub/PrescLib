@@ -31,6 +31,10 @@ export class UtilisateurService {
     return this.http.get(this.url + "/searchUser?mc=" + motClet + "&page=" + page + "&size=" + size)
 
   }
+  getActifUsers() {
+    return this.http.get(this.url + "/users")
+
+  }
   handleErreur(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {
       console.log(errorResponse.error.message);

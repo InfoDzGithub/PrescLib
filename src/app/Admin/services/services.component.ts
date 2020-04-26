@@ -19,20 +19,7 @@ export class ServicesComponent implements OnInit {
     this.getAllServices();
   }
 
-  /*getServices() {
-    this.depService.getServices()
-      .subscribe(data => {
-        this.services = data;
 
-        console.log(this.services)
-
-
-      }, err => {
-
-        console.log(err)
-      })
-  }
-  */
   getAllServices() {
     this.depService.getAllServices(this.curentPage, this.size)
       .subscribe(data => {
