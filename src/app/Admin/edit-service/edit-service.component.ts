@@ -1,25 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Service } from 'src/app/model/service';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DepartementService } from 'src/app/service/departement.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Service } from 'src/app/model/service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
-import { User } from 'src/app/model/user';
 
 @Component({
-  selector: 'app-add-service',
-  templateUrl: './add-service.component.html',
-  styleUrls: ['./add-service.component.css']
+  selector: 'app-edit-service',
+  templateUrl: './edit-service.component.html',
+  styleUrls: ['./edit-service.component.css']
 })
-export class AddServiceComponent implements OnInit {
+export class EditServiceComponent implements OnInit {
   userForm: FormGroup;
   service: any;
+  id: number;
   actifUser: any;
+  nomCompletDuChef: string;
 
-  constructor(private router: Router, private depService: DepartementService, private userService: UtilisateurService, private http: HttpClient, private formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private router: Router, private depService: DepartementService, private userService: UtilisateurService, private http: HttpClient, private formBuilder: FormBuilder) { }
+
 
   ngOnInit(): void {
+
+    this.service = new Service();
+    this.id = this.route.snapshot.params['id'];
+    this.depService.getOneServiceById(this.id)
+      .subscribe(data => {
+        this.service = data;
+        this.nomCompletDuChef = this.service.chefService.nom + " " + this.service.chefService.prenom;
+        console.log("chef:::" + this.nomCompletDuChef);
+      });
     this.initForm();
     this.getActifUsers();
   }
@@ -31,6 +42,9 @@ export class AddServiceComponent implements OnInit {
       telephone: ['', [Validators.required, Validators.pattern("[0-9 ]{11}")]],
     });
   }
+
+
+  //actifDoctor
   getActifUsers() {
     this.userService.getActifUsers()
       .subscribe(data => {
@@ -42,11 +56,10 @@ export class AddServiceComponent implements OnInit {
         console.log(err)
       })
   }
-
   onSubmitForm() {
     const formValue = this.userForm.value;
 
-    this.service = new Service();
+
     this.service.nom = formValue['serviceName'];
     this.service.chefService = formValue['chedServ'];
     this.service.telephone = formValue['telephone'];
@@ -54,17 +67,15 @@ export class AddServiceComponent implements OnInit {
 
 
 
-    this.depService.addService(this.service)
+    this.depService.editService(this.service, this.id)
       .subscribe(data => {
 
-        this.infoBox("Le service  a été ajouté avec succes");
-
+        this.infoBox("Le service a été modifier avec succes");
 
       }, err => {
-        this.infoBox("Desolé! le service n'a pas été ajouté, vérifier s'il est nouveau ");
+        this.infoBox("Desolé! service n' a pas était modifier");
 
       })
-
   }
   infoBox(message: string) {
 
@@ -72,7 +83,5 @@ export class AddServiceComponent implements OnInit {
       this.router.navigate(["/services"]);
     }
   }
-
-
 
 }

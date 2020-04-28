@@ -11,7 +11,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Ajouter un Service</h3>
+                            <h3>Modifier un Service</h3>
                         </div>
 
 
@@ -53,7 +53,7 @@
                                         <div class="form-group col-md-8">
                                             <label for="inputNom4">Nom du service</label>
                                             <input type="text" id="lastName" class="form-control"
-                                                formControlName="serviceName" required>
+                                                formControlName="serviceName" [(ngModel)]="service.nom" required>
 
                                         </div>
 
@@ -63,22 +63,22 @@
                                         <div class="form-group col-md-8">
                                             <label for="inputAddress2">Telephone</label>
                                             <input type="tel" id="telephone" class="form-control"
-                                                formControlName="telephone" value="1-(555)-555-5555" required>
+                                                formControlName="telephone" [(ngModel)]="service.telephone" required>
 
                                         </div>
                                         <br>
 
+
                                         <div class="form-group col-md-8">
                                             <label for="inputState">Chef du service</label>
                                             <select id="chedServ" class="form-control" formControlName="chedServ"
-                                                placeholder="chef pour le service" required>
-                                                <option disabled>chef service</option>
+                                                [(ngModel)]="nomCompletDuChef" required>
+                                                <!--option [(ngModel)]="nomCompletDuChef" >
+                                                </option-->
                                                 <option *ngFor="let u of actifUser" [ngValue]="u">
                                                     {{u.nom}} {{u.prenom}}
                                                 </option>
-
                                             </select>
-
                                         </div>
                                         <br><br><br><br><br><br><br><br><br><br><br>
 

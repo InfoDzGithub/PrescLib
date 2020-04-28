@@ -39,4 +39,9 @@ export class ServicesComponent implements OnInit {
     this.getAllServices();
   }
 
+  editService(id: number) {
+
+    this.router.navigate(["/editService", id]);
+  }
+
 }

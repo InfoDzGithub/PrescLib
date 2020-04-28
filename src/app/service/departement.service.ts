@@ -34,4 +34,16 @@ export class DepartementService {
     return this.http.post(this.url + "/services", service);
   }
 
+  //getOneServiceById
+  getOneServiceById(id: number): Observable<Service> {
+    console.log("get")
+    return this.http.get<Service>(this.url + "/services/" + id)
+  }
+
+  editService(service: Service, id: number) {
+    console.log("edit")
+    return this.http.put(this.url + "/services/" + id, service);
+  }
+
+
 }
