@@ -23,7 +23,6 @@ export class ServicesComponent implements OnInit {
   getAllServices() {
     this.depService.getAllServices(this.curentPage, this.size)
       .subscribe(data => {
-        //this.pageUser = data;
         this.services = data;
         this.total_pages = new Array(this.services.totalPages)
 
@@ -33,15 +32,63 @@ export class ServicesComponent implements OnInit {
         console.log(err)
       })
   }
-
+  //pagination
   gotoPage(i: number) {
     this.curentPage = i;
     this.getAllServices();
   }
 
+
+
+  //activer service
+  enableService(id: number) {
+    this.depService.enableService(id)
+      .subscribe(
+        data => {
+
+          this.getAllServices();
+
+        },
+        err => {
+          console.log(err)
+        })
+
+  }
+  enableConfirme(c: any) {
+    if (confirm("Vouliez vous activer: " + c.nom)) {
+      this.enableService(c.id);
+      this.getAllServices();
+    }
+  }
+
+  //editer service
   editService(id: number) {
 
     this.router.navigate(["/editService", id]);
   }
+
+  //desable service
+  desableService(id: number) {
+    this.depService.archiveService(id)
+      .subscribe(
+        data => {
+
+          this.getAllServices();
+
+        },
+        err => {
+
+          console.log(err)
+        })
+
+  }
+
+  deleteConfirme(c: any) {
+    if (confirm("Cette action va détacher Le service:  " + c.nom + " de tous ses patients ainsi ses utilisateur y inclut")) {
+      this.desableService(c.id);
+      this.getAllServices();
+    }
+  }
+
 
 }

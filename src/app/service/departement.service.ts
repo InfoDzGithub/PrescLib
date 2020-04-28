@@ -45,5 +45,13 @@ export class DepartementService {
     return this.http.put(this.url + "/services/" + id, service);
   }
 
+  //archiveService
+  archiveService(id: number): Observable<any> {
+    return this.http.get(`${this.url}/archiveService/${id}`, { responseType: 'text' });
+  }
+
+  enableService(id: number): Observable<any> {
+    return this.http.get(`${this.url}/enableService/${id}`, { responseType: 'text' });
+  }
 
 }
