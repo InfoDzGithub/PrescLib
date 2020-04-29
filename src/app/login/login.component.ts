@@ -3,6 +3,7 @@ import { AuthentificationService } from '../service/authentification.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
 import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 //declare const validate: any;
 @Component({
@@ -18,24 +19,23 @@ export class LoginComponent implements OnInit {
   mode: number = 0;
   requiredFieldErr: boolean = false;
   message: number;
+  loginForm: FormGroup;
 
-
-  constructor(private authService: AuthentificationService, private http: HttpClient, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthentificationService, private http: HttpClient, private router: Router) {
 
   }
 
   ngOnInit(): void {
-
+    this.initForm();
   }
-  // newMessage() { this.authService.changeMessage(11) }
 
-  onLogin() {
+  /*onLogin() {
     if (this.username && this.password) {
       this.authService.login(this.username, this.password)
         .subscribe(data => {
           this.user = data;
           this.errorMessage = false;
-          this.router.navigate(["/global/"])// + this.user.id]);
+          this.router.navigate(["/global/"])
           this.authService.changeMessage(this.user.id);
           this.mode += 1;
 
@@ -48,20 +48,46 @@ export class LoginComponent implements OnInit {
       this.requiredFieldErr = false;
     }
     else {
-      /* this.requiredFieldErr = true;
-       this.mode = 0;*/
+     
       this.emptyField();
     }
 
 
+  }*/
+
+  initForm() {
+    this.loginForm = this.formBuilder.group({
+
+      email: ['', [Validators.required, Validators.email]],
+      pwd: ['', Validators.required]
+
+
+
+    });
   }
 
-  emptyField() {
+  onLogin() {
+    const formValue = this.loginForm.value;
+    this.username = formValue['email'];
+    this.password = formValue['pwd'];
+    this.authService.login(this.username, this.password)
+      .subscribe(data => {
+        this.user = data;
+        this.errorMessage = false;
+        this.router.navigate(["/global/"])
+        this.authService.changeMessage(this.user.id);
+        this.mode += 1;
 
-    if (confirm("Remplissez les champs vide svp: ")) {
-      this.router.navigate(["/login"]);
-    }
+      }, err => {
+
+        this.errorMessage = true;
+        this.router.navigate(["/login"]);
+        this.mode += 1;
+      })
+
   }
+
+
 
 
 }

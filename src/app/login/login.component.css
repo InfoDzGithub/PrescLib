@@ -10,3 +10,11 @@
         /* bug fix - no overlay */    
         display: none;    
     }
+    
+.ng-valid[required], .ng-valid.required  {
+  border-bottom: 1px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-bottom: 1px solid #a94442; /* red */
+}

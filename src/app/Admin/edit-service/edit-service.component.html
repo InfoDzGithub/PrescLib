@@ -75,6 +75,7 @@
                                                 [(ngModel)]="nomCompletDuChef" required>
                                                 <!--option [(ngModel)]="nomCompletDuChef" >
                                                 </option-->
+
                                                 <option *ngFor="let u of actifUser" [ngValue]="u">
                                                     {{u.nom}} {{u.prenom}}
                                                 </option>

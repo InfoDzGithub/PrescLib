@@ -2,9 +2,7 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <div class="login100-form-title" style="background-image: url(assets/login/images/top.jpg);">
-                <!--span class="login100-form-title-1" id="entete">
-                    Connectez-vous à <span id="entete2">prescLIB<br></span>
-                </span-->
+
                 <span class="login100-form-title-1" id="entete">
                     <br>
                     <br>
@@ -13,19 +11,20 @@
             </div>
             <div *ngIf="mode!=0">
                 <div class="alert alert-danger alert-dismissible fade show" *ngIf="errorMessage">
-                    <strong>Error!</strong> A problem has been occurred while submitting your data.
+                    <strong>Erreur!</strong> Votre email ou mot de passe incorrect.
                     {{mode}}
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                 </div>
                 <div class="alert alert-primary" role="alert" *ngIf="!errorMessage">
-                    This is a primary alert—check it out!
+                    Bien venu à PrescLib!
                 </div>
             </div>
 
-            <form class="login100-form validate-form">
+            <form class="login100-form validate-form" data-parsley-validate novalidate [formGroup]="loginForm"
+                (ngSubmit)="onLogin()">
                 <div class=" wrap-input100 validate-input m-b-26" data-validate="Username is required">
                     <span class=" label-input100">Email</span>
-                    <input class="input100" type="text" name="username" [(ngModel)]="username"
+                    <input class="input100" type="text" name="username" formControlName="email"
                         placeholder="Entrer email " required>
                     <span class="focus-input100"></span>
 
@@ -36,12 +35,8 @@
 
                     <span class="label-input100">Mot de passe</span>
 
-
-                    <!--span class="btn-show-pass" id="but">
-                        <i class="zmdi zmdi-eye"></i>
-                    </span-->
-                    <input class="input100" type="password" name="password" [(ngModel)]="password"
-                        placeholder="Entrer mot de passe">
+                    <input class="input100" type="password" name="password" formControlName="pwd"
+                        placeholder="Entrer mot de passe" required>
 
 
                     <span class="focus-input100"></span>
@@ -64,8 +59,7 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" (click)="onLogin()" data-toggle="modal"
-                        data-target="#exampleModal">
+                    <button class="login100-form-btn" type="submit" [disabled]="loginForm.invalid">
                         Connexion
                     </button>
 
