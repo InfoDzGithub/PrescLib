@@ -34,7 +34,7 @@
                             </div>
                         </div>
 
-                        <div class="card bg-warning" style="max-width: 18rem;">
+                        <div class="card bg-warning" style="max-width: 18rem;" *ngIf="user.role=='admin'">
                             <div class="card-body">
                                 <h5 class="card-title">Services</h5>
                                 <!--p class="card-text" id="colorWriter">Some quick example text to build on the panel
@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <div class="card bg-danger" style="max-width: 18rem;">
+                        <div class="card bg-danger" style="max-width: 18rem;" *ngIf="user.role=='admin'">
                             <div class="card-body">
                                 <h5 class="card-title">Utilisateurs</h5>
                                 <!--p class="card-text" id="colorWriter">Some quick example text to build on the panel
@@ -67,11 +67,21 @@
                             </div>
                         </div>
 
-                        <!--div class="card bg-danger" style="max-width: 18rem;height: 130px;">
-                            <div class="card-body text-center">
-                                <p class="card-text">Some text inside the fourth card</p>
+                        <div class="card bg-danger" style="max-width: 18rem;" *ngIf="user.role=='secretaire'">
+                            <div class="card-body">
+                                <h5 class="card-title">Patients</h5>
+                                <!--p class="card-text" id="colorWriter">Some quick example text to build on the panel
+                                    title and make up the
+                                    bulk of the panel's content.</p-->
+                                <span class="float-right" id="colorIcon"><i class="fa fa-wheelchair fa-5x"></i></span>
+                                <br><br><br>
                             </div>
-                        </div-->
+                            <div class="card-footer">
+                                <small class="text-muted">Plus Info <a (click)="gotoPatients()"><i
+                                            class="fa fa-arrow-circle-right"></i></a></small>
+
+                            </div>
+                        </div>
 
                     </div>
                     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

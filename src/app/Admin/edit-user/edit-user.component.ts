@@ -111,8 +111,9 @@ export class EditUserComponent implements OnInit {
     this.userService.editUser(this.user, this.id)
       .subscribe(data => {
 
-        this.uploadPhoto();
+
         this.infoBox("L'utilisateur a était modifier avec succes");
+        this.uploadPhoto();
 
       }, err => {
         this.infoBox("Desolé! utilisateur n' a pas était modifier");

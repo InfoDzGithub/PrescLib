@@ -63,4 +63,18 @@ export class SidebarComponent implements OnInit {
   services() {
     this.router.navigate(["/services"]);
   }
+  gotoPatients() {
+    this.router.navigate(["/patients"]);
+    /* this.userService.getUsers(this.motCle, this.curentPage, this.size)
+       .subscribe(data => {
+         this.pageUser = data;
+         this.pages = new Array(this.pageUser.totalPages)
+ 
+ 
+       }, err => {
+ 
+         console.log(err)
+       })*/
+
+  }
 }

@@ -11,11 +11,12 @@
             <li *ngIf="user.role=='admin'" (click)="services()"><a><i class="fa fa-hospital-o"></i> Services </a>
 
             </li>
-            <li *ngIf="user.role=='admin'" (click)="gotoUsers()"><a><i class="fa fa-users"></i> Membres <span
-                        class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="listUser.html">LIST</a></li>
-                </ul>
+            <li *ngIf="user.role=='admin'" (click)="gotoUsers()"><a><i class="fa fa-users"></i> Membres</a>
+
+            </li>
+            <li *ngIf="user.role=='secretaire'" (click)="gotoPatients()"><a><i class="fa fa-wheelchair"></i> Patients
+                </a>
+
             </li>
             <li *ngIf="user.role=='infirmier'"><a><i class="fa fa-female"></i> Prescription <span
                         class="fa fa-chevron-down"></span></a>
@@ -29,12 +30,12 @@
                     <li><a href="data.html">LIST</a></li>
                 </ul>
             </li>
-            <li *ngIf="user.role=='secretaire'"><a><i class="fa fa-heartbeat"></i> Patient <span
+            <!--li *ngIf="user.role=='secretaire'"><a><i class="fa fa-heartbeat"></i> Patient <span
                         class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="data.html">LIST</a></li>
                 </ul>
-            </li>
+            </li-->
             <li><a (click)="settingUser(user.id)"><i class="fa fa-cogs"></i> Paramètre </a>
             </li>
 
