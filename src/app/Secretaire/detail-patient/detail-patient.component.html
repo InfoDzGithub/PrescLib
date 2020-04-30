@@ -9,7 +9,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Profile d'employer</h3>
+                            <h3>Rapport personnel</h3>
                         </div>
 
                     </div>
@@ -20,7 +20,7 @@
                         <div class="col-md-12 col-sm-12 ">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Rapport <small>sur l'employer</small></h2>
+                                    <h2>Rapport <small>sur le patient</small></h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -49,7 +49,7 @@
 
                                                 <li role="presentation" class=""><a href="#tab_content3" role="tab"
                                                         id="profile-tab2" data-toggle="tab" aria-expanded="false">
-                                                        Historique</a>
+                                                        Historique d'hospitalisation</a>
                                                 </li>
                                             </ul>
                                             <div id="myTabContent" class="tab-content">
@@ -166,12 +166,13 @@
                                                                 class="avatar" alt="Avatar">
 
                                                             <div class="message_wrapper">
-                                                                <h4 class="heading">Travaille au service</h4>
+                                                                <h4 class="heading">Hospitalisé au service</h4>
                                                                 <blockquote class="message"
                                                                     *ngIf="patient.etat; else showExcuse">
                                                                     <p>
-                                                                        Le patient: &nbsp;{{patient?.nom}} &nbsp;
-                                                                        {{patient?.prenom}} est hospitalisé:
+                                                                        Le patient &nbsp;({{patient?.nom}} &nbsp;
+                                                                        {{patient?.prenom}}) réside au niveau du
+                                                                        Service:
                                                                     </p>
 
                                                                     <ul style="margin-left: 40px;">
@@ -187,8 +188,8 @@
                                                                     <blockquote class="message">
 
                                                                         <p> Le patient:
-                                                                            &nbsp;{{patient?.nom}} &nbsp;
-                                                                            {{patient?.prenom}} n'est pas hospitalisé
+                                                                            &nbsp;({{patient?.nom}} &nbsp;
+                                                                            {{patient?.prenom}}) n'est pas hospitalisé
 
                                                                         </p>
 
@@ -213,25 +214,32 @@
                                                     <br>
 
 
-                                                    <!--div
-                                                        *ngIf="historiqueServicesOccupied?.totalElements>0; else showHistorique">
-                                                        <table class="table table-hover col-md-7" id="decaler">
+                                                    <div *ngIf="servicesHosp?.totalElements>0; else showHistorique">
+                                                        <table class="table table-hover col-md-11" id="decaler">
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">#</th>
                                                                     <th scope="col">Service</th>
+                                                                    <th scope="col">Medecin traitant</th>
+                                                                    <th scope="col">chambre</th>
                                                                     <th scope="col">Date entre</th>
-                                                                    <th scope="col">Date sortir</th>
+                                                                    <th scope="col">Date sortie</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <ng-container
-                                                                    *ngFor="let item of  historiqueServicesOccupied?.content; let i=index">
+                                                                    *ngFor="let item of  servicesHosp?.content;">
                                                                     <tr>
-                                                                        <th scope="row">{{i}}</th>
+                                                                        <th scope="row">#</th>
                                                                         <td>{{item.service.nom}}</td>
-                                                                        <td>{{item.dateE}}</td>
-                                                                        <td>{{item.dateS}}</td>
+                                                                        <td>{{item.medecin_traitant.nom}}&nbsp;{{item.medecin_traitant.prenom}}
+                                                                        </td>
+                                                                        <td>{{item.num_chambre}}</td>
+
+                                                                        <td>
+                                                                            {{item.date_entre| date:'shortDate'}}</td>
+                                                                        <td>
+                                                                            {{item.date_sortie| date:'shortDate'}}</td>
                                                                     </tr>
                                                                 </ng-container>
 
@@ -241,26 +249,31 @@
                                                             <ul class="pagination justify-content-end">
 
                                                                 <li class="page-item"
-                                                                    *ngFor="let p of pagesH; let i=index"
-                                                                    [ngClass]="{'active':i==curentPageH}">
+                                                                    *ngFor="let p of pages; let i=index"
+                                                                    [ngClass]="{'active':i==curentPage}">
                                                                     <a class="page-link clickable"
-                                                                        (click)="gotoPageH(i)">{{i}}</a></li>
+                                                                        (click)="gotoPage(i)">{{i}}</a></li>
                                                             </ul>
                                                         </nav>
+                                                        <br><br><br><br><br>
                                                     </div>
                                                     <ng-template #showHistorique>
                                                         <blockquote class="message" id="decaler">
-                                                            <p *ngIf="user?.sexe=='male'"> Mr: &nbsp;{{user?.nom}}
+                                                            <p>
                                                                 &nbsp;
-                                                                {{user?.prenom}} n'a pas encore un
+                                                                Le patient {{patient?.nom}}&nbsp;{{patient?.prenom}} n'a
+                                                                pas encore un
                                                                 historique.</p>
-                                                            <p *ngIf="user?.sexe=='female'"> Mme:
-                                                                &nbsp;{{user?.nom}}
-                                                                &nbsp;
-                                                                {{user?.prenom}} n'a pas encore un
-                                                                historique.</p>
+
                                                         </blockquote>
-                                                    </ng-template-->
+
+                                                        <div class="row">
+                                                            <div id="box">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </ng-template>
 
                                                 </div>
                                             </div>

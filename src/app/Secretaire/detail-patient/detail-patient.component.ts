@@ -12,8 +12,7 @@ export class DetailPatientComponent implements OnInit {
 
   patient: any;
   id: number;
-  //servicesOccupied: any;
-  // service_user: any;
+  servicesHosp: any;
   curentPage: number = 0;
   size: number = 3;
   pages: Array<number>;
@@ -23,9 +22,26 @@ export class DetailPatientComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.patService.searchPatientById(this.id)
       .subscribe(data => this.patient = data);
-    console.log("fff" + this.patient.cni);
-    //this.getServicesOccupied();
-    //this.getHistoriqueServicesOccupied();
+    this.getServicesHospByPatient()
+  }
+
+  getServicesHospByPatient() {
+    this.patService.servicesHospByPatient(this.id, this.curentPage, this.size)
+      .subscribe(data => {
+
+        this.servicesHosp = data;
+
+        this.pages = new Array(this.servicesHosp.totalPages)
+
+
+      }, err => {
+
+        console.log(err)
+      })
+  }
+  gotoPage(i: number) {
+    this.curentPage = i;
+    this.getServicesHospByPatient();
 
   }
 

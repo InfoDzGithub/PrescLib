@@ -5,3 +5,30 @@
 #decaleSousBox{
     margin-left: 40px;
 }
+#vert{
+    color:#1ABB9C  ;
+    /*font-size: 20px;*/
+    
+    }
+    #blue{
+    color: #2A3F54;
+    }
+    #decaler{
+        margin-left: 40px;
+    }
+    .clickable
+    {
+        cursor: pointer;
+    }
+    #decalNav{
+        margin-right: 250px;
+        margin-top: 160px;
+    
+    }
+    #decaler2{
+        margin-left: 100px;
+      }
+      #box{
+        height: 240px;
+        width: 70px;
+      }

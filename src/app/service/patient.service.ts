@@ -21,4 +21,9 @@ export class PatientService {
     return this.http.get<Patient>(this.url + "/patients/" + id)
   }
 
+  servicesHospByPatient(idU: number, page: number, size: number) {
+    return this.http.get(this.url + "/serviceHospByPatientt?id=" + idU + "&page=" + page + "&size=" + size)
+
+  }
+
 }
