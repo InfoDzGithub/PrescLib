@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Patient } from '../model/patient';
 
 @Injectable({
   providedIn: 'root'
@@ -14,4 +16,9 @@ export class PatientService {
     return this.http.get(this.url + "/searchPatient?mc=" + motClet + "&page=" + page + "&size=" + size)
 
   }
+
+  searchPatientById(id: number): Observable<Patient> {
+    return this.http.get<Patient>(this.url + "/patients/" + id)
+  }
+
 }

@@ -42,4 +42,9 @@ export class PatientsComponent implements OnInit {
     this.doSearch();
   }
 
+  detailPatient(id: number) {
+
+    this.router.navigate(["/detailPatient", id]);
+  }
+
 }
