@@ -1,9 +1,10 @@
 import { Service } from './service';
+import { DecimalPipe } from '@angular/common';
 
 export class Patient {
 
     id: number;
-    CNI: number;
+    cni: number;
     profession: string;
     nom: string;
     prenom: string;

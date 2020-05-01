@@ -46,5 +46,29 @@ export class PatientsComponent implements OnInit {
 
     this.router.navigate(["/detailPatient", id]);
   }
+  editPatient(id: number) {
 
+    this.router.navigate(["/editPatient", id]);
+  }
+
+  exitPatient(id: number) {
+    this.patService.exitPatient(id)
+      .subscribe(
+        data => {
+
+          this.doSearch();
+
+        },
+        err => {
+
+          console.log(err)
+        })
+
+  }
+  deleteConfirme(c: any) {
+    if (confirm("Voulier vous maruer la sortie du:  " + c.nom + " " + c.prenom + " du service " + c.service.nom)) {
+      this.exitPatient(c.id);
+      this.doSearch();
+    }
+  }
 }

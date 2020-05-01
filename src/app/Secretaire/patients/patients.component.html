@@ -38,7 +38,7 @@
                                     <div class="row">
                                         <div class="row " id="bouttonADD">
                                             <div class="col-sm-12 col-12 text-right m-b-20">
-                                                <a routerLink="/addUser"
+                                                <a routerLink="/addPatient"
                                                     class="btn btn-primary float-right btn-rounded"><i
                                                         class="fa fa-plus"></i> Ajouter</a>
                                             </div>
@@ -106,8 +106,13 @@
                                                                     <a class="btn btn-success btn-xs" title="view"
                                                                         (click)="detailPatient(c.id)"><i
                                                                             class="fa fa-folder"></i> </a>
-                                                                    <a class="btn btn-info btn-xs" title="edit"><i
+                                                                    <a class="btn btn-info btn-xs"
+                                                                        (click)="editPatient(c.id)" title="edit"><i
                                                                             class="fa fa-pencil"></i> </a>
+
+                                                                    <a class="btn btn-danger btn-xs" title="sortir"
+                                                                        (click)="deleteConfirme(c)">
+                                                                        <i class="fa fa-trash-o"></i></a>
                                                                 </td>
 
                                                             </tr>

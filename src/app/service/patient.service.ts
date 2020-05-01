@@ -25,5 +25,16 @@ export class PatientService {
     return this.http.get(this.url + "/serviceHospByPatientt?id=" + idU + "&page=" + page + "&size=" + size)
 
   }
+  exitPatient(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/exitPatient/${id}`, { responseType: 'text' });
+  }
+
+  addPatient(patient: Patient) {
+    return this.http.post(this.url + "/patients", patient);
+  }
+
+  editPatient(patient: Patient, id: number) {
+    return this.http.put(this.url + "/patients/" + id, patient);
+  }
 
 }
