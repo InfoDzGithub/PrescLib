@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Patient } from '../model/patient';
+import { Historique_Hospitalisation } from '../model/Historique_Hospitalisation';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +38,18 @@ export class PatientService {
     return this.http.put(this.url + "/patients/" + id, patient);
   }
 
+  doctorsOFSelectedService(idS: number) {
+    return this.http.get(this.url + "/doctorsOFSelectedService?id=" + idS)
+
+  }
+  ListServicesOccupiedByUser(idU: number) {
+    return this.http.get(this.url + "/ListServicesOccupiedByUser?id=" + idU)
+
+  }
+  //affectPatient
+  affectPatient(hHospitalisation: Historique_Hospitalisation) {
+    console.log("hiii")
+    return this.http.post(this.url + "/affectPatient", hHospitalisation);
+    console.log("byy")
+  }
 }

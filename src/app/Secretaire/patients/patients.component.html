@@ -68,8 +68,8 @@
                                                             <th>Nom</th>
                                                             <th>Prenom</th>
                                                             <th>Date naissance</th>
-                                                            <th>Profession</th>
                                                             <th>Telephone</th>
+                                                            <th>Service</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -83,12 +83,15 @@
                                                                 <td>{{c.nom}}</td>
                                                                 <td>{{c.prenom}}</td>
                                                                 <td>{{ c.date_naissance | date }} </td>
-                                                                <td>{{c.profession}}</td>
                                                                 <td>{{c.telephone}}</td>
+                                                                <td>Déhospîtalisé</td>
                                                                 <td>
                                                                     <a class="btn btn-success btn-xs" title="view"
                                                                         (click)="detailPatient(c.id)"><i
                                                                             class="fa fa-folder"></i> </a>
+                                                                    <a class="btn btn-info btn-xs"
+                                                                        (click)="editPatient(c.id)" title="edit"><i
+                                                                            class="fa fa-pencil"></i> </a>
 
 
 
@@ -100,8 +103,8 @@
                                                                 <td>{{c.nom}}</td>
                                                                 <td>{{c.prenom}}</td>
                                                                 <td>{{ c.date_naissance | date }} </td>
-                                                                <td>{{c.profession}}</td>
                                                                 <td>{{c.telephone}}</td>
+                                                                <td>{{c.service.nom}}</td>
                                                                 <td>
                                                                     <a class="btn btn-success btn-xs" title="view"
                                                                         (click)="detailPatient(c.id)"><i
@@ -112,7 +115,7 @@
 
                                                                     <a class="btn btn-danger btn-xs" title="sortir"
                                                                         (click)="deleteConfirme(c)">
-                                                                        <i class="fa fa-trash-o"></i></a>
+                                                                        <i class="fa fa-times"></i></a>
                                                                 </td>
 
                                                             </tr>
