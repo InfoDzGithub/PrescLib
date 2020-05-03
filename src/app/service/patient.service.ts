@@ -48,8 +48,13 @@ export class PatientService {
   }
   //affectPatient
   affectPatient(hHospitalisation: Historique_Hospitalisation) {
-    console.log("hiii")
+
     return this.http.post(this.url + "/affectPatient", hHospitalisation);
-    console.log("byy")
+
+  }
+  transfertPatient(hHospitalisation: Historique_Hospitalisation, id: number) {
+
+    return this.http.post(this.url + "/transfertPatient/" + id, hHospitalisation);
+
   }
 }

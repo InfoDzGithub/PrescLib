@@ -26,7 +26,8 @@ export class EditPatientComponent implements OnInit {
   email: string;
   hHopsitalisation: any;
   //transfere patient
-
+  transfertForm: FormGroup;
+  hHopsitalisationTrsf: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private depService: DepartementService, private userService: UtilisateurService, private patService: PatientService, private formBuilder: FormBuilder) { }
 
@@ -45,6 +46,8 @@ export class EditPatientComponent implements OnInit {
     //affect patient
 
     this.affectPForm();
+    //transfert
+    this.transfertPForm();
 
   }
   //edit patient
@@ -108,7 +111,7 @@ export class EditPatientComponent implements OnInit {
     this.router.navigate(["/detailPatient", id]);
   }
 
-  //affect patient
+  //affect patient***************************************************************************************
   getAccountOwner() {
     this.email = sessionStorage.getItem('email');
     this.userService.searchUserByEmail(this.email)
@@ -166,9 +169,6 @@ export class EditPatientComponent implements OnInit {
     this.hHopsitalisation.num_chambre = formValueAff['chambre'];
     this.hHopsitalisation.medecin_traitant = formValueAff['doctorAff'];
 
-
-
-    console.log(this.hHopsitalisation)
     this.patService.affectPatient(this.hHopsitalisation)
       .subscribe(data => {
 
@@ -184,5 +184,40 @@ export class EditPatientComponent implements OnInit {
 
 
 
-  //transfere patient
+  //transfere patient**********************************************************************************************
+
+
+  transfertPForm() {
+    this.transfertForm = this.formBuilder.group({
+      serviceTrsf: [null, Validators.required],
+      doctorTrsf: [null, Validators.required],
+      chambreTrsf: ['', [Validators.pattern("[0-9 ]{3}")]]
+    });
+  }
+
+  transfert() {
+
+    const formValueAff = this.transfertForm.value;
+
+    this.hHopsitalisationTrsf = new Historique_Hospitalisation();
+    this.hHopsitalisationTrsf.service = formValueAff['serviceTrsf'];
+    this.hHopsitalisationTrsf.patient = this.patient;
+    this.hHopsitalisationTrsf.num_chambre = formValueAff['chambreTrsf'];
+    this.hHopsitalisationTrsf.medecin_traitant = formValueAff['doctorTrsf'];
+
+
+
+
+    this.patService.transfertPatient(this.hHopsitalisationTrsf, this.patient.id)
+      .subscribe(data => {
+
+        this.infoBox("Le patient " + this.patient.nom + " a été transférer avec succes au service" + this.hHopsitalisationTrsf.service.nom);
+        this.router.navigate(["/detailPatient", this.id]);
+
+
+      }, err => {
+        this.infoBox("Desolé! le patient n'a pas été affecté");
+
+      })
+  }
 }

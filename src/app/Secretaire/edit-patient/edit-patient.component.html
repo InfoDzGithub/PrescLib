@@ -209,7 +209,7 @@
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content3"
                                                     aria-labelledby="profile-tab">
                                                     <br>
-
+                                                    <!--affect form-->
                                                     <div class="row">
                                                         <div class="col-md-7 " id="decaleAffecteBox">
                                                             <div class="x_panel bg-light">
@@ -226,12 +226,10 @@
                                                                         (ngSubmit)="affect()">
 
                                                                         <div class="form-group">
-                                                                            <label for="inputState">Chef du
-                                                                                service</label>
+                                                                            <label for="inputState">Service</label>
                                                                             <select id="serviceAff" class="form-control"
                                                                                 formControlName="serviceAff"
-                                                                                placeholder="chef pour le service"
-                                                                                required>
+                                                                                placeholder="service" required>
                                                                                 <option disabled>chef service</option>
                                                                                 <option *ngFor="let u of servicesOcc"
                                                                                     [ngValue]="u.service"
@@ -286,9 +284,88 @@
                                                         </div>
 
                                                     </div>
+                                                    <!--/affect form-->
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2"
                                                     aria-labelledby="profile-tab">
+                                                    <br>
+                                                    <!--transfert form-->
+                                                    <div class="row">
+                                                        <div class="col-md-7 " id="decaleAffecteBox">
+                                                            <div class="x_panel bg-light">
+                                                                <div class="x_title">
+                                                                    <h2>Transférer le patient à un service </h2>
+
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="x_content">
+                                                                    <br />
+                                                                    <form id="demo-form2" data-parsley-validate
+                                                                        class="form-horizontal form-label-left"
+                                                                        novalidate [formGroup]="transfertForm"
+                                                                        (ngSubmit)="transfert()">
+
+                                                                        <div class="form-group">
+                                                                            <label for="inputState">Service</label>
+                                                                            <select id="serviceTrsf"
+                                                                                class="form-control"
+                                                                                formControlName="serviceTrsf"
+                                                                                placeholder="service" required>
+                                                                                <option disabled>chef service</option>
+                                                                                <option *ngFor="let u of servicesOcc"
+                                                                                    [ngValue]="u.service"
+                                                                                    (click)="doctorsOfSelectedService(u.service.id)">
+                                                                                    {{u.service.nom}}
+                                                                                </option>
+
+                                                                            </select>
+
+                                                                        </div>
+
+                                                                        <!---->
+                                                                        <div class="form-group">
+                                                                            <label for="inputState">Medecin
+                                                                                traitant</label>
+                                                                            <select id="doctorTrsf" class="form-control"
+                                                                                formControlName="doctorTrsf"
+                                                                                placeholder="choisir un medecin"
+                                                                                required>
+                                                                                <option disabled>Choisir un medecin
+                                                                                </option>
+                                                                                <option *ngFor="let d of doctors"
+                                                                                    [ngValue]="d.user">
+                                                                                    {{d.user.nom}} {{d.user.prenom}}
+                                                                                </option>
+
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="form-group ">
+                                                                            <label for="inputNom4">N° Chambre</label>
+                                                                            <input type="numberTrsf" id="chambreTrsf"
+                                                                                formControlName="chambreTrsf"
+                                                                                class="form-control" required>
+
+                                                                        </div>
+                                                                        <div class="ln_solid"></div>
+                                                                        <div class="form-group row">
+                                                                            <div class="col-md-9 col-sm-9  offset-md-3">
+                                                                                <button type="button"
+                                                                                    class="btn btn-primary">Annulé</button>
+
+                                                                                <button type="submit"
+                                                                                    [disabled]="transfertForm.invalid"
+                                                                                    class="btn btn-success">Valider</button>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <!--/transfert form-->
                                                 </div>
 
                                             </div>
