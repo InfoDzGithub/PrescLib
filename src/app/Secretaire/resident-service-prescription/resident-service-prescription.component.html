@@ -10,7 +10,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Le rapport des prescriptions: </h3>
+                            <h3>Le rapport des prescriptions : </h3>
                         </div>
                     </div>
 
@@ -40,12 +40,12 @@
                                 <div class="x_content">
                                     <div class="row">
 
-                                        <div class="col-sm-12"
-                                            *ngIf="hPrescription?.totalElements>0; else showHistorique">
-                                            <div class="card-box table-responsive">
+                                        <div class="col-sm-12">
+                                            <div class="card-box table-responsive"
+                                                *ngIf="currentResidentS?.totalElements>0; else showHistorique">
 
 
-
+                                                <br><br>
                                                 <table id="datatable-buttons" class="table table-striped table-bordered"
                                                     style="width:100%">
                                                     <thead>
@@ -62,7 +62,7 @@
 
                                                     <tbody>
 
-                                                        <ng-container *ngFor="let c of hPrescription?.content">
+                                                        <ng-container *ngFor="let c of currentResidentS?.content">
                                                             <tr *ngIf="!c.etat">
                                                                 <!--class="previousUser"-->
                                                                 <td>{{c.service.nom}}</td>
@@ -98,7 +98,6 @@
                                                     </tbody>
 
                                                 </table>
-
                                                 <nav aria-label="Page navigation example">
                                                     <ul class="pagination justify-content-end">
 
@@ -110,24 +109,21 @@
                                                     </ul>
                                                 </nav>
                                             </div>
+                                            <ng-template #showHistorique>
+                                                <blockquote class="message" id="decaler2">
+                                                    <p>
+                                                        &nbsp;
+                                                        Le patient
+                                                        {{Hpatient.patient.nom}}&nbsp;{{Hpatient.patient.prenom}}
+                                                        n'a pas des prescriptions.</p>
+                                                    <br><br><br><br><br><br><br><br><br><br>
+
+                                                </blockquote>
+
+
+
+                                            </ng-template>
                                         </div>
-                                        <ng-template #showHistorique>
-                                            <blockquote class="message" id="decaler2">
-                                                <p>
-                                                    &nbsp;
-                                                    Le patient {{Hpatient.patient.nom}}&nbsp;{{Hpatient.patient.prenom}}
-                                                    n'a pas des prescriptions.</p>
-                                                <br><br><br><br><br><br><br><br><br><br>
-
-                                            </blockquote>
-
-                                            <!--div class="row">
-                                                <div id="box">
-
-                                                </div>
-                                            </div-->
-
-                                        </ng-template>
                                         <div id="boxi">
 
 

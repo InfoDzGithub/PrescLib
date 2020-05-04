@@ -163,7 +163,7 @@
                                                             <div class="message_wrapper">
                                                                 <h4 class="heading">Hospitalisé au service</h4>
                                                                 <blockquote class="message"
-                                                                    *ngIf="patient.etat; else showExcuse">
+                                                                    *ngIf="patient?.etat; else showExcuse">
                                                                     <p>
                                                                         Le patient &nbsp;({{patient?.nom}} &nbsp;
                                                                         {{patient?.prenom}}) réside au niveau du
@@ -173,8 +173,24 @@
                                                                     <ul style="margin-left: 40px;">
                                                                         <li>
                                                                             {{patient?.service.nom}}
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                            <span>
+                                                                                {{currentResidentS?.medecin_traitant.nom}}&nbsp;
+                                                                                {{currentResidentS?.medecin_traitant.prenom}}
+                                                                            </span>
+                                                                            &nbsp;&nbsp;&nbsp;
 
+                                                                            <span>
+                                                                                <a class="btn btn-primary btn-xs"
+                                                                                    title="prescription"
+                                                                                    (click)="currentResidentPrescription(currentResidentS?.id)"><i
+                                                                                        class="fa fa-folder-open-o"></i>
+                                                                                </a>
+                                                                            </span>
                                                                         </li>
+
+
+
 
                                                                     </ul>
 
@@ -247,7 +263,7 @@
                                                                 </ng-container>
 
                                                             </tbody>
-                                                        </table><br>
+                                                        </table><br><br><br>
                                                         <nav aria-label="Page navigation example" id="decalNav">
                                                             <ul class="pagination justify-content-end">
 

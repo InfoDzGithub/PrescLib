@@ -5,3 +5,7 @@
     width: 850px;
     background-color:white;
 } 
+.clickable
+{
+    cursor: pointer;
+}

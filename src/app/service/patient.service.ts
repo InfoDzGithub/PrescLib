@@ -70,4 +70,9 @@ export class PatientService {
     return this.http.get<Historique_Hospitalisation>(this.url + "/getOneH/" + id)
   }
 
+  allPrescriptionInCurrentService(idH: number, page: number, size: number) {
+    return this.http.get(this.url + "/allPrescriptionInCurrentService?id=" + idH + "&page=" + page + "&size=" + size)
+
+  }
+
 }

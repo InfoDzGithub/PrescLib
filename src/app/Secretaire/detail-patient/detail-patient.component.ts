@@ -16,6 +16,7 @@ export class DetailPatientComponent implements OnInit {
   curentPage: number = 0;
   size: number = 3;
   pages: Array<number>;
+  currentResidentS: any;
   constructor(private route: ActivatedRoute, private router: Router, public patService: PatientService) { }
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class DetailPatientComponent implements OnInit {
     this.patService.searchPatientById(this.id)
       .subscribe(data => this.patient = data);
     this.getServicesHospByPatient()
+    this.currentServiceResidedByPatient();
   }
 
   getServicesHospByPatient() {
@@ -39,6 +41,22 @@ export class DetailPatientComponent implements OnInit {
         console.log(err)
       })
   }
+
+  //currentServiceResidedByPatient
+
+  currentServiceResidedByPatient() {
+    this.patService.currentServiceResidedByPatient(this.id)
+      .subscribe(data => {
+
+        this.currentResidentS = data;
+        console.log("tab" + this.currentResidentS)
+
+      }, err => {
+
+        console.log(err)
+      })
+  }
+  //gotoPage
   gotoPage(i: number) {
     this.curentPage = i;
     this.getServicesHospByPatient();
@@ -51,6 +69,10 @@ export class DetailPatientComponent implements OnInit {
   }
   historiquePrecription(id: number) {
     this.router.navigate(["/historiquePrescription", id]);
+  }
+
+  currentResidentPrescription(id: number) {
+    this.router.navigate(["/currentResidentPrescription", id]);
   }
 
 }

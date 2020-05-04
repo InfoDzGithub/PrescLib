@@ -36,6 +36,7 @@ export class HistoriquePrescriptionComponent implements OnInit {
     this.patService.allHPrescriptionPpatientsByService(this.id, this.curentPage, this.size)
       .subscribe(data => {
         this.hPrescription = data;
+        this.pages = new Array(this.hPrescription.totalPages)
 
       });
   }
