@@ -49,6 +49,7 @@ export class EditServiceComponent implements OnInit {
     this.userService.getActifUsers()
       .subscribe(data => {
         this.actifUser = data;
+        console.log(this.actifUser)
 
 
       }, err => {

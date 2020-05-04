@@ -57,4 +57,17 @@ export class PatientService {
     return this.http.post(this.url + "/transfertPatient/" + id, hHospitalisation);
 
   }
+  currentServiceResidedByPatient(idP: number) {
+    return this.http.get(this.url + "/currentServicesResideInPatient/" + idP)
+
+  }
+  //prescriptions of patient by service
+  allHPrescriptionPpatientsByService(idH: number, page: number, size: number) {
+    return this.http.get(this.url + "/allPatientPrescriptionByService?id=" + idH + "&page=" + page + "&size=" + size)
+
+  }
+  getOneH(id: number): Observable<Historique_Hospitalisation> {
+    return this.http.get<Historique_Hospitalisation>(this.url + "/getOneH/" + id)
+  }
+
 }
