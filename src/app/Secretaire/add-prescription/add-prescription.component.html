@@ -1,0 +1,209 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>Form Elements</h3>
+                        </div>
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+                        <div class="col-md-10 col-sm-10 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h1 style="text-align: center;">Prescription Médicale </h1><br>
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">Patient
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{patient?.nom}}&nbsp;{{patient?.prenom}}
+
+                                        </label>
+                                    </div>
+
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">né(e) le
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{patient.date_naissance}}
+                                        </label>
+                                    </div>
+
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">Sexe
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align" for="first-name">{{patient?.sexe}}
+                                        </label>
+
+                                    </div>
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">G.
+                                            sanguin
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{patient?.group_sanguin}}
+                                        </label>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br />
+                                    <form [formGroup]="form" (submit)="submit()">
+
+
+
+
+                                        <div class="row">
+
+                                            <div class="form-group col-6">
+                                                <label for="inputState">Service</label>
+                                                <select id="serviceAff" class="form-control"
+                                                    formControlName="servicePresc" placeholder="service" required>
+                                                    <option disabled>chef service</option>
+                                                    <option *ngFor="let u of servicesOcc" [ngValue]="u.service"
+                                                        (click)="doctorsOfSelectedService(u.service.id)">
+                                                        {{u.service.nom}}
+                                                    </option>
+
+                                                </select>
+
+                                            </div>
+
+                                            <!---->
+                                            <div class="form-group col-6">
+                                                <label for="inputState">Medecin
+                                                    traitant</label>
+                                                <select id="doctorPresc" class="form-control"
+                                                    formControlName="doctorPresc" placeholder="choisir un medecin"
+                                                    required>
+                                                    <option disabled>Choisir un medecin
+                                                    </option>
+                                                    <option *ngFor="let d of doctors" [ngValue]="d.user">
+                                                        {{d.user.nom}} {{d.user.prenom}}
+                                                    </option>
+
+                                                </select>
+                                            </div>
+
+
+
+
+
+
+
+                                        </div><br>
+                                        <div class="card-header">Traitement</div>
+                                        <div class="card-body" formArrayName="contacts">
+                                            <div class="row">
+                                                <div class="col-6"
+                                                    *ngFor="let contact of contactFormGroup.controls; let i = index;">
+                                                    <div [formGroupName]="i" class="row">
+                                                        <!--div class="form-group col-6">
+                                                            <label>Type of Contact</label>
+                                                            <select (change)="changedFieldType(i)" class="form-control"
+                                                                formControlName="type" type="text">
+                                                                <option value="email">Email</option>
+                                                                <option value="phone">Phone</option>
+                                                            </select>
+                                                        </div-->
+                                                        <div class="form-group col-6">
+                                                            <label>Medicament</label>
+                                                            <input class="form-control" formControlName="medicament"
+                                                                type="text">
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['medicament'].touched && getContactsFormGroup(i).controls['medicament'].hasError('required')">
+                                                                le champ vide! </span>
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="inputState">Voie</label>
+                                                            <select id="role" class="form-control"
+                                                                formControlName="voix" required>
+
+                                                                <option>IV</option>
+                                                                <option>IR</option>
+                                                                <option>IM</option>
+                                                                <option>S/C</option>
+                                                                <option>Paux</option>
+
+                                                            </select>
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['voix'].touched && getContactsFormGroup(i).controls['voix'].hasError('required')">
+                                                                le champ vide!</span>
+                                                        </div>
+                                                        <div class="form-group col-3">
+                                                            <label>Rythme</label>
+                                                            <input class="form-control" formControlName="rythme"
+                                                                type="number">
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['rythme'].touched && getContactsFormGroup(i).controls['rythme'].hasError('required')">
+                                                                le champ vide! </span>
+                                                        </div>
+                                                        <div class="form-group col-12">
+                                                            <label>Remarque</label>
+
+                                                            <textarea class="form-control" formControlName="remarque">
+                                                                </textarea>
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['remarque'].touched && getContactsFormGroup(i).controls['remarque'].hasError('required')">
+                                                                le champ vide!</span>
+                                                        </div>
+
+
+                                                        <div class="form-group col-12 text-right">
+                                                            <button class="btn btn-danger" type="button"
+                                                                (click)="removeContact(i)"> suprimer </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+
+                                                <button class="btn btn-primary m-1" type="button"
+                                                    (click)="addContact()"> Ajouter </button>
+                                                <button class="btn btn-success m-1" [disabled]="!form.valid"
+                                                    type="submit"> Enregistrer</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /page content -->
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

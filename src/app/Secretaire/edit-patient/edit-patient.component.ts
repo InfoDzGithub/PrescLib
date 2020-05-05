@@ -111,6 +111,12 @@ export class EditPatientComponent implements OnInit {
     this.router.navigate(["/detailPatient", id]);
   }
 
+  addPrescription(id: number) {
+
+    this.router.navigate(["/addPrescription", id]);
+  }
+
+
   //affect patient***************************************************************************************
   getAccountOwner() {
     this.email = sessionStorage.getItem('email');
@@ -220,4 +226,5 @@ export class EditPatientComponent implements OnInit {
 
       })
   }
+
 }
