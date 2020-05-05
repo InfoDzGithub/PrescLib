@@ -14,10 +14,10 @@ export class DetailPatientComponent implements OnInit {
   id: number;
   servicesHosp: any;
   curentPage: number = 0;
-  size: number = 3;
+  size: number = 2;
   pages: Array<number>;
   currentResidentS: any;
-  constructor(private route: ActivatedRoute, private router: Router, public patService: PatientService) { }
+  constructor(private route: ActivatedRoute, private router: Router, public patService: PatientService, public userService: UtilisateurService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
