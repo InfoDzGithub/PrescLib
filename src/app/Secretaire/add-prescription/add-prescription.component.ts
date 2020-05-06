@@ -7,7 +7,10 @@ import { Patient } from 'src/app/model/patient';
 import { ActivatedRoute } from '@angular/router';
 import { Prescription } from 'src/app/model/prescription';
 import { User } from 'src/app/model/user';
+import { Traitement } from 'src/app/model/traitement';
 import { PrescriptionServiceService } from 'src/app/service/prescription-service.service';
+import { TransitiveCompileNgModuleMetadata } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-add-prescription',
@@ -26,6 +29,9 @@ export class AddPrescriptionComponent implements OnInit {
   id: number;
   prescription: Prescription;
   prescriptionSaved: any;
+  traitement: Traitement;
+  listTraitement: any;
+
 
   // returns all form groups under contacts
   get contactFormGroup() {
@@ -151,13 +157,28 @@ export class AddPrescriptionComponent implements OnInit {
     this.prescService.addPrescription(this.prescription)
       .subscribe(data => {
         this.prescriptionSaved = data;
-        console.log(this.prescriptionSaved)
-        this.infoBox("Le pprescription a été ajouté avec succes");
+        this.listTraitement = formValue['contacts'];
+
+        for (let index = 0; index < this.listTraitement.length; index++) {
+          this.traitement = new Traitement();
+          let trai = this.listTraitement[index];
+          this.traitement.nom_traitement = trai.medicament;
+          this.traitement.voix = trai.voix;
+          this.traitement.rythme = trai.rythme;
+          this.traitement.remarque = trai.remarque;
+          this.traitement.prescription = this.prescriptionSaved;
+          // console.log("traitement" + this.traitement)
+          this.saveTraitment(this.traitement);
+
+
+        }
+        this.infoBox("La prescription a été ajouté avec succes");
+        //===>rediriger vers détaille
         //this.router.navigate(["/editPatient", this.patientSaved.id]);
 
       }, err => {
         this.infoBox("Desolé! prescription n'a pas été ajouté");
-        // this.router.navigate(["/patients"]);
+        //this.router.navigate(["/patients"]);
 
       })
 
@@ -172,7 +193,15 @@ export class AddPrescriptionComponent implements OnInit {
   }
 
 
+  saveTraitment(traitement: Traitement) {
+    this.prescService.addTraitement(traitement)
+      .subscribe(data => {
 
+      }, err => {
+
+        console.log(err)
+      })
+  }
 
 
 
