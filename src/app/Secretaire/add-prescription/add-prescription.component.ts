@@ -5,6 +5,9 @@ import { PatientService } from 'src/app/service/patient.service';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
 import { Patient } from 'src/app/model/patient';
 import { ActivatedRoute } from '@angular/router';
+import { Prescription } from 'src/app/model/prescription';
+import { User } from 'src/app/model/user';
+import { PrescriptionServiceService } from 'src/app/service/prescription-service.service';
 
 @Component({
   selector: 'app-add-prescription',
@@ -17,17 +20,19 @@ export class AddPrescriptionComponent implements OnInit {
   public contactList: FormArray;
   servicesOcc: any;
   doctors: any;
-  ownerAccount: any;
+  ownerAccount: User;
   email: string;
   patient: Patient;
   id: number;
+  prescription: Prescription;
+  prescriptionSaved: any;
 
   // returns all form groups under contacts
   get contactFormGroup() {
     return this.form.get('contacts') as FormArray;
   }
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private depService: DepartementService, private patService: PatientService, private userService: UtilisateurService) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private prescService: PrescriptionServiceService, private depService: DepartementService, private patService: PatientService, private userService: UtilisateurService) { }
 
   ngOnInit() {
     this.patient = new Patient();
@@ -57,6 +62,7 @@ export class AddPrescriptionComponent implements OnInit {
 
   getAccountOwner() {
     this.email = sessionStorage.getItem('email');
+    this.ownerAccount = new User();
     this.userService.searchUserByEmail(this.email)
       .subscribe(data => {
         this.ownerAccount = data;
@@ -134,6 +140,41 @@ export class AddPrescriptionComponent implements OnInit {
   // method triggered when form is submitted
   submit() {
     console.log(this.form.value);
+    const formValue = this.form.value;
+    this.prescription = new Prescription();
+    this.prescription.patient = this.patient;
+    this.prescription.medecin = formValue['doctorPresc'];
+    this.prescription.service = formValue['servicePresc'];
+    this.prescription.secretaire = this.ownerAccount;
+    this.prescription.type_presc = "MDCL";
+
+    this.prescService.addPrescription(this.prescription)
+      .subscribe(data => {
+        this.prescriptionSaved = data;
+        console.log(this.prescriptionSaved)
+        this.infoBox("Le pprescription a été ajouté avec succes");
+        //this.router.navigate(["/editPatient", this.patientSaved.id]);
+
+      }, err => {
+        this.infoBox("Desolé! prescription n'a pas été ajouté");
+        // this.router.navigate(["/patients"]);
+
+      })
+
+
   }
+
+  infoBox(message: string) {
+
+    if (confirm(message)) {
+
+    }
+  }
+
+
+
+
+
+
 
 }
