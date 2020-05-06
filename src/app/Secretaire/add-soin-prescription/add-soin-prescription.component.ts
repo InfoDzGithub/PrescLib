@@ -9,16 +9,14 @@ import { Prescription } from 'src/app/model/prescription';
 import { User } from 'src/app/model/user';
 import { Traitement } from 'src/app/model/traitement';
 import { PrescriptionServiceService } from 'src/app/service/prescription-service.service';
-import { TransitiveCompileNgModuleMetadata } from '@angular/compiler';
-
+import { Tests } from 'src/app/model/tests';
 
 @Component({
-  selector: 'app-add-prescription',
-  templateUrl: './add-prescription.component.html',
-  styleUrls: ['./add-prescription.component.css']
+  selector: 'app-add-soin-prescription',
+  templateUrl: './add-soin-prescription.component.html',
+  styleUrls: ['./add-soin-prescription.component.css']
 })
-export class AddPrescriptionComponent implements OnInit {
-
+export class AddSoinPrescriptionComponent implements OnInit {
   public form: FormGroup;
   public contactList: FormArray;
   servicesOcc: any;
@@ -29,11 +27,9 @@ export class AddPrescriptionComponent implements OnInit {
   id: number;
   prescription: Prescription;
   prescriptionSaved: any;
-  traitement: Traitement;
+  tests: Tests;
   listTraitement: any;
 
-
-  // returns all form groups under contacts
   get contactFormGroup() {
     return this.form.get('contacts') as FormArray;
   }
@@ -116,10 +112,8 @@ export class AddPrescriptionComponent implements OnInit {
   // contact formgroup
   createContact(): FormGroup {
     return this.fb.group({
-      medicament: ['', Validators.compose([Validators.required])],
-      voix: ['', Validators.compose([Validators.required])], // i.e Email, Phone
-      rythme: [null, [Validators.pattern("[0-9 ]{1}")]], // i.e. Home, Office
-      remarque: [null, Validators.compose([Validators.required])]
+      nom_test: ['', Validators.compose([Validators.required])],
+      rythme: [null, [Validators.pattern("[0-9 ]{1}")]]
     });
   }
 
@@ -152,7 +146,7 @@ export class AddPrescriptionComponent implements OnInit {
     this.prescription.medecin = formValue['doctorPresc'];
     this.prescription.service = formValue['servicePresc'];
     this.prescription.secretaire = this.ownerAccount;
-    this.prescription.type_presc = "MDCL";
+    this.prescription.type_presc = "SOIN";
 
     this.prescService.addPrescription(this.prescription)
       .subscribe(data => {
@@ -160,15 +154,13 @@ export class AddPrescriptionComponent implements OnInit {
         this.listTraitement = formValue['contacts'];
 
         for (let index = 0; index < this.listTraitement.length; index++) {
-          this.traitement = new Traitement();
+          this.tests = new Tests();
           let trai = this.listTraitement[index];
-          this.traitement.nom_traitement = trai.medicament;
-          this.traitement.voix = trai.voix;
-          this.traitement.rythme = trai.rythme;
-          this.traitement.remarque = trai.remarque;
-          this.traitement.prescription = this.prescriptionSaved;
+          this.tests.nom_test = trai.nom_test;
+          this.tests.nbre_par_jr = trai.rythme;
+          this.tests.prescription = this.prescriptionSaved;
           // console.log("traitement" + this.traitement)
-          this.saveTraitment(this.traitement);
+          this.saveTests(this.tests);
 
 
         }
@@ -193,8 +185,8 @@ export class AddPrescriptionComponent implements OnInit {
   }
 
 
-  saveTraitment(traitement: Traitement) {
-    this.prescService.addTraitement(traitement)
+  saveTests(tests: Tests) {
+    this.prescService.addTests(tests)
       .subscribe(data => {
 
       }, err => {

@@ -17,16 +17,48 @@
                         <ng-container *ngIf="patient?.etat">
                             <div class="title_right">
                                 <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                                    <div class="input-group">
+                                    <div class="btn-group">
                                         <div class="col-sm-12 col-12 text-right m-b-20">
-                                            <a class="btn btn-primary float-right btn-rounded" style="color: white;"
-                                                (click)="addPrescription(patient.id)"><i class="fa fa-plus"></i>
-                                                Prescription</a>
+                                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Prescription
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    (click)="addPrescription(patient.id)">Médicale</a>
+                                                <a class="dropdown-item"
+                                                    (click)="addSuiviPrescription(patient.id)">Surveillance</a>
+                                                <a class="dropdown-item"
+                                                    (click)="addSoinPrescription(patient.id)">Soins</a>
+                                                <a class="dropdown-item" href="#">Aliment</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </ng-container>
+
+                        <!--div class="btn-group title_right" *ngIf="patient?.etat">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Prescription
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" (click)="addPrescription(patient.id)">Médicale</a>
+                                <a class="dropdown-item" href="#">Suivi</a>
+                                <a class="dropdown-item" href="#">Soin</a>
+                                <a class="dropdown-item" href="#">Aliment</a>
+                            </div>
+                        </div-->
+
+
+
+
+
+
+
+
+
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">

@@ -25,7 +25,7 @@
                                 <div class="x_title">
                                     <button class="btn" id="add" (click)="editPatient(patient.id)"><i
                                             class="fa fa-times"></i></button>
-                                    <h1 style="text-align: center;">Prescription Médicale </h1><br>
+                                    <h1 style="text-align: center;">Prescription Soins </h1><br>
                                     <div class="col-md-6 col row">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align"
                                             for="first-name">Patient
@@ -114,43 +114,29 @@
 
 
                                         </div><br>
-                                        <div class="card-header">Traitement</div>
+                                        <div class="card-header">Paramètre</div>
                                         <div class="card-body" formArrayName="contacts">
                                             <div class="row">
                                                 <div class="col-6"
                                                     *ngFor="let contact of contactFormGroup.controls; let i = index;">
                                                     <div [formGroupName]="i" class="row">
-                                                        <!--div class="form-group col-6">
-                                                            <label>Type of Contact</label>
-                                                            <select (change)="changedFieldType(i)" class="form-control"
-                                                                formControlName="type" type="text">
-                                                                <option value="email">Email</option>
-                                                                <option value="phone">Phone</option>
-                                                            </select>
-                                                        </div-->
+
+
+
                                                         <div class="form-group col-6">
-                                                            <label>Medicament</label>
-                                                            <input class="form-control" formControlName="medicament"
-                                                                type="text">
-                                                            <span class="text-danger"
-                                                                *ngIf="getContactsFormGroup(i).controls['medicament'].touched && getContactsFormGroup(i).controls['medicament'].hasError('required')">
-                                                                le champ vide! </span>
-                                                        </div>
-
-                                                        <div class="form-group col-md-3">
-                                                            <label for="inputState">Voie</label>
+                                                            <label for="inputState">Test</label>
                                                             <select id="role" class="form-control"
-                                                                formControlName="voix" required>
+                                                                formControlName="nom_test" required>
 
-                                                                <option>IV</option>
-                                                                <option>IR</option>
-                                                                <option>IM</option>
-                                                                <option>S/C</option>
-                                                                <option>Paux</option>
+                                                                <option>Kine</option>
+                                                                <option>Pansements</option>
+                                                                <option>Cà S.U</option>
+                                                                <option>Faire marcher</option>
+
 
                                                             </select>
                                                             <span class="text-danger"
-                                                                *ngIf="getContactsFormGroup(i).controls['voix'].touched && getContactsFormGroup(i).controls['voix'].hasError('required')">
+                                                                *ngIf="getContactsFormGroup(i).controls['nom_test'].touched && getContactsFormGroup(i).controls['nom_test'].hasError('required')">
                                                                 le champ vide!</span>
                                                         </div>
                                                         <div class="form-group col-3">
@@ -161,15 +147,7 @@
                                                                 *ngIf="getContactsFormGroup(i).controls['rythme'].touched && getContactsFormGroup(i).controls['rythme'].hasError('required')">
                                                                 le champ vide! </span>
                                                         </div>
-                                                        <div class="form-group col-12">
-                                                            <label>Remarque</label>
 
-                                                            <textarea class="form-control" formControlName="remarque">
-                                                                </textarea>
-                                                            <span class="text-danger"
-                                                                *ngIf="getContactsFormGroup(i).controls['remarque'].touched && getContactsFormGroup(i).controls['remarque'].hasError('required')">
-                                                                le champ vide!</span>
-                                                        </div>
 
 
                                                         <div class="form-group col-12 text-right">

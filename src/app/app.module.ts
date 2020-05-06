@@ -33,6 +33,8 @@ import { EditPatientComponent } from './Secretaire/edit-patient/edit-patient.com
 import { HistoriquePrescriptionComponent } from './Secretaire/historique-prescription/historique-prescription.component';
 import { ResidentServicePrescriptionComponent } from './Secretaire/resident-service-prescription/resident-service-prescription.component';
 import { AddPrescriptionComponent } from './Secretaire/add-prescription/add-prescription.component';
+import { AddSuiviPrescriptionComponent } from './Secretaire/add-suivi-prescription/add-suivi-prescription.component';
+import { AddSoinPrescriptionComponent } from './Secretaire/add-soin-prescription/add-soin-prescription.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -54,6 +56,9 @@ const appRoutes: Routes = [
   { path: 'historiquePrescription/:id', component: HistoriquePrescriptionComponent },
   { path: 'currentResidentPrescription/:id', component: ResidentServicePrescriptionComponent },
   { path: 'addPrescription/:id', component: AddPrescriptionComponent },
+  { path: 'addSuiviPrescription/:id', component: AddSuiviPrescriptionComponent },
+  { path: 'addSoinPrescription/:id', component: AddSoinPrescriptionComponent },
+
 
 
 
@@ -89,7 +94,9 @@ const appRoutes: Routes = [
     EditPatientComponent,
     HistoriquePrescriptionComponent,
     ResidentServicePrescriptionComponent,
-    AddPrescriptionComponent
+    AddPrescriptionComponent,
+    AddSuiviPrescriptionComponent,
+    AddSoinPrescriptionComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

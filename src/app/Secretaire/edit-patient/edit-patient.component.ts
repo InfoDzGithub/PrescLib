@@ -115,6 +115,15 @@ export class EditPatientComponent implements OnInit {
 
     this.router.navigate(["/addPrescription", id]);
   }
+  addSuiviPrescription(id: number) {
+
+    this.router.navigate(["/addSuiviPrescription", id]);
+  }
+  addSoinPrescription(id: number) {
+
+    this.router.navigate(["/addSoinPrescription", id]);
+  }
+
 
 
   //affect patient***************************************************************************************

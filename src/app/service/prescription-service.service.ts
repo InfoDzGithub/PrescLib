@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Prescription } from '../model/prescription';
 import { Traitement } from '../model/traitement';
+import { Tests } from '../model/tests';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,9 @@ export class PrescriptionServiceService {
 
   addTraitement(traitement: Traitement) {
     return this.http.post(this.url + "/traitements", traitement);
+  }
+
+  addTests(tests: Tests) {
+    return this.http.post(this.url + "/tests", tests);
   }
 }
