@@ -9,6 +9,7 @@ export class Prescription {
     service: Service;
     medecin: User;
     secretaire: User;
+    type_aliment: string;
     type_presc: string;
 
     constructor() { }

@@ -23,4 +23,8 @@ export class PrescriptionServiceService {
   addTests(tests: Tests) {
     return this.http.post(this.url + "/tests", tests);
   }
+
+  nbrePrescriptionActifInEveryHosp(idH: number) {
+    return this.http.get(this.url + "/nbrePrescriptionActifInHosp?id=" + idH);
+  }
 }

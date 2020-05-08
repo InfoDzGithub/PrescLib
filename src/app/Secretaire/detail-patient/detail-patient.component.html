@@ -284,7 +284,9 @@
                                                                 id="decaler">
                                                                 <div class="well profile_view">
                                                                     <div class="col-sm-12">
-                                                                        <h4 class="brief"><i>{{item.service.nom}}</i>
+
+                                                                        <h4 class="brief">
+                                                                            <i>{{item.service.nom}}</i>
                                                                         </h4>
                                                                         <div class="left col-md-7 col-sm-7">
                                                                             <h2>Dr:&nbsp;{{item.medecin_traitant.nom}}&nbsp;{{item.medecin_traitant.prenom}}
@@ -301,6 +303,7 @@
                                                                                 </li>
 
 
+
                                                                             </ul>
                                                                         </div><br><br><br>
                                                                         <div
@@ -312,12 +315,24 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class=" profile-bottom text-center">
+                                                                        <div class=" col-sm-6 emphasis">
+                                                                            <p class="ratings">
+
+                                                                                <a href="#"><span
+                                                                                        class="fa fa-star"></span></a>
+                                                                                <!--a>
+                                                                                    {{nbrePrescriptionActifInEveryHosp(item.id)}}</a-->
+
+
+                                                                                actif
+
+                                                                            </p>
+                                                                        </div>
 
                                                                         <div class=" col-sm-6 emphasis">
 
                                                                             <button type="button"
                                                                                 class="btn btn-primary btn-sm"
-                                                                                style="margin-left: 120px;"
                                                                                 title="prescription"
                                                                                 (click)="historiquePrecription(item.id)"><i
                                                                                     class="fa fa-folder-open-o"></i>

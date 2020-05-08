@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from 'src/app/service/patient.service';
+import { PrescriptionServiceService } from 'src/app/service/prescription-service.service';
 
 @Component({
   selector: 'app-detail-patient',
@@ -17,7 +18,9 @@ export class DetailPatientComponent implements OnInit {
   size: number = 2;
   pages: Array<number>;
   currentResidentS: any;
-  constructor(private route: ActivatedRoute, private router: Router, public patService: PatientService, public userService: UtilisateurService) { }
+  nbrePrescHosp: any;
+  idH: string;
+  constructor(private route: ActivatedRoute, private router: Router, private prescService: PrescriptionServiceService, public patService: PatientService, public userService: UtilisateurService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -25,6 +28,7 @@ export class DetailPatientComponent implements OnInit {
       .subscribe(data => this.patient = data);
     this.getServicesHospByPatient()
     this.currentServiceResidedByPatient();
+    //this.nbrePrescriptionActifInEveryHosp(this.idH);
   }
 
   getServicesHospByPatient() {
@@ -62,6 +66,27 @@ export class DetailPatientComponent implements OnInit {
     this.getServicesHospByPatient();
 
   }
+
+  nbrePrescriptionActifInEveryHosp(id: number) {
+
+    //let idX = Number(id);
+    this.prescService.nbrePrescriptionActifInEveryHosp(id)
+      .subscribe(data => {
+
+        this.nbrePrescHosp = data;
+        console.log("nbre" + this.nbrePrescHosp)
+
+
+      }, err => {
+
+        console.log(err)
+      })
+  }
+
+
+
+
+
 
   editPatient(id: number) {
 
