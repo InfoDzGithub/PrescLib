@@ -1,0 +1,214 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h2>Exemple de la prescription aliment<small>&nbsp;du patient
+                                    {{prescription?.patient.nom}}&nbsp;{{prescription?.patient.prenom}}</small> </h2>
+                        </div>
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+                        <div class="col-md-10 col-sm-10 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <button class="btn" id="add" (click)="editPatient(prescription.patient.id)"><i
+                                            class="fa fa-times"></i></button>
+                                    <h1 style="text-align: center;">Prescription aliment </h1><br>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6 col">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">Patient
+                                                <span class="required">:</span>
+                                            </label>
+                                            <label class="col-form-label label-align"
+                                                for="first-name">{{prescription?.patient.nom}}&nbsp;{{prescription?.patient.prenom}}
+
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6 col">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">né(e) le
+                                                <span class="required">:</span>
+                                            </label>
+                                            <label class="col-form-label label-align"
+                                                for="first-name">{{prescription?.patient.date_naissance}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-6 col">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">Sexe
+                                                <span class="required">:</span>
+                                            </label>
+                                            <label class="col-form-label label-align"
+                                                for="first-name">{{prescription?.patient.sexe}}
+                                            </label>
+
+                                        </div>
+                                        <div class="col-md-6 col">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">G.
+                                                sanguin
+                                                <span class="required">:</span>
+                                            </label>
+                                            <label class="col-form-label label-align"
+                                                for="first-name">{{prescription?.patient.group_sanguin}}
+                                            </label>
+
+
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6 col">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">Service
+                                                <span class="required">:</span>
+                                            </label>
+                                            <label class="col-form-label label-align"
+                                                for="first-name">{{prescription?.service.nom}}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6 col">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">Medecin
+                                                <span class="required">:</span>
+                                            </label>
+                                            <label class="col-form-label label-align"
+                                                for="first-name">{{prescription?.medecin.nom}}&nbsp;{{prescription?.medecin.prenom}}
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">Date
+                                                <span class="required">:</span>
+                                            </label>
+                                            <label class="col-form-label label-align"
+                                                for="first-name">{{prescription?.dateP}}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6 col">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">Secretaire
+                                                <span class="required">:</span>
+                                            </label>
+                                            <label class="col-form-label label-align"
+                                                for="first-name">{{prescription?.secretaire.nom}}&nbsp;{{prescription?.secretaire.prenom}}
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br />
+
+
+
+
+                                    <div class="col-md-12 col-sm-12 ">
+
+
+                                        <div class="x_content">
+
+                                            <div class="dashboard-widget-content" *ngIf="!prescription.etat"
+                                                style="background-color:#F5F5F5;">
+
+                                                <ul class="list-unstyled timeline widget">
+
+                                                    <li>
+                                                        <div class="block">
+                                                            <div class="block_content">
+                                                                <h2 class="title">
+                                                                    <a>{{prescription.type_aliment}}</a>
+                                                                </h2>
+
+
+                                                                <!--p class="excerpt">{{item.remarque}}
+
+                                                                    </p-->
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+
+                                            <div class="dashboard-widget-content" *ngIf="prescription.etat">
+
+                                                <ul class="list-unstyled timeline widget">
+
+                                                    <li>
+                                                        <div class="block">
+                                                            <div class="block_content">
+                                                                <h2 class="title">
+                                                                    <a>{{prescription.type_aliment}}</a>
+                                                                </h2>
+
+
+                                                                <!--p class="excerpt">{{item.remarque}}
+
+                                                                    </p-->
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div id="boxi">
+
+
+
+
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /page content -->
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

@@ -72,8 +72,30 @@
                                                                 <td>{{c.secretaire.nom}}{{c.secretaire.prenom}}</td>
 
                                                                 <td>
-                                                                    <a class="btn btn-success btn-xs" title="view"><i
-                                                                            class="fa fa-folder"></i> </a>
+
+                                                                    <ng-template [ngIf]="c.type=='MDCL'"> <a
+                                                                            class="btn btn-success btn-xs"
+                                                                            (click)="detailPrescM(c.id)" title="view"><i
+                                                                                class="fa fa-folder"></i> </a>
+                                                                    </ng-template>
+                                                                    <ng-template [ngIf]="c.type=='SOIN'"><a
+                                                                            class="btn btn-success btn-xs"
+                                                                            (click)="detailSoinPrescription(c.id)"
+                                                                            title="view"><i class="fa fa-folder"></i>
+                                                                        </a></ng-template>
+                                                                    <ng-template [ngIf]="c.type=='SUIV'"><a
+                                                                            class="btn btn-success btn-xs"
+                                                                            (click)="detailSuiviPrescription(c.id)"
+                                                                            title="view"><i class="fa fa-folder"></i>
+                                                                        </a></ng-template>
+                                                                    <ng-template [ngIf]="c.type=='ALMT'"><a
+                                                                            class="btn btn-success btn-xs"
+                                                                            (click)="detailAlimentPrescription(c.id)"
+                                                                            title="view"><i class="fa fa-folder"></i>
+                                                                        </a></ng-template>
+
+
+
                                                                 </td>
 
 
@@ -85,8 +107,33 @@
                                                                 <td>{{ c.dateP}} </td>
                                                                 <td>{{c.secretaire.nom}}{{c.secretaire.prenom}}</td>
                                                                 <td>
-                                                                    <a class="btn btn-success btn-xs" title="view"><i
-                                                                            class="fa fa-folder"></i> </a>
+
+
+
+
+                                                                    <ng-template [ngIf]="c.type=='MDCL'"> <a
+                                                                            class="btn btn-success btn-xs"
+                                                                            (click)="detailPrescM(c.id)" title="view"><i
+                                                                                class="fa fa-folder"></i> </a>
+                                                                    </ng-template>
+                                                                    <ng-template [ngIf]="c.type=='SOIN'"><a
+                                                                            class="btn btn-success btn-xs"
+                                                                            (click)="detailSoinPrescription(c.id)"
+                                                                            title="view"><i class="fa fa-folder"></i>
+                                                                        </a></ng-template>
+                                                                    <ng-template [ngIf]="c.type=='SUIV'"><a
+                                                                            class="btn btn-success btn-xs"
+                                                                            (click)="detailSuiviPrescription(c.id)"
+                                                                            title="view"><i class="fa fa-folder"></i>
+                                                                        </a></ng-template>
+                                                                    <ng-template [ngIf]="c.type=='ALMT'"><a
+                                                                            class="btn btn-success btn-xs"
+                                                                            (click)="detailAlimentPrescription(c.id)"
+                                                                            title="view"><i class="fa fa-folder"></i>
+                                                                        </a></ng-template>
+
+
+
                                                                     <a *ngIf=" c.secretaire.id==ownerAccount.id"
                                                                         class="btn btn-info btn-xs" title="edit"><i
                                                                             class="fa fa-pencil"></i> </a>

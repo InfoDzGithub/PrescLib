@@ -147,6 +147,7 @@ export class AddSoinPrescriptionComponent implements OnInit {
     this.prescription.service = formValue['servicePresc'];
     this.prescription.secretaire = this.ownerAccount;
     this.prescription.type_presc = "SOIN";
+    this.prescription.type = "SOIN";
 
     this.prescService.addPrescription(this.prescription)
       .subscribe(data => {

@@ -40,6 +40,24 @@ export class ResidentServicePrescriptionComponent implements OnInit {
 
       });
   }
+  detailPrescM(id: number) {
+
+    this.router.navigate(["/detailMedicalPrescription", id]);
+  }
+  detailSoinPrescription(id: number) {
+
+    this.router.navigate(["/detailSoinPrescription", id]);
+  }
+
+  detailSuiviPrescription(id: number) {
+
+    this.router.navigate(["/detailSuiviPrescription", id]);
+  }
+
+  detailAlimentPrescription(id: number) {
+
+    this.router.navigate(["/detailAlimentPrescription", id]);
+  }
 
 
   gotoPage(i: number) {

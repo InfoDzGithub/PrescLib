@@ -100,4 +100,6 @@ export class DetailPatientComponent implements OnInit {
     this.router.navigate(["/currentResidentPrescription", id]);
   }
 
+
+
 }

@@ -11,6 +11,8 @@ export class Prescription {
     secretaire: User;
     type_aliment: string;
     type_presc: string;
+    dateP: Date;
+    type:string;
 
     constructor() { }
 }

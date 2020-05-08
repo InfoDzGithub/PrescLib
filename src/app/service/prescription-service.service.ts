@@ -27,4 +27,8 @@ export class PrescriptionServiceService {
   nbrePrescriptionActifInEveryHosp(idH: number) {
     return this.http.get(this.url + "/nbrePrescriptionActifInHosp?id=" + idH);
   }
+
+  searchPresctById(idPresc: number) {
+    return this.http.get<Prescription>(this.url + "/prescriptions/" + idPresc)
+  }
 }

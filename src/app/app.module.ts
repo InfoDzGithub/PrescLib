@@ -36,6 +36,10 @@ import { AddPrescriptionComponent } from './Secretaire/add-prescription/add-pres
 import { AddSuiviPrescriptionComponent } from './Secretaire/add-suivi-prescription/add-suivi-prescription.component';
 import { AddSoinPrescriptionComponent } from './Secretaire/add-soin-prescription/add-soin-prescription.component';
 import { AddAlimentPrescriptionComponent } from './Secretaire/add-aliment-prescription/add-aliment-prescription.component';
+import { DetailMedicalPrescriptionComponent } from './Secretaire/detail-medical-prescription/detail-medical-prescription.component';
+import { DetailSoinPrescriptionComponent } from './Secretaire/detail-soin-prescription/detail-soin-prescription.component';
+import { DetailSuiviPrescriptionComponent } from './Secretaire/detail-suivi-prescription/detail-suivi-prescription.component';
+import { DetailAlimentPrescriptionComponent } from './Secretaire/detail-aliment-prescription/detail-aliment-prescription.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -60,6 +64,11 @@ const appRoutes: Routes = [
   { path: 'addSuiviPrescription/:id', component: AddSuiviPrescriptionComponent },
   { path: 'addSoinPrescription/:id', component: AddSoinPrescriptionComponent },
   { path: 'addAlimentPrescription/:id', component: AddAlimentPrescriptionComponent },
+  { path: 'detailMedicalPrescription/:id', component: DetailMedicalPrescriptionComponent },
+  { path: 'detailSoinPrescription/:id', component: DetailSoinPrescriptionComponent },
+  { path: 'detailSuiviPrescription/:id', component: DetailSuiviPrescriptionComponent },
+  { path: 'detailAlimentPrescription/:id', component: DetailAlimentPrescriptionComponent },
+
 
 
 
@@ -99,7 +108,11 @@ const appRoutes: Routes = [
     AddPrescriptionComponent,
     AddSuiviPrescriptionComponent,
     AddSoinPrescriptionComponent,
-    AddAlimentPrescriptionComponent
+    AddAlimentPrescriptionComponent,
+    DetailMedicalPrescriptionComponent,
+    DetailSoinPrescriptionComponent,
+    DetailSuiviPrescriptionComponent,
+    DetailAlimentPrescriptionComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,
