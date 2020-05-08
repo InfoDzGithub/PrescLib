@@ -175,7 +175,7 @@ export class AddPrescriptionComponent implements OnInit {
         }
         this.infoBox("La prescription a été ajouté avec succes");
         //===>rediriger vers détaille
-        //this.router.navigate(["/editPatient", this.patientSaved.id]);
+        this.router.navigate(["/detailMedicalPrescription", this.prescriptionSaved.id]);
 
       }, err => {
         this.infoBox("Desolé! prescription n'a pas été ajouté");
@@ -203,6 +203,7 @@ export class AddPrescriptionComponent implements OnInit {
         console.log(err)
       })
   }
+
 
   editPatient(id: number) {
     this.router.navigate(["/editPatient", id]);

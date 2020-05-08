@@ -31,8 +31,8 @@ export class DetailMedicalPrescriptionComponent implements OnInit {
 
   }
 
-  editPatient(id: number) {
-    this.router.navigate(["/editPatient", id]);
+  detailPatient(id: number) {
+    this.router.navigate(["/detailPatient", id]);
   }
 
 }
