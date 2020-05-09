@@ -119,7 +119,8 @@ export class AddPrescriptionComponent implements OnInit {
       medicament: ['', Validators.compose([Validators.required])],
       voix: ['', Validators.compose([Validators.required])], // i.e Email, Phone
       rythme: [null, [Validators.pattern("[0-9 ]{1}")]], // i.e. Home, Office
-      remarque: [null, Validators.compose([Validators.required])]
+      remarque: [null, Validators.compose([Validators.required])],
+      dosage: [null]
     });
   }
 
@@ -167,6 +168,7 @@ export class AddPrescriptionComponent implements OnInit {
           this.traitement.voix = trai.voix;
           this.traitement.rythme = trai.rythme;
           this.traitement.remarque = trai.remarque;
+          this.traitement.dosage = trai.dosage;
           this.traitement.prescription = this.prescriptionSaved;
           // console.log("traitement" + this.traitement)
           this.saveTraitment(this.traitement);

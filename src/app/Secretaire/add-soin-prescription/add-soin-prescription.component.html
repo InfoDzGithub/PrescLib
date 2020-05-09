@@ -147,6 +147,15 @@
                                                                 *ngIf="getContactsFormGroup(i).controls['rythme'].touched && getContactsFormGroup(i).controls['rythme'].hasError('required')">
                                                                 le champ vide! </span>
                                                         </div>
+                                                        <div class="form-group col-12">
+                                                            <label>Remarque</label>
+
+                                                            <textarea class="form-control" formControlName="remarque">
+                                                                </textarea>
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['remarque'].touched && getContactsFormGroup(i).controls['remarque'].hasError('required')">
+                                                                le champ vide!</span>
+                                                        </div>
 
 
 

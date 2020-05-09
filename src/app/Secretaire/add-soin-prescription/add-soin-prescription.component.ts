@@ -113,6 +113,7 @@ export class AddSoinPrescriptionComponent implements OnInit {
   createContact(): FormGroup {
     return this.fb.group({
       nom_test: ['', Validators.compose([Validators.required])],
+      remarque: ['', Validators.compose([Validators.required])],
       rythme: [null, [Validators.pattern("[0-9 ]{1}")]]
     });
   }
@@ -159,6 +160,7 @@ export class AddSoinPrescriptionComponent implements OnInit {
           let trai = this.listTraitement[index];
           this.tests.nom_test = trai.nom_test;
           this.tests.nbre_par_jr = trai.rythme;
+          this.tests.remarque = trai.remarque;
           this.tests.prescription = this.prescriptionSaved;
           // console.log("traitement" + this.traitement)
           this.saveTests(this.tests);

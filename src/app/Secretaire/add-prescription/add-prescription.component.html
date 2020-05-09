@@ -128,7 +128,7 @@
                                                                 <option value="phone">Phone</option>
                                                             </select>
                                                         </div-->
-                                                        <div class="form-group col-6">
+                                                        <div class="form-group col-8">
                                                             <label>Medicament</label>
                                                             <input class="form-control" formControlName="medicament"
                                                                 type="text">
@@ -137,7 +137,7 @@
                                                                 le champ vide! </span>
                                                         </div>
 
-                                                        <div class="form-group col-md-3">
+                                                        <div class="form-group col-md-4">
                                                             <label for="inputState">Voie</label>
                                                             <select id="role" class="form-control"
                                                                 formControlName="voix" required>
@@ -159,6 +159,14 @@
                                                                 type="number">
                                                             <span class="text-danger"
                                                                 *ngIf="getContactsFormGroup(i).controls['rythme'].touched && getContactsFormGroup(i).controls['rythme'].hasError('required')">
+                                                                le champ vide! </span>
+                                                        </div>
+                                                        <div class="form-group col-3">
+                                                            <label>Dosage</label>
+                                                            <input class="form-control" formControlName="dosage"
+                                                                type="number">
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['dosage'].touched && getContactsFormGroup(i).controls['dosage'].hasError('required')">
                                                                 le champ vide! </span>
                                                         </div>
                                                         <div class="form-group col-12">
