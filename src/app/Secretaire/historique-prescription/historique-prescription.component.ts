@@ -73,4 +73,8 @@ export class HistoriquePrescriptionComponent implements OnInit {
 
     this.router.navigate(["/detailAlimentPrescription", id]);
   }
+  editMedicalPrescription(id: number) {
+
+    this.router.navigate(["/editMedicalPrescription", id]);
+  }
 }

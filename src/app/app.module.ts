@@ -40,6 +40,8 @@ import { DetailMedicalPrescriptionComponent } from './Secretaire/detail-medical-
 import { DetailSoinPrescriptionComponent } from './Secretaire/detail-soin-prescription/detail-soin-prescription.component';
 import { DetailSuiviPrescriptionComponent } from './Secretaire/detail-suivi-prescription/detail-suivi-prescription.component';
 import { DetailAlimentPrescriptionComponent } from './Secretaire/detail-aliment-prescription/detail-aliment-prescription.component';
+import { EditMedicalPrescriptionComponent } from './Secretaire/edit-medical-prescription/edit-medical-prescription.component';
+import { EditTraitementComponent } from './Secretaire/edit-traitement/edit-traitement.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -68,6 +70,8 @@ const appRoutes: Routes = [
   { path: 'detailSoinPrescription/:id', component: DetailSoinPrescriptionComponent },
   { path: 'detailSuiviPrescription/:id', component: DetailSuiviPrescriptionComponent },
   { path: 'detailAlimentPrescription/:id', component: DetailAlimentPrescriptionComponent },
+  { path: 'editMedicalPrescription/:id', component: EditMedicalPrescriptionComponent },
+  { path: 'editTraitement/:id', component: EditTraitementComponent },
 
 
 
@@ -112,7 +116,9 @@ const appRoutes: Routes = [
     DetailMedicalPrescriptionComponent,
     DetailSoinPrescriptionComponent,
     DetailSuiviPrescriptionComponent,
-    DetailAlimentPrescriptionComponent
+    DetailAlimentPrescriptionComponent,
+    EditMedicalPrescriptionComponent,
+    EditTraitementComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

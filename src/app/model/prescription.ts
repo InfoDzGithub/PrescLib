@@ -1,6 +1,7 @@
 import { User } from './user';
 import { Service } from './service';
 import { Patient } from './patient';
+import { Contenu } from './contenu';
 
 export class Prescription {
     id: number;
@@ -12,7 +13,8 @@ export class Prescription {
     type_aliment: string;
     type_presc: string;
     dateP: Date;
-    type:string;
+    type: string;
+    contenu: Contenu[];
 
     constructor() { }
 }
