@@ -71,7 +71,7 @@ const appRoutes: Routes = [
   { path: 'detailSuiviPrescription/:id', component: DetailSuiviPrescriptionComponent },
   { path: 'detailAlimentPrescription/:id', component: DetailAlimentPrescriptionComponent },
   { path: 'editMedicalPrescription/:id', component: EditMedicalPrescriptionComponent },
-  { path: 'editTraitement/:id', component: EditTraitementComponent },
+  { path: 'editTraitement/:idT/:idP', component: EditTraitementComponent },
 
 
 

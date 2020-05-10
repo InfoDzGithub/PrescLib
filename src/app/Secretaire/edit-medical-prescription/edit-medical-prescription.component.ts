@@ -221,8 +221,8 @@ export class EditMedicalPrescriptionComponent implements OnInit {
         console.log(err)
       })
   }
-  editTraitement(idT: number) {
-    this.router.navigate(["/editTraitement", idT]);
+  editTraitement(idT: number, idP: number) {
+    this.router.navigate(["/editTraitement", idT, idP]);
     console.log(idT)
   }
 

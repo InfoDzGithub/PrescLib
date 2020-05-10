@@ -18,14 +18,17 @@ import { Service } from 'src/app/model/service';
 })
 export class EditTraitementComponent implements OnInit {
   id: number;
+  idP: number;
   traitement: Traitement;
   traitementForm: FormGroup;
+  prescription: Prescription;
   constructor(private router: Router, private fb: FormBuilder, private route: ActivatedRoute, private prescService: PrescriptionServiceService, private patService: PatientService, private userService: UtilisateurService) { }
 
 
   ngOnInit(): void {
     this.traitement = new Traitement();
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['idT'];
+    this.idP = this.route.snapshot.params['idP'];
     this.prescService.searchTraitementById(this.id)
       .subscribe(data => {
         this.traitement = data;
@@ -34,13 +37,18 @@ export class EditTraitementComponent implements OnInit {
       });
 
     this.initForm();
-    //affect patient
+    this.getPrescription();
 
 
 
   }
 
-
+  getPrescription() {
+    this.prescService.searchPresctById(this.idP)
+      .subscribe(data => {
+        this.prescription = data;
+      });
+  }
   initForm() {
     this.traitementForm = this.fb.group({
       nomTraitement: ['', Validators.required],
@@ -63,6 +71,7 @@ export class EditTraitementComponent implements OnInit {
     this.traitement.rythme = formValueAff['rythme'];
     this.traitement.remarque = formValueAff['remarque'];
     this.traitement.dosage = formValueAff['dosage'];
+    this.traitement.prescription = this.prescription;
 
     this.prescService.editTraitement(this.traitement, this.traitement.id)
       .subscribe(data => {
@@ -81,7 +90,7 @@ export class EditTraitementComponent implements OnInit {
   infoBox(message: string) {
 
     if (confirm(message)) {
-      this.router.navigate(["/editMedicalPrescription", 46]);
+      this.router.navigate(["/editMedicalPrescription", this.idP]);
 
     }
   }
