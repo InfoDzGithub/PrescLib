@@ -130,8 +130,15 @@
 
                                                                     <ng-template
                                                                         [ngIf]="c.type=='MDCL' && c.secretaire.id==ownerAccount.id">
-                                                                        <a class="btn btn-success btn-xs"
+                                                                        <a class="btn btn-primary btn-xs"
                                                                             (click)="editMedicalPrescription(c.id)"
+                                                                            title="edit"><i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </ng-template>
+                                                                    <ng-template
+                                                                        [ngIf]="c.type=='SUIV' && c.secretaire.id==ownerAccount.id">
+                                                                        <a class="btn btn-primary btn-xs"
+                                                                            (click)="editSuiviPrescription(c.id)"
                                                                             title="edit"><i class="fa fa-pencil"></i>
                                                                         </a>
                                                                     </ng-template>

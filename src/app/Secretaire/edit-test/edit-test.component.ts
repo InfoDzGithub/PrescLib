@@ -11,28 +11,30 @@ import { Traitement } from 'src/app/model/traitement';
 import { PrescriptionServiceService } from 'src/app/service/prescription-service.service';
 import { Contenu } from 'src/app/model/contenu';
 import { Service } from 'src/app/model/service';
+import { Tests } from 'src/app/model/tests';
+
 @Component({
-  selector: 'app-edit-traitement',
-  templateUrl: './edit-traitement.component.html',
-  styleUrls: ['./edit-traitement.component.css']
+  selector: 'app-edit-test',
+  templateUrl: './edit-test.component.html',
+  styleUrls: ['./edit-test.component.css']
 })
-export class EditTraitementComponent implements OnInit {
+export class EditTestComponent implements OnInit {
+
   id: number;
   idP: number;
-  traitement: Traitement;
+  test: Tests;
   traitementForm: FormGroup;
   prescription: Prescription;
   constructor(private router: Router, private fb: FormBuilder, private route: ActivatedRoute, private prescService: PrescriptionServiceService, private patService: PatientService, private userService: UtilisateurService) { }
 
 
   ngOnInit(): void {
-    this.traitement = new Traitement();
+    this.test = new Tests();
     this.id = this.route.snapshot.params['idT'];
     this.idP = this.route.snapshot.params['idP'];
-    this.prescService.searchTraitementById(this.id)
+    this.prescService.searchTestById(this.id)
       .subscribe(data => {
-        this.traitement = data;
-        console.log("traio" + this.traitement.prescription)
+        this.test = data;
 
       });
 
@@ -51,37 +53,33 @@ export class EditTraitementComponent implements OnInit {
   }
   initForm() {
     this.traitementForm = this.fb.group({
-      nomTraitement: ['', Validators.required],
+      nomTest: ['', Validators.required],
       rythme: ['', Validators.pattern("[0-9 ]{1}")],
-      dosage: ['', [Validators.required]],
-      remarque: ['', Validators.required],
-      voix: ['', Validators.required]
+      remarque: ['', Validators.required]
 
 
     });
   }
 
-  editTraitement() {
+  editTest() {
 
     const formValueAff = this.traitementForm.value;
 
 
-    this.traitement.nom_traitement = formValueAff['nomTraitement'];
-    this.traitement.voix = formValueAff['voix'];
-    this.traitement.rythme = formValueAff['rythme'];
-    this.traitement.remarque = formValueAff['remarque'];
-    this.traitement.dosage = formValueAff['dosage'];
-    this.traitement.prescription = this.prescription;
+    this.test.nom_test = formValueAff['nomTest'];
+    this.test.nbre_par_jr = formValueAff['rythme'];
+    this.test.remarque = formValueAff['remarque'];
+    this.test.prescription = this.prescription;
 
-    this.prescService.editTraitement(this.traitement, this.traitement.id)
+    this.prescService.editTest(this.test, this.test.id)
       .subscribe(data => {
 
-        this.infoBox("Le traitement a bien été modifié");
+        this.infoBox("Le test a bien été modifié");
 
 
 
       }, err => {
-        this.infoBox("Desolé! le patient n'a pas été affecté");
+        this.infoBox("Desolé! le test n'a pas été modifié");
 
 
       })
@@ -90,14 +88,16 @@ export class EditTraitementComponent implements OnInit {
   infoBox(message: string) {
 
     if (confirm(message)) {
-      this.router.navigate(["/editMedicalPrescription", this.idP]);
+      this.router.navigate(["/editSuiviPrescription", this.idP]);
 
     }
   }
 
   return() {
-    this.router.navigate(["/editMedicalPrescription", this.idP]);
+    this.router.navigate(["/editSuiviPrescription", this.idP]);
 
   }
+
+
 
 }

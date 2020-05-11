@@ -36,14 +36,26 @@ export class PrescriptionServiceService {
   editPrescription(prescription: Prescription, id: number) {
     return this.http.put(this.url + "/prescriptions/" + id, prescription);
   }
+  editTest(test: Tests, id: number) {
+    return this.http.put(this.url + "/tests/" + id, test);
+  }
   editTraitement(traitement: Traitement, id: number) {
     return this.http.put(this.url + "/traitements/" + id, traitement);
   }
 
+
+
+  archiveTraitement(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/stopTraitement/${id}`, { responseType: 'text' });
+  }
+
+  archiveTest(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/stopTest/${id}`, { responseType: 'text' });
+  }
   searchTraitementById(idTrai: number) {
     return this.http.get<Traitement>(this.url + "/traitements/" + idTrai)
   }
-  archiveTraitement(id: number): Observable<any> {
-    return this.http.delete(`${this.url}/stopTraitement/${id}`, { responseType: 'text' });
+  searchTestById(idTest: number) {
+    return this.http.get<Tests>(this.url + "/tests/" + idTest)
   }
 }
