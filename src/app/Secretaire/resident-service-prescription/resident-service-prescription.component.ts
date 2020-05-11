@@ -66,6 +66,14 @@ export class ResidentServicePrescriptionComponent implements OnInit {
 
     this.router.navigate(["/editSuiviPrescription", id]);
   }
+  editSoinPrescription(id: number) {
+
+    this.router.navigate(["/editSoinPrescription", id]);
+  }
+  editAlimentPrescription(id: number) {
+
+    this.router.navigate(["/editAlimentPrescription", id]);
+  }
 
 
   gotoPage(i: number) {

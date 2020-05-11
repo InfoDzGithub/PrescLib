@@ -142,6 +142,20 @@
                                                                             title="edit"><i class="fa fa-pencil"></i>
                                                                         </a>
                                                                     </ng-template>
+                                                                    <ng-template
+                                                                        [ngIf]="c.type=='SOIN' && c.secretaire.id==ownerAccount.id">
+                                                                        <a class="btn btn-primary btn-xs"
+                                                                            (click)="editSoinPrescription(c.id)"
+                                                                            title="edit"><i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </ng-template>
+                                                                    <ng-template
+                                                                        [ngIf]="c.type=='ALMT' && c.secretaire.id==ownerAccount.id">
+                                                                        <a class="btn btn-primary btn-xs"
+                                                                            (click)="editAlimentPrescription(c.id)"
+                                                                            title="edit"><i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </ng-template>
 
                                                                 </td>
 

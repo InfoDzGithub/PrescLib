@@ -44,6 +44,9 @@ import { EditMedicalPrescriptionComponent } from './Secretaire/edit-medical-pres
 import { EditTraitementComponent } from './Secretaire/edit-traitement/edit-traitement.component';
 import { EditSuiviPrescriptionComponent } from './Secretaire/edit-suivi-prescription/edit-suivi-prescription.component';
 import { EditTestComponent } from './Secretaire/edit-test/edit-test.component';
+import { EditSoinPrescriptionComponent } from './Secretaire/edit-soin-prescription/edit-soin-prescription.component';
+import { EditTestSoinComponent } from './Secretaire/edit-test-soin/edit-test-soin.component';
+import { EditAlimentPrescriptionComponent } from './Secretaire/edit-aliment-prescription/edit-aliment-prescription.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -76,6 +79,9 @@ const appRoutes: Routes = [
   { path: 'editTraitement/:idT/:idP', component: EditTraitementComponent },
   { path: 'editSuiviPrescription/:id', component: EditSuiviPrescriptionComponent },
   { path: 'editTest/:idT/:idP', component: EditTestComponent },
+  { path: 'editSoinPrescription/:id', component: EditSoinPrescriptionComponent },
+  { path: 'editTestSoin/:idT/:idP', component: EditTestSoinComponent },
+  { path: 'editAlimentPrescription/:id', component: EditAlimentPrescriptionComponent },
 
 
 
@@ -125,7 +131,10 @@ const appRoutes: Routes = [
     EditMedicalPrescriptionComponent,
     EditTraitementComponent,
     EditSuiviPrescriptionComponent,
-    EditTestComponent
+    EditTestComponent,
+    EditSoinPrescriptionComponent,
+    EditTestSoinComponent,
+    EditAlimentPrescriptionComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

@@ -1,0 +1,208 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h2>Modifie la prescription aliment du:
+                                <small>{{prescription?.patient?.nom}}&nbsp;{{prescription?.patient?.prenom}}</small>
+                            </h2>
+                        </div>
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+                        <div class="col-md-10 col-sm-10 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <button class="btn" id="add" (click)="editPatient(prescription.patient.id)"><i
+                                            class="fa fa-times"></i></button>
+                                    <h1 style="text-align: center;">Prescription Aliment </h1><br>
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">Patient
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{prescription?.patient?.nom}}&nbsp;{{prescription?.patient?.prenom}}
+
+                                        </label>
+                                    </div>
+
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">né(e) le
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{prescription?.patient?.date_naissance}}
+                                        </label>
+                                    </div>
+
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">Sexe
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{prescription?.patient?.sexe}}
+                                        </label>
+
+                                    </div>
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">G.
+                                            sanguin
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{prescription?.patient?.group_sanguin}}
+                                        </label>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br />
+                                    <form [formGroup]="form" (submit)="submit()">
+
+
+
+
+                                        <div class="row">
+
+                                            <div class="form-group col-6">
+                                                <label for="inputState">Service</label>
+                                                <select id="serviceAff" class="form-control" [ngModel]="service?.nom"
+                                                    formControlName="servicePresc" placeholder="service" required>
+                                                    <option [ngValue]="service" selected>{{service?.nom}}</option>
+                                                    <option *ngFor="let u of servicesOcc" [ngValue]="u.service"
+                                                        (click)="doctorsOfSelectedService(u.service.id)">
+                                                        {{u.service.nom}}
+                                                    </option>
+
+                                                </select>
+
+                                            </div>
+
+                                            <!---->
+                                            <div class="form-group col-6">
+                                                <label for="inputState">Medecin
+                                                    traitant</label>
+                                                <select id="doctorPresc" class="form-control" [ngModel]="medecin"
+                                                    formControlName="doctorPresc" placeholder="choisir un medecin"
+                                                    required>
+                                                    <option [ngValue]="prescription.medecin" selected>{{medecin}}
+                                                    </option>
+                                                    <option *ngFor="let d of doctors" [ngValue]="d.user">
+                                                        {{d.user.nom}} {{d.user.prenom}}
+                                                    </option>
+
+                                                </select>
+                                            </div>
+
+
+
+
+
+
+
+                                        </div><br>
+
+
+                                        <br><br>
+                                        <div class="card-header">Les Aliments</div>
+                                        <div class="card-body" id="decaler">
+                                            <div class="form-group ">
+
+                                                <label>Aliment</label><br>
+                                                <div>
+                                                    <div class="custom-control custom-radio  ">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="customRadio" formControlName="aliment" name="aliment"
+                                                            [ngModel]="prescription.type_aliment" value="Libre" checked>
+                                                        <label class="custom-control-label"
+                                                            for="customRadio">Libre</label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="custom-control custom-radio ">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="customRadio2" formControlName="aliment" name="aliment"
+                                                            [ngModel]="prescription.type_aliment"
+                                                            value="Libre demi sel">
+                                                        <label class="custom-control-label" for="customRadio2">Libre
+                                                            (Demi sel)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="custom-control custom-radio  ">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="customRadio3" formControlName="aliment" name="aliment"
+                                                            [ngModel]="prescription.type_aliment" value="Liquide"
+                                                            checked>
+                                                        <label class="custom-control-label"
+                                                            for="customRadio3">Liquide</label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="custom-control custom-radio ">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="customRadio4" formControlName="aliment" name="aliment"
+                                                            [ngModel]="prescription.type_aliment"
+                                                            value="Liquide demi sel">
+                                                        <label class="custom-control-label" for="customRadio4">Liquide
+                                                            (Demi sel)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="custom-control custom-radio ">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="customRadio5" formControlName="aliment" name="aliment"
+                                                            [ngModel]="prescription.type_aliment" value="Aucun">
+                                                        <label class="custom-control-label" for="customRadio5">Aucun
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+
+                                                <button class="btn btn-default" type="reset">Annulé</button>
+                                                <button class="btn btn-success m-1" [disabled]="!form.valid"
+                                                    type="submit"> Enregistrer</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /page content -->
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

@@ -1,0 +1,112 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+
+                        <div class="col-md-10 col-sm-10 ">
+                            <div class="row" id="decaleBox">
+                                <div class="col-md-8 " id="decaleAffecteBox">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Modifier le suivi {{test.nom_test}} </h2>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <br />
+                                            <form id="demo-form2" data-parsley-validate
+                                                class="form-horizontal form-label-left" novalidate
+                                                [formGroup]="traitementForm" (ngSubmit)="editTest()">
+
+
+
+
+                                                <div class="form-group ">
+                                                    <label for="inputState">Nom test</label>
+                                                    <select id="serviceAff" class="form-control"
+                                                        formControlName="nomTest" [(ngModel)]="test.nom_test" required>
+
+                                                        <option>Kine</option>
+                                                        <option>Pansements</option>
+                                                        <option>Cà S.U</option>
+                                                        <option>Faire marcher</option>
+
+
+
+                                                    </select>
+
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <label for="inputNom4">Rythme</label>
+                                                    <input type="number" id="rythme" formControlName="rythme"
+                                                        [(ngModel)]="test.nbre_par_jr" class="form-control" required>
+
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label for="inputNom4">Remarque</label>
+                                                    <input type="text" id="rythme" formControlName="remarque"
+                                                        [(ngModel)]="test.remarque" class="form-control" required>
+
+                                                </div>
+
+
+
+
+
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-9 col-sm-9  offset-md-3">
+                                                        <button type="button" class="btn btn-primary"
+                                                            (click)="return()">Annulé</button>
+
+                                                        <button type="submit" [disabled]="traitementForm.invalid"
+                                                            class="btn btn-success">Valider</button>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <br><br><br><br><br><br>
+                        </div>
+
+
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <!-- /page content -->
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

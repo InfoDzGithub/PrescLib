@@ -1,0 +1,290 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h2>Modifie la prescription soin du:
+                                <small>{{prescription?.patient?.nom}}&nbsp;{{prescription?.patient?.prenom}}</small>
+                            </h2>
+                        </div>
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+                        <div class="col-md-10 col-sm-10 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <button class="btn" id="add" (click)="editPatient(prescription.patient.id)"><i
+                                            class="fa fa-times"></i></button>
+                                    <h1 style="text-align: center;">Prescription soin </h1><br>
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">Patient
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{prescription?.patient?.nom}}&nbsp;{{prescription?.patient?.prenom}}
+
+                                        </label>
+                                    </div>
+
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">né(e) le
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{prescription?.patient?.date_naissance}}
+                                        </label>
+                                    </div>
+
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="first-name">Sexe
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{prescription?.patient?.sexe}}
+                                        </label>
+
+                                    </div>
+                                    <div class="col-md-6 col row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">G.
+                                            sanguin
+                                            <span class="required">:</span>
+                                        </label>
+                                        <label class="col-form-label label-align"
+                                            for="first-name">{{prescription?.patient?.group_sanguin}}
+                                        </label>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br />
+                                    <form [formGroup]="form" (submit)="submit()">
+
+
+
+
+                                        <div class="row">
+
+                                            <div class="form-group col-6">
+                                                <label for="inputState">Service</label>
+                                                <select id="serviceAff" class="form-control" [ngModel]="service?.nom"
+                                                    formControlName="servicePresc" placeholder="service" required>
+                                                    <option [ngValue]="service" selected>{{service?.nom}}</option>
+                                                    <option *ngFor="let u of servicesOcc" [ngValue]="u.service"
+                                                        (click)="doctorsOfSelectedService(u.service.id)">
+                                                        {{u.service.nom}}
+                                                    </option>
+
+                                                </select>
+
+                                            </div>
+
+                                            <!---->
+                                            <div class="form-group col-6">
+                                                <label for="inputState">Medecin
+                                                    traitant</label>
+                                                <select id="doctorPresc" class="form-control" [ngModel]="medecin"
+                                                    formControlName="doctorPresc" placeholder="choisir un medecin"
+                                                    required>
+                                                    <option [ngValue]="prescription.medecin" selected>{{medecin}}
+                                                    </option>
+                                                    <option *ngFor="let d of doctors" [ngValue]="d.user">
+                                                        {{d.user.nom}} {{d.user.prenom}}
+                                                    </option>
+
+                                                </select>
+                                            </div>
+
+
+
+
+
+
+
+                                        </div><br>
+
+                                        <!--edit trai-->
+                                        <div class="card-header">Ancien Traitement</div>
+                                        <br>
+                                        <div class="x_content" style="background-color: white;">
+                                            <br />
+                                            <div class="col-md-12 col-sm-12 ">
+
+
+                                                <div class="x_content"><br>
+                                                    <ng-container *ngFor="let item of prescription?.contenu">
+
+
+                                                        <div class="dashboard-widget-content" *ngIf="!item.etat">
+
+                                                            <ul class="list-unstyled timeline widget">
+
+                                                                <li style="background-color:#F5F5F5">
+                                                                    <div class="block">
+                                                                        <div class="block_content">
+                                                                            <h2 class="title">
+                                                                                <a>{{item.nom_test}}&nbsp;&nbsp;</a>
+                                                                            </h2>
+
+                                                                            <div class="byline"
+                                                                                style="margin-left: 50px;">
+                                                                                <span> {{item.nbre_par_jr}}&nbsp;/J
+                                                                                </span>
+                                                                            </div>
+                                                                            <p class="excerpt">{{item.remarque}}
+
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+
+                                                            </ul>
+                                                        </div>
+                                                        <div class="dashboard-widget-content" *ngIf="item.etat">
+
+                                                            <ul class="list-unstyled timeline widget">
+
+                                                                <li>
+                                                                    <div class="col-md-8"><br>
+                                                                        <div class="block">
+                                                                            <div class="block_content">
+                                                                                <h2 class="title">
+                                                                                    <a>{{item.nom_test}}&nbsp;&nbsp;</a>
+                                                                                </h2>
+
+                                                                                <div class="byline"
+                                                                                    style="margin-left: 50px;">
+                                                                                    <span> {{item.nbre_par_jr}} &nbsp;/J
+                                                                                    </span>
+                                                                                </div>
+                                                                                <p class="excerpt">{{item.remarque}}
+
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <br><br>
+                                                                        <a title="stop" style="color: brown;"
+                                                                            (click)="stopTest(item)">
+                                                                            <i class="fa fa-times"></i></a>&nbsp;&nbsp;
+                                                                        <a title="edit" style="color:#1ABB9C"
+                                                                            (click)="editTest(item.id,prescription.id)">
+                                                                            <i class=" fa fa-pencil"></i></a>
+
+                                                                    </div>
+
+                                                                </li>
+
+
+                                                            </ul>
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <!--/edit trai-->
+                                        <br><br>
+                                        <div class="card-header">Nouveau Traitement</div>
+                                        <div class="card-body" formArrayName="contacts">
+                                            <div class="row">
+                                                <div class="col-6"
+                                                    *ngFor="let contact of contactFormGroup.controls; let i = index;">
+                                                    <div [formGroupName]="i" class="row">
+
+
+
+                                                        <div class="form-group col-6">
+                                                            <label for="inputState">Test</label>
+                                                            <select id="role" class="form-control"
+                                                                formControlName="nom_test" required>
+
+                                                                <option>Kine</option>
+                                                                <option>Pansements</option>
+                                                                <option>Cà S.U</option>
+                                                                <option>Faire marcher</option>
+
+                                                            </select>
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['nom_test'].touched && getContactsFormGroup(i).controls['nom_test'].hasError('required')">
+                                                                le champ vide!</span>
+                                                        </div>
+                                                        <div class="form-group col-3">
+                                                            <label>Rythme</label>
+                                                            <input class="form-control" formControlName="rythme"
+                                                                type="number">
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['rythme'].touched && getContactsFormGroup(i).controls['rythme'].hasError('required')">
+                                                                le champ vide! </span>
+                                                        </div>
+                                                        <div class="form-group col-12">
+                                                            <label>Remarque</label>
+
+                                                            <textarea class="form-control" formControlName="remarque">
+                                                                </textarea>
+                                                            <span class="text-danger"
+                                                                *ngIf="getContactsFormGroup(i).controls['remarque'].touched && getContactsFormGroup(i).controls['remarque'].hasError('required')">
+                                                                le champ vide!</span>
+                                                        </div>
+
+
+
+                                                        <div class="form-group col-12 text-right">
+                                                            <button class="btn btn-danger" type="button"
+                                                                (click)="removeContact(i)"> suprimer </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+
+                                                <button class="btn btn-primary m-1" type="button"
+                                                    (click)="addContact()">
+                                                    Ajouter </button>
+                                                <button class="btn btn-success m-1" [disabled]="!form.valid"
+                                                    type="submit">
+                                                    Enregistrer</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1 ">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /page content -->
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>
