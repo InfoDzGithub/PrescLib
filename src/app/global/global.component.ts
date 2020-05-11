@@ -57,4 +57,8 @@ export class GlobalComponent implements OnInit {
        })*/
 
   }
+
+  searchTraitement() {
+    this.router.navigate(["/searchTraitement"]);
+  }
 }

@@ -11,10 +11,14 @@
             <li *ngIf="user.role=='admin'" (click)="services()"><a><i class="fa fa-hospital-o"></i> Services </a>
 
             </li>
-            <li *ngIf="user.role=='admin'" (click)="gotoUsers()"><a><i class="fa fa-users"></i> Membres</a>
+            <li *ngIf="user.role=='admin'" (click)="gotoUsers()"><a><i class="fa fa-users"></i> Utilisateurs</a>
 
             </li>
             <li *ngIf="user.role=='secretaire'" (click)="gotoPatients()"><a><i class="fa fa-wheelchair"></i> Patients
+                </a>
+
+            </li>
+            <li *ngIf="user.role=='secretaire'" (click)="searchTraitement()"><a><i class="fa fa-search"></i> Traitement
                 </a>
 
             </li>

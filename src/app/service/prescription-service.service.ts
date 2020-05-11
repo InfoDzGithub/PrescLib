@@ -58,4 +58,11 @@ export class PrescriptionServiceService {
   searchTestById(idTest: number) {
     return this.http.get<Tests>(this.url + "/tests/" + idTest)
   }
+  //pas encore implementer api rest
+  searchTraitment(traitement: Traitement, quantite: number) {
+    return this.http.post(this.url + "/searchTraitement/" + quantite, traitement);
+  }
+
+
+
 }
