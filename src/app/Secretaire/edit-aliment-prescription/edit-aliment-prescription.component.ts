@@ -155,7 +155,10 @@ export class EditAlimentPrescriptionComponent implements OnInit {
     this.router.navigate(["/editPatient", id]);
   }
 
+  detailAlimentPrescription(idP: number) {
+    this.router.navigate(["/detailAlimentPrescription", idP]);
 
+  }
 
 
 }

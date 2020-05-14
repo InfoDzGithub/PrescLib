@@ -227,5 +227,8 @@ export class EditSuiviPrescriptionComponent implements OnInit {
   }
 
 
+  detailSuiviPrescription(idP: number) {
+    this.router.navigate(["/detailSuiviPrescription", idP]);
 
+  }
 }

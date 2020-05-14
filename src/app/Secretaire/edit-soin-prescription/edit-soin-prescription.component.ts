@@ -225,6 +225,9 @@ export class EditSoinPrescriptionComponent implements OnInit {
         })
   }
 
+  detailSoinPrescription(idP: number) {
+    this.router.navigate(["/detailSoinPrescription", idP]);
 
+  }
 
 }

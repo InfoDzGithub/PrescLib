@@ -48,6 +48,7 @@ import { EditSoinPrescriptionComponent } from './Secretaire/edit-soin-prescripti
 import { EditTestSoinComponent } from './Secretaire/edit-test-soin/edit-test-soin.component';
 import { EditAlimentPrescriptionComponent } from './Secretaire/edit-aliment-prescription/edit-aliment-prescription.component';
 import { SearchTraitemntComponent } from './Secretaire/search-traitemnt/search-traitemnt.component';
+import { DossierMedicalComponent } from './Infirmier/dossier-medical/dossier-medical.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -137,7 +138,8 @@ const appRoutes: Routes = [
     EditSoinPrescriptionComponent,
     EditTestSoinComponent,
     EditAlimentPrescriptionComponent,
-    SearchTraitemntComponent
+    SearchTraitemntComponent,
+    DossierMedicalComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

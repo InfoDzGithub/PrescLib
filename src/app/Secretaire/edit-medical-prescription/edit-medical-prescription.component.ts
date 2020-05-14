@@ -226,6 +226,9 @@ export class EditMedicalPrescriptionComponent implements OnInit {
     console.log(idT)
   }
 
+
+
+
   stopTraitement(item: Traitement) {
     this.prescService.archiveTraitement(item.id)
       .subscribe(data => {
@@ -247,9 +250,14 @@ export class EditMedicalPrescriptionComponent implements OnInit {
 
 
 
-  editPatient(id: number) {
+  detailPatient(id: number) {
     this.router.navigate(["/editPatient", id]);
   }
+  detailMedicalPrescription(idP: number) {
+    this.router.navigate(["/detailMedicalPrescription", idP]);
+
+  }
+
 
 
 
