@@ -22,24 +22,17 @@
                 </a>
 
             </li>
-            <li *ngIf="user.role=='infirmier'"><a><i class="fa fa-female"></i> Prescription <span
-                        class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="data.html">LIST</a></li>
-                </ul>
+            <li *ngIf="user.role=='infirmier'" (click)="dossierMedical()"><a><i class="fa fa-medkit"></i> Dossier
+                    Soin</a>
+
             </li>
-            <li *ngIf="user.role=='infirmier'"><a><i class="fa fa-heartbeat"></i> Dossier Soin <span
-                        class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="data.html">LIST</a></li>
-                </ul>
-            </li>
-            <!--li *ngIf="user.role=='secretaire'"><a><i class="fa fa-heartbeat"></i> Patient <span
+            <!--li *ngIf="user.role=='infirmier'"><a><i class="fa fa-heartbeat"></i> Dossier Soin <span
                         class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="data.html">LIST</a></li>
                 </ul>
             </li-->
+
             <li><a (click)="settingUser(user.id)"><i class="fa fa-cogs"></i> Paramètre </a>
             </li>
 

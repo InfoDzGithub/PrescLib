@@ -75,4 +75,10 @@ export class PatientService {
 
   }
 
+  patientActifByUserAcces(idU: number, page: number, size: number) {
+    return this.http.get(this.url + "/patientsActifByUser?id=" + idU + "&page=" + page + "&size=" + size)
+
+  }
+
+
 }

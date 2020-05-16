@@ -1,1 +1,167 @@
-<p>dossier-medical works!</p>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+            <!-- page content -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <!--div class="page-title">
+                        <div class="title_left">
+                            <h3>Projects <small>Listing design</small></h3>
+                        </div>
+
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div-->
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Patients hospitalisés</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Settings 1</a>
+                                                <a class="dropdown-item" href="#">Settings 2</a>
+                                            </div>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+
+                                    <p>Liste des patients au cours de soignement</p>
+
+                                    <!-- start project list -->
+                                    <table class="table table-striped projects">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 1%">#</th>
+                                                <th style="width: 20%">Patient</th>
+                                                <th>Service</th>
+                                                <th>Chambre</th>
+                                                <th>Medecin</th>
+                                                <th>Prescription actif</th>
+                                                <th style="width: 20%">#Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ng-container *ngFor="let c of patientActif?.content; let i=index">
+                                                <tr>
+                                                    <td>#</td>
+                                                    <td>
+                                                        <a>{{c.patient.nom}} &nbsp;{{c.patient.prenom}}</a>
+                                                        <br />
+                                                        <small>Entré le {{c.date_entre | date}}</small>
+                                                    </td>
+                                                    <td>
+                                                        <a>{{c.service.nom}} </a>
+                                                        <br />
+
+                                                    </td>
+                                                    <td>
+                                                        <a>{{c.num_chambre}} </a>
+                                                        <br />
+
+                                                    </td>
+                                                    <td>
+                                                        <ul class="list-inline">
+                                                            <li>
+                                                                <img [src]="this.userService.url+'/photoUser/'+c.medecin_traitant.id"
+                                                                    class="avatar" alt="Avatar">
+                                                            </li>
+
+                                                            <br><br>
+                                                            <small>{{c.medecin_traitant.nom}}&nbsp;
+                                                                {{c.medecin_traitant.prenom}}</small>
+
+
+
+                                                        </ul>
+                                                    </td>
+                                                    <!--td class="project_progress">
+                                                    <div class="progress progress_sm">
+                                                        <div class="progress-bar bg-green" role="progressbar"
+                                                            data-transitiongoal="57"></div>
+                                                    </div>
+                                                    <small>57% Complete</small>
+                                                </td-->
+                                                    <td>
+                                                        <!--button type="button"
+                                                            class="btn btn-success btn-xs">Success</button-->
+
+                                                        <small>{{nbrePresc[i]}} </small>
+                                                        <br>
+                                                        <small>prescription(s) </small>
+                                                    </td>
+                                                    <td>
+                                                        <a (click)="detailPatient(c.patient.id)"
+                                                            class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>
+                                                            detaille </a>
+
+
+                                                        <a (click)="prescriptionActif(c.patient.id)"
+                                                            class="btn btn-warning btn-xs"><i class="fa fa-paste"></i>
+                                                            Dossier </a>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+
+                                        </tbody>
+                                    </table>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end">
+
+                                            <li class="page-item" *ngFor="let p of pages; let i=index"
+                                                [ngClass]="{'active':i==curentPage}">
+                                                <a class="page-link clickable" (click)="gotoPage(i)">{{i}}</a></li>
+
+                                        </ul>
+                                    </nav>
+
+                                    <div id="box">
+
+
+
+
+
+
+                                    </div>
+
+                                    <!-- end project list -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+            <!-- /page content -->
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

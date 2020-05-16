@@ -1,0 +1,118 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+
+
+                    <div class="clearfix"></div>
+
+
+                    <br><br><br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Dossier médicale du patient <small>{{patient?.nom}} &nbsp; {{patient?.prenom}}
+                                        </small> </h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+
+                                        <li><a (click)="dossierMedical()" style="font-size:17px;"><i
+                                                    class="fa fa-angle-double-left"></i></a>
+                                        </li>
+                                        <li><a class="close-link" (click)="home()"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br>
+                                    <ng-container *ngFor="let c of actifPresc?.content; let i=index">
+                                        <div class="col-md-3">
+
+
+                                            <div class="x_content">
+                                                <div class="dropdown">
+                                                    <a href="#" id="imageDropdown" data-toggle="dropdown">
+                                                        <img src="../assets/template/images/bb.png" alt="..."
+                                                            style="height: 250px;width: 230px;margin-top: -55px;">
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu"
+                                                        aria-labelledby="imageDropdown">
+                                                        <li role="presentation" class="list-group-item py-2">
+                                                            <!--a role="menuitem" tabindex="-1" href="#">Prescription
+                                                            </a-->
+                                                            <ng-template [ngIf]="c.type=='SOIN'"><a
+                                                                    (click)="detailSoinPrescription(c.id)"
+                                                                    title="view"><i class="fa fa-file-powerpoint-o"></i>
+                                                                    &nbsp; Prescription
+                                                                </a></ng-template>
+                                                            <ng-template [ngIf]="c.type=='SUIV'"><a
+                                                                    (click)="detailSuiviPrescription(c.id)"
+                                                                    title="view"><i
+                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                    Prescription
+                                                                </a></ng-template>
+                                                            <ng-template [ngIf]="c.type=='ALMT'"><a
+                                                                    (click)="detailAlimentPrescription(c.id)"
+                                                                    title="view"><i
+                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                    Prescription
+                                                                </a></ng-template>
+                                                            <ng-template [ngIf]="c.type=='MDCL'"> <a
+                                                                    (click)="detailPrescM(c.id)" title="view"><i
+                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                    Prescription
+                                                                </a>
+                                                            </ng-template>
+
+
+
+
+
+
+
+                                                        </li>
+                                                        <li class="list-group-item py-2" role="presentation"><a
+                                                                role="menuitem" tabindex="-1" href="#"
+                                                                style="color:black;"><i class="fa fa-medkit"></i>&nbsp;
+                                                                Fiche soin
+                                                            </a></li>
+
+
+                                                    </ul>
+                                                </div>
+                                                <h2 style="margin-top: -20px;text-align: center;">Dr: &nbsp;
+                                                    {{c.medecin.nom}}&nbsp;
+                                                    {{c.medecin.prenom}}</h2>
+                                            </div>
+
+                                        </div>
+                                    </ng-container>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+            <!-- /page content -->
+
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

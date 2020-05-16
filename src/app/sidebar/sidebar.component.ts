@@ -81,4 +81,7 @@ export class SidebarComponent implements OnInit {
   searchTraitement() {
     this.router.navigate(["/searchTraitement"]);
   }
+  dossierMedical() {
+    this.router.navigate(["/dossierMedical"]);
+  }
 }

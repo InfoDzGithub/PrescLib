@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class PrescriptionServiceService {
   public url: string = "http://localhost:8080";
+  public nbre: number;
 
   constructor(private http: HttpClient) { }
 
@@ -26,8 +27,13 @@ export class PrescriptionServiceService {
   }
 
   nbrePrescriptionActifInEveryHosp(idH: number) {
-    return this.http.get(this.url + "/nbrePrescriptionActifInHosp?id=" + idH);
+    return this.http.get(this.url + "/nbrePrescriptionActifInHosp?id=" + idH)
   }
+
+  nbrePrescriptionActifByPatient(idP: number) {
+    return this.http.get<number>(this.url + "/nbrePrescriptionActifByPatient?id=" + idP);
+  }
+
 
   searchPresctById(idPresc: number) {
     return this.http.get<Prescription>(this.url + "/prescriptions/" + idPresc)
@@ -61,6 +67,11 @@ export class PrescriptionServiceService {
   //pas encore implementer api rest
   searchTraitment(traitement: Traitement, quantite: number) {
     return this.http.post(this.url + "/searchTraitement/" + quantite, traitement);
+  }
+
+  listActifPrescByPatient(idPatient: number, page: number, size: number) {
+    return this.http.get(this.url + "/actifPrescriptionByPatient?id=" + idPatient + "&page=" + page + "&size=" + size)
+
   }
 
 
