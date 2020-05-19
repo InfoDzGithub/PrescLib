@@ -50,6 +50,7 @@ import { EditAlimentPrescriptionComponent } from './Secretaire/edit-aliment-pres
 import { SearchTraitemntComponent } from './Secretaire/search-traitemnt/search-traitemnt.component';
 import { DossierMedicalComponent } from './Infirmier/dossier-medical/dossier-medical.component';
 import { PrescriptionActifComponent } from './Infirmier/prescription-actif/prescription-actif.component';
+import { FichesInfirmierActifComponent } from './Infirmier/fiches-infirmier-actif/fiches-infirmier-actif.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -88,7 +89,7 @@ const appRoutes: Routes = [
   { path: 'searchTraitement', component: SearchTraitemntComponent },
   { path: 'dossierMedical', component: DossierMedicalComponent },
   { path: 'PrescriptionActif/:id', component: PrescriptionActifComponent },
-
+  { path: 'ActifFilesCare/:id', component: FichesInfirmierActifComponent },
 
 
 
@@ -143,7 +144,8 @@ const appRoutes: Routes = [
     EditAlimentPrescriptionComponent,
     SearchTraitemntComponent,
     DossierMedicalComponent,
-    PrescriptionActifComponent
+    PrescriptionActifComponent,
+    FichesInfirmierActifComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

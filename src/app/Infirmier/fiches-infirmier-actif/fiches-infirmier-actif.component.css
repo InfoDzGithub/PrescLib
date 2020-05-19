@@ -1,0 +1,16 @@
+#bouttonSEARCH{
+    position: relative;
+    margin-left: 750px;}
+#box
+{
+height:350px ;
+width: 850px;
+background-color:white;
+} 
+.clickable
+{
+cursor: pointer;
+}
+#decaler2{
+    margin-left: 300px;
+  }

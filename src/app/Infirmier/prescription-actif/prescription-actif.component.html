@@ -80,8 +80,9 @@
 
                                                         </li>
                                                         <li class="list-group-item py-2" role="presentation"><a
-                                                                role="menuitem" tabindex="-1" href="#"
-                                                                style="color:black;"><i class="fa fa-medkit"></i>&nbsp;
+                                                                role="menuitem" tabindex="-1" style="color:black;"
+                                                                (click)="gotoFileCare(c.id)"><i
+                                                                    class="fa fa-medkit"></i>&nbsp;
                                                                 Fiche soin
                                                             </a></li>
 
@@ -95,6 +96,15 @@
 
                                         </div>
                                     </ng-container>
+                                    <nav aria-label="Page navigation example" id="decalNav">
+                                        <ul class="pagination justify-content-end">
+
+                                            <li class="page-item" *ngFor="let p of pages; let i=index"
+                                                [ngClass]="{'active':i==curentPage}">
+                                                <a class="page-link clickable" (click)="gotoPage(i)">{{i}}</a></li>
+
+                                        </ul>
+                                    </nav>
 
 
 

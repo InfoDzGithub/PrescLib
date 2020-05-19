@@ -93,5 +93,7 @@ export class PrescriptionActifComponent implements OnInit {
   }
 
 
-
+  gotoFileCare(id: number) {
+    this.router.navigate(["/ActifFilesCare", id]);
+  }
 }
