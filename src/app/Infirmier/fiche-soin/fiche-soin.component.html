@@ -1,0 +1,186 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>Invoice <small>Some examples to get you started</small></h3>
+                        </div>
+
+                        <!--div class="title_right">
+                  <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </div>
+                </div-->
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="x_panel">
+                                <div>
+                                    <!--h2>Invoice Design <small>Sample user invoice design</small></h2-->
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <button class="btn btn-default" onclick="window.print();"><i
+                                                class="fa fa-print"></i> </button>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <!--div class="clearfix"></div-->
+                                </div>
+                                <br>
+                                <div class="x_content">
+
+                                    <section class="content invoice">
+                                        <!-- title row -->
+                                        <div class="row">
+                                            <div class="  invoice-header">
+                                                <h1>
+                                                    <i class="fa fa-clipboard"></i> Fiche Surveillance médicale:
+                                                    <small style="font-size: 25px;">
+                                                        {{fileCare?.dateF| date}}</small>
+                                                </h1>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- info row -->
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-2 invoice-col"></div>
+                                            <div class="col-sm-5 invoice-col">
+                                                <strong>Patient</strong>
+                                                <address>
+                                                    Nom:
+                                                    &nbsp;{{fileCare?.patient.nom}}&nbsp;{{fileCare?.patient.prenom}}
+                                                    <br>Sexe:&nbsp;{{fileCare?.patient.sexe}}
+                                                    <br>Né(e) le:&nbsp;&nbsp;{{fileCare?.patient.date_naissance}}
+                                                    <br>G.sanguin:&nbsp;{{fileCare?.patient.group_sanguin}}
+
+                                                </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-5 invoice-col">
+                                                <strong>Service</strong>
+                                                <address>
+                                                    Nom:&nbsp;{{fileCare?.service.nom}}
+
+                                                    <br>Chambre:&nbsp;{{fileCare?.num_chambre}}
+                                                    <br>Medecin:&nbsp;{{fileCare?.prescription.medecin.nom}}&nbsp;{{fileCare?.prescription.medecin.prenom}}
+
+                                                    <br>Prescription:&nbsp;&nbsp;{{fileCare?.prescription.type}}
+
+                                                </address>
+                                            </div>
+
+
+
+                                        </div>
+                                        <hr>
+                                        <br><br>
+                                        <!-- /.row -->
+
+                                        <!--med-->
+                                        <div class="x_content">
+
+                                            <ng-container
+                                                *ngFor="let item of fileCare?.prescription.contenu, let i=index">
+                                                <ul class="list-unstyled timeline" *ngIf="item.etat">
+                                                    <li>
+                                                        <div class="block">
+                                                            <div class="tags">
+                                                                <a (click)="showValidationBox(item,i)" class="tag">
+                                                                    <span>Numero °{{i+1}}</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="block_content">
+                                                                <h2 class="title">
+                                                                    <a>{{item?.nom_traitement}}
+                                                                    </a>
+                                                                </h2>
+                                                                <div class="byline">
+                                                                    <span>Le voie:&nbsp;{{item?.voix}}</span>
+                                                                    &nbsp;chaque <a>{{item?.rythme}}H<br>
+                                                                        <span>&nbsp;Le
+                                                                            dosage:&nbsp;{{item?.dosage}}mg</span>
+                                                                    </a>
+                                                                </div>
+                                                                <p class="excerpt">{{item?.remarque}}
+                                                                </p>
+                                                                <!--item?.validations.length>0 && -->
+                                                                <div *ngIf="mode==i">
+
+                                                                    <div *ngIf="Validations.length>0">
+                                                                        <ng-container *ngFor="let v of Validations">
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="inlineCheckbox3"
+                                                                                    value="true" checked disabled>
+                                                                            </div>
+                                                                        </ng-container>
+                                                                    </div>
+
+                                                                    <br>
+                                                                    <ng-container
+                                                                        *ngFor="let dummy of ' '.repeat(item.nbre_par_jour-Validations?.length).split(''), let x = index">
+                                                                        <div class="form-check form-check-inline">
+
+                                                                            <input class="form-check-input"
+                                                                                type="checkbox" id="inlineCheckbox3"
+                                                                                value="option3"
+                                                                                (click)="addValidation(item)">
+                                                                            <label class="form-check-label"
+                                                                                for="inlineCheckbox3">detaille</label>
+                                                                        </div>
+                                                                    </ng-container>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+
+                                                </ul>
+                                            </ng-container>
+                                            <!--div class="card-body">
+                                                    <div class="col-12">
+
+                                                        <button class="btn btn-default m-1" type="reset">
+                                                            Annuler </button>
+                                                        <button class="btn btn-success m-1" type="submit">
+                                                            Enregistrer</button>
+                                                    </div>
+                                                </div-->
+
+
+                                        </div>
+                                        <!--/med-->
+
+                                        <!-- /.row -->
+
+
+
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>

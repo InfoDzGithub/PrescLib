@@ -40,7 +40,7 @@
 
                                         <br>
                                         <div class="col-sm-12"
-                                            *ngIf="pageFilesCare?.totalElements>0 && currentPageFilesCare?.totalElements>0; else showExcuse">
+                                            *ngIf="pageFilesCare?.totalElements>0 || currentPageFilesCare?.totalElements>0; else showExcuse">
                                             <div class="card-box table-responsive"
                                                 *ngIf="pageFilesCare?.totalElements>0">
 
@@ -133,10 +133,47 @@
 
                                                         <div class="x_content">
                                                             <div class="dropdown">
-                                                                <a id="imageDropdown">
-                                                                    <img src="../assets/template/images/ficheN.png"
+                                                                <a id="imageDropdown" data-toggle="dropdown">
+                                                                    <img href="#"
+                                                                        src="../assets/template/images/ficheN.png"
                                                                         alt="..." style="height: 230px;width: 200px;">
                                                                 </a>
+                                                                <ul class="dropdown-menu" role="menu"
+                                                                    aria-labelledby="imageDropdown">
+                                                                    <li role="presentation"
+                                                                        class="list-group-item py-2">
+                                                                        <!--a role="menuitem" tabindex="-1" href="#">Prescription
+                                                            </a-->
+                                                                        <ng-template [ngIf]="prescription.type=='SOIN'">
+                                                                            <a (click)="ficheSoin(c.id)" title="view"><i
+                                                                                    class="fa fa-file-powerpoint-o"></i>
+                                                                                &nbsp;+ Fiche SOIN
+                                                                            </a></ng-template>
+                                                                        <ng-template [ngIf]="prescription.type=='SUIV'">
+                                                                            <a (click)="ficheSoin(c.id)" title="view"><i
+                                                                                    class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                + Fiche suivi
+                                                                            </a></ng-template>
+                                                                        <ng-template [ngIf]="prescription.type=='ALMT'">
+                                                                            <a (click)="ficheSoin(c.id)" title="view"><i
+                                                                                    class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                + Fiche suivi
+                                                                            </a></ng-template>
+                                                                        <ng-template [ngIf]="prescription.type=='MDCL'">
+                                                                            <a (click)="ficheSoin(c.id)" title="view"><i
+                                                                                    class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                + Fiche suivi
+                                                                            </a>
+                                                                        </ng-template>
+
+
+
+
+
+
+
+                                                                    </li>
+                                                                </ul>
 
                                                             </div><br>
                                                             <h2 style="margin-top: -20px;text-align: center;">
@@ -173,13 +210,50 @@
                                                     Le patient
                                                     {{patientName}} n'as pas de fiches actifs.</p>
                                                 <br>
-                                                <!--button type="button" class="btn btn-primary" title="nouvelle fiche"
-                                                    style="margin-left:200px ;"><i
-                                                        class="fa fa-plus"></i>&nbsp;Fiche</button-->
-                                                <a>
-                                                    <img src="../assets/template/images/sav.png" alt="..."
-                                                        style="height: 170px;width: 150px;margin-left:100px ">
-                                                </a>
+
+
+                                                <div class="dropdown">
+                                                    <a id="imageDropdown" data-toggle="dropdown">
+                                                        <img src="../assets/template/images/sav.png" alt="..."
+                                                            style="height: 170px;width: 150px;margin-left:100px ">
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu"
+                                                        aria-labelledby="imageDropdown">
+                                                        <li role="presentation" class="list-group-item py-2">
+                                                            <!--a role="menuitem" tabindex="-1" href="#">Prescription
+                                                </a-->
+                                                            <ng-template [ngIf]="prescription?.type=='SOIN'">
+                                                                <a (click)="addFichSoin()" title="view"><i
+                                                                        class="fa fa-plus"></i>
+                                                                    &nbsp; Fiche SOIN
+                                                                </a></ng-template>
+                                                            <ng-template [ngIf]="prescription?.type=='SUIV'">
+                                                                <a (click)="addFichSuiv()" title="view"><i
+                                                                        class="fa fa-plus"></i>&nbsp;
+                                                                    Fiche suivi
+                                                                </a></ng-template>
+                                                            <ng-template [ngIf]="prescription?.type=='ALMT'">
+                                                                <a (click)="addFichSuiv()" title="view"><i
+                                                                        class="fa fa-plus"></i>&nbsp;
+                                                                    Fiche suivi
+                                                                </a></ng-template>
+                                                            <ng-template [ngIf]="prescription?.type=='MDCL'">
+                                                                <a (click)="addFichSuiv()" title="view"><i
+                                                                        class="fa fa-plus"></i>&nbsp;
+                                                                    Fiche suivi
+                                                                </a>
+                                                            </ng-template>
+
+
+
+
+
+
+
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
                                                 <br><br><br><br><br><br><br><br><br><br>
 
                                             </blockquote>
