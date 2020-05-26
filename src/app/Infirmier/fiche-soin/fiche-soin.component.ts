@@ -115,5 +115,14 @@ export class FicheSoinComponent implements OnInit {
   }
 
 
+  home() {
+    this.router.navigate(["/global"]);
+  }
+  FicheInfirmierActif(id: number) {
+    this.router.navigate(["/ActifFilesCare", id]);
+  }
 
+  alert() {
+    window.alert('test');
+  }
 }

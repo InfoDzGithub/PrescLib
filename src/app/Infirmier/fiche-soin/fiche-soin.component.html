@@ -10,19 +10,10 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Invoice <small>Some examples to get you started</small></h3>
+                            <!--h3>Invoice <small>Some examples to get you started</small></h3-->
                         </div>
 
-                        <!--div class="title_right">
-                  <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button">Go!</button>
-                      </span>
-                    </div>
-                  </div>
-                </div-->
+
                     </div>
 
                     <div class="clearfix"></div>
@@ -33,12 +24,16 @@
                                 <div>
                                     <!--h2>Invoice Design <small>Sample user invoice design</small></h2-->
                                     <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+
+                                        <li><a (click)="FicheInfirmierActif(fileCare.prescription.id)"
+                                                style="font-size:17px;"><i class="fa fa-angle-double-left"></i></a>
                                         </li>
+
                                         <button class="btn btn-default" onclick="window.print();"><i
                                                 class="fa fa-print"></i> </button>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        <li><a class="close-link" (click)="home()"><i class="fa fa-close"></i></a>
                                         </li>
+
                                     </ul>
                                     <!--div class="clearfix"></div-->
                                 </div>
@@ -101,8 +96,10 @@
                                                     <li>
                                                         <div class="block">
                                                             <div class="tags">
-                                                                <a (click)="showValidationBox(item,i)" class="tag">
-                                                                    <span>Numero °{{i+1}}</span>
+                                                                <a (click)="showValidationBox(item,i)"
+                                                                    class="tag clickable">
+                                                                    <!--span>Numero °{{i+1}}</span-->
+                                                                    <span>Injecter</span>
                                                                 </a>
                                                             </div>
                                                             <div class="block_content">
@@ -110,41 +107,141 @@
                                                                     <a>{{item?.nom_traitement}}
                                                                     </a>
                                                                 </h2>
-                                                                <div class="byline">
-                                                                    <span>Le voie:&nbsp;{{item?.voix}}</span>
-                                                                    &nbsp;chaque <a>{{item?.rythme}}H<br>
-                                                                        <span>&nbsp;Le
-                                                                            dosage:&nbsp;{{item?.dosage}}mg</span>
-                                                                    </a>
+                                                                <div class="byline" id="bleuNuit">
+                                                                    <span id="vert">Le voie:</span>
+                                                                    &nbsp;{{item?.voix}}
+                                                                    &nbsp;chaque <a>{{item?.rythme}}H<br></a>
+                                                                    <span id="vert">Le dosage:</span>
+                                                                    &nbsp;{{item?.dosage}}mg<br>
+                                                                    <span id="vert">Remarque:&nbsp;</span>
+                                                                    <p>{{item?.remarque}}
+                                                                    </p>
                                                                 </div>
-                                                                <p class="excerpt">{{item?.remarque}}
-                                                                </p>
+
                                                                 <!--item?.validations.length>0 && -->
                                                                 <div *ngIf="mode==i">
 
                                                                     <div *ngIf="Validations.length>0">
-                                                                        <ng-container *ngFor="let v of Validations">
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" id="inlineCheckbox3"
-                                                                                    value="true" checked disabled>
-                                                                            </div>
-                                                                        </ng-container>
+                                                                        <div class="well" style="overflow: auto">
+                                                                            <span id="red">Déja
+                                                                                Injecter:&nbsp;</span><br>
+                                                                            <ng-container *ngFor="let v of Validations">
+                                                                                <div
+                                                                                    class="form-check form-check-inline">
+                                                                                    <input class="form-check-input"
+                                                                                        type="checkbox"
+                                                                                        id="inlineCheckbox3"
+                                                                                        value="true" checked disabled>
+                                                                                    <!--a class="form-check-label"
+                                                                                        for="inlineCheckbox3"
+                                                                                        (click)="alert()">detaille</a-->
+                                                                                    <!--debut-->
+                                                                                    <a data-toggle="modal"
+                                                                                        data-target=".bs-example-modal-lg"
+                                                                                        class="clickable">
+                                                                                        detaille</a>
+
+                                                                                    <div class="modal fade bs-example-modal-lg"
+                                                                                        tabindex="-1" role="dialog"
+                                                                                        aria-hidden="true">
+                                                                                        <div
+                                                                                            class="modal-dialog modal-lg">
+                                                                                            <div class="modal-content">
+
+                                                                                                <div
+                                                                                                    class="modal-header">
+                                                                                                    <h4 class="modal-title"
+                                                                                                        id="myModalLabel">
+                                                                                                        Detaille sur
+                                                                                                        injection</h4>
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        class="close"
+                                                                                                        data-dismiss="modal"><span
+                                                                                                            aria-hidden="true">×</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <h4 class="heading">
+                                                                                                        Injection du
+                                                                                                        medicament:&nbsp;
+                                                                                                    </h4>
+
+                                                                                                    <p
+                                                                                                        style="margin-left: 20px;">
+                                                                                                        {{item?.nom_traitement}},&nbsp;dosage:&nbsp;{{item?.dosage}},&nbsp;Voie:&nbsp;{{item.voix}}
+                                                                                                    </p>
+
+                                                                                                    <h4 class="heading">
+                                                                                                        Injecté Par
+                                                                                                        l'infirmier:&nbsp;
+                                                                                                    </h4>
+                                                                                                    <!--Recent Activity-->
+                                                                                                    <ul class="messages"
+                                                                                                        style="margin-left: 20px;">
+                                                                                                        <li>
+                                                                                                            <img [src]="this.userService.url+'/photoUser/'+v.infirmier.id"
+                                                                                                                class="avatar"
+                                                                                                                alt="Avatar">
+                                                                                                            <!--div
+                                                                                                                class="message_date">
+                                                                                                                <h3
+                                                                                                                    class="date text-info">
+                                                                                                                    24
+                                                                                                                </h3>
+                                                                                                                <p
+                                                                                                                    class="month">
+                                                                                                                    May
+                                                                                                                </p>
+                                                                                                            </div-->
+                                                                                                            <div
+                                                                                                                class="message_wrapper">
+                                                                                                                <h4
+                                                                                                                    class="heading">
+                                                                                                                    {{v.infirmier.nom}}&nbsp;{{v.infirmier.prenom}}
+                                                                                                                </h4>
+                                                                                                                <blockquote
+                                                                                                                    class="message">
+                                                                                                                    Date
+                                                                                                                    Injection:{{v.dateV}}<br>
+                                                                                                                    Temps
+                                                                                                                    Injection:{{v.timeValidation }}<br>
+                                                                                                                </blockquote>
+
+
+                                                                                                            </div>
+                                                                                                        </li>
+
+                                                                                                    </ul><br>
+                                                                                                    <!--/Recent Activity-->
+                                                                                                </div>
+
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--/debut-->
+                                                                                </div>
+                                                                            </ng-container>
+                                                                        </div>
                                                                     </div>
 
                                                                     <br>
-                                                                    <ng-container
-                                                                        *ngFor="let dummy of ' '.repeat(item.nbre_par_jour-Validations?.length).split(''), let x = index">
-                                                                        <div class="form-check form-check-inline">
+                                                                    <div
+                                                                        *ngIf="item.nbre_par_jour - Validations?.length>0">
+                                                                        <span id="red">A Injecter:&nbsp;</span><br>
+                                                                        <ng-container
+                                                                            *ngFor="let dummy of ' '.repeat(item.nbre_par_jour - Validations?.length).split(''), let x = index">
+                                                                            <div class="form-check form-check-inline">
 
-                                                                            <input class="form-check-input"
-                                                                                type="checkbox" id="inlineCheckbox3"
-                                                                                value="option3"
-                                                                                (click)="addValidation(item)">
-                                                                            <label class="form-check-label"
-                                                                                for="inlineCheckbox3">detaille</label>
-                                                                        </div>
-                                                                    </ng-container>
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="inlineCheckbox3"
+                                                                                    value="option3"
+                                                                                    (click)="addValidation(item)">
+
+                                                                            </div>
+                                                                        </ng-container>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
