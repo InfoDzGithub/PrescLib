@@ -153,7 +153,49 @@ export class FichesInfirmierActifComponent implements OnInit {
     }
   }
 
+  addFichMedicale() {
+    if (confirm("Vouliez vous creer une fiche au patient:" + this.prescription.patient.nom + " " + this.prescription.patient.prenom + "?")) {
+
+      this.fiche = new FicheInfirmier();
+      this.fiche.patient = this.prescription.patient;
+      this.fiche.prescription = this.prescription;
+      this.fiche.service = this.prescription.patient.service;
+      this.fiche.type_fiche = "MIDCL";
+      this.fiche.num_chambre = this.currentHospInfoPatient.num_chambre;
+      this.fileService.addFileCare(this.fiche)
+        .subscribe(data => { this.ngOnInit() }
+
+        );
+    }
+  }
+
+  addFichAliment() {
+    if (confirm("Vouliez vous creer une fiche au patient:" + this.prescription.patient.nom + " " + this.prescription.patient.prenom + "?")) {
+
+      this.fiche = new FicheInfirmier();
+      this.fiche.patient = this.prescription.patient;
+      this.fiche.prescription = this.prescription;
+      this.fiche.service = this.prescription.patient.service;
+      this.fiche.type_fiche = "ALIMT";
+      this.fiche.num_chambre = this.currentHospInfoPatient.num_chambre;
+      this.fileService.addFileCare(this.fiche)
+        .subscribe(data => { this.ngOnInit() }
+
+        );
+    }
+  }
+
   ficheSoin(id: number) {
     this.router.navigate(["/editFicheSoin", id]);
   }
+
+  ficheSoinReel(id: number) {
+    this.router.navigate(["/editFicheSoinReel", id]);
+  }
+
+  ficheSoinAliment(id: number) {
+    this.router.navigate(["/editFicheSoinAliment", id]);
+  }
+
+
 }

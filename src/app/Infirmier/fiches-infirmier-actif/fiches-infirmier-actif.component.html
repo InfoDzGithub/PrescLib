@@ -145,7 +145,8 @@
                                                                         <!--a role="menuitem" tabindex="-1" href="#">Prescription
                                                             </a-->
                                                                         <ng-template [ngIf]="prescription.type=='SOIN'">
-                                                                            <a (click)="ficheSoin(c.id)" title="view"><i
+                                                                            <a (click)="ficheSoinReel(c.id)"
+                                                                                title="view"><i
                                                                                     class="fa fa-file-powerpoint-o"></i>
                                                                                 &nbsp;+ Fiche SOIN
                                                                             </a></ng-template>
@@ -155,14 +156,15 @@
                                                                                 + Fiche suivi
                                                                             </a></ng-template>
                                                                         <ng-template [ngIf]="prescription.type=='ALMT'">
-                                                                            <a (click)="ficheSoin(c.id)" title="view"><i
+                                                                            <a (click)="ficheSoinAliment(c.id)"
+                                                                                title="view"><i
                                                                                     class="fa fa-file-powerpoint-o"></i>&nbsp;
-                                                                                + Fiche suivi
+                                                                                + Fiche Aliment
                                                                             </a></ng-template>
                                                                         <ng-template [ngIf]="prescription.type=='MDCL'">
                                                                             <a (click)="ficheSoin(c.id)" title="view"><i
                                                                                     class="fa fa-file-powerpoint-o"></i>&nbsp;
-                                                                                + Fiche suivi
+                                                                                + Fiche medical
                                                                             </a>
                                                                         </ng-template>
 
@@ -233,12 +235,12 @@
                                                                     Fiche suivi
                                                                 </a></ng-template>
                                                             <ng-template [ngIf]="prescription?.type=='ALMT'">
-                                                                <a (click)="addFichSuiv()" title="view"><i
+                                                                <a (click)="addFichAliment()" title="view"><i
                                                                         class="fa fa-plus"></i>&nbsp;
                                                                     Fiche suivi
                                                                 </a></ng-template>
                                                             <ng-template [ngIf]="prescription?.type=='MDCL'">
-                                                                <a (click)="addFichSuiv()" title="view"><i
+                                                                <a (click)=" addFichMedicale()" title="view"><i
                                                                         class="fa fa-plus"></i>&nbsp;
                                                                     Fiche suivi
                                                                 </a>

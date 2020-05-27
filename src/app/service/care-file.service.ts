@@ -44,4 +44,8 @@ export class CareFileService {
     return this.http.get(this.url + "/validationsByContenuAndFileCare?idC=" + idC + "&idF=" + idF)
   }
 
+  getValidationsByFileCare(idF) {
+    return this.http.get(this.url + "/validationsByFileCare?idF=" + idF)
+  }
+
 }

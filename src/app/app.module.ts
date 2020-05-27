@@ -52,6 +52,8 @@ import { DossierMedicalComponent } from './Infirmier/dossier-medical/dossier-med
 import { PrescriptionActifComponent } from './Infirmier/prescription-actif/prescription-actif.component';
 import { FichesInfirmierActifComponent } from './Infirmier/fiches-infirmier-actif/fiches-infirmier-actif.component';
 import { FicheSoinComponent } from './Infirmier/fiche-soin/fiche-soin.component';
+import { FicheSoinReelComponent } from './Infirmier/fiche-soin-reel/fiche-soin-reel.component';
+import { FicheSoinAlimentComponent } from './Infirmier/fiche-soin-aliment/fiche-soin-aliment.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -92,7 +94,8 @@ const appRoutes: Routes = [
   { path: 'PrescriptionActif/:id', component: PrescriptionActifComponent },
   { path: 'ActifFilesCare/:id', component: FichesInfirmierActifComponent },
   { path: 'editFicheSoin/:id', component: FicheSoinComponent },
-
+  { path: 'editFicheSoinReel/:id', component: FicheSoinReelComponent },
+  { path: 'editFicheSoinAliment/:id', component: FicheSoinAlimentComponent },
 
 
 
@@ -148,7 +151,9 @@ const appRoutes: Routes = [
     DossierMedicalComponent,
     PrescriptionActifComponent,
     FichesInfirmierActifComponent,
-    FicheSoinComponent
+    FicheSoinComponent,
+    FicheSoinReelComponent,
+    FicheSoinAlimentComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

@@ -1,0 +1,250 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <!--h3>Invoice <small>Some examples to get you started</small></h3-->
+                        </div>
+
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="x_panel">
+                                <div>
+                                    <!--h2>Invoice Design <small>Sample user invoice design</small></h2-->
+                                    <ul class="nav navbar-right panel_toolbox">
+
+                                        <li><a (click)="FicheInfirmierActif(fileCare.prescription.id)"
+                                                style="font-size:17px;"><i class="fa fa-angle-double-left"></i></a>
+                                        </li>
+
+                                        <button class="btn btn-default" onclick="window.print();"><i
+                                                class="fa fa-print"></i> </button>
+                                        <li><a class="close-link" (click)="home()"><i class="fa fa-close"></i></a>
+                                        </li>
+
+                                    </ul>
+                                    <!--div class="clearfix"></div-->
+                                </div>
+                                <br>
+                                <div class="x_content">
+
+                                    <section class="content invoice">
+                                        <!-- title row -->
+                                        <div class="row">
+                                            <div class="  invoice-header">
+                                                <h1>
+                                                    <i class="fa fa-clipboard"></i> Fiche Surveillance Alimentaire:
+                                                    <small style="font-size: 25px;">
+                                                        {{fileCare?.dateF| date}}</small>
+                                                </h1>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- info row -->
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-2 invoice-col"></div>
+                                            <div class="col-sm-5 invoice-col">
+                                                <strong>Patient</strong>
+                                                <address>
+                                                    Nom:
+                                                    &nbsp;{{fileCare?.patient.nom}}&nbsp;{{fileCare?.patient.prenom}}
+                                                    <br>Sexe:&nbsp;{{fileCare?.patient.sexe}}
+                                                    <br>Né(e) le:&nbsp;&nbsp;{{fileCare?.patient.date_naissance}}
+                                                    <br>G.sanguin:&nbsp;{{fileCare?.patient.group_sanguin}}
+
+                                                </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-5 invoice-col">
+                                                <strong>Service</strong>
+                                                <address>
+                                                    Nom:&nbsp;{{fileCare?.service.nom}}
+
+                                                    <br>Chambre:&nbsp;{{fileCare?.num_chambre}}
+                                                    <br>Medecin:&nbsp;{{fileCare?.prescription.medecin.nom}}&nbsp;{{fileCare?.prescription.medecin.prenom}}
+
+                                                    <br>Prescription:&nbsp;&nbsp;{{fileCare?.prescription.type}}
+
+                                                </address>
+                                            </div>
+
+
+
+                                        </div>
+                                        <hr>
+                                        <br><br>
+                                        <!-- /.row -->
+
+                                        <!--med-->
+                                        <div class="x_content">
+
+
+                                            <ul class="list-unstyled timeline">
+                                                <li>
+                                                    <div class="block">
+                                                        <div class="tags">
+                                                            <a (click)="showValidationBox()" class="tag clickable">
+                                                                <!--span>Numero °{{i+1}}</span-->
+                                                                <span>Servir</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="block_content">
+                                                            <h2 class="title">
+                                                                <a>{{fileCare?.prescription.type_aliment}}
+                                                                </a>
+                                                            </h2>
+                                                            <div class="byline" id="bleuNuit">
+                                                                <span id="vert">Présenté:&nbsp;</span>2
+                                                                fois / J <br>
+
+                                                            </div>
+
+                                                            <!--item?.validations.length>0 && -->
+                                                            <div *ngIf="mode==1">
+
+                                                                <div *ngIf="Validations.length>0">
+                                                                    <div class="well" style="overflow: auto">
+                                                                        <span id="red">Aliment déja
+                                                                            servi:&nbsp;</span><br>
+                                                                        <ng-container *ngFor="let v of Validations">
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="inlineCheckbox3"
+                                                                                    value="true" checked disabled>
+
+                                                                                <a data-toggle="modal"
+                                                                                    data-target=".bs-example-modal-lg"
+                                                                                    class="clickable">
+                                                                                    detaille</a>
+
+                                                                                <div class="modal fade bs-example-modal-lg"
+                                                                                    tabindex="-1" role="dialog"
+                                                                                    aria-hidden="true">
+                                                                                    <div class="modal-dialog modal-lg">
+                                                                                        <div class="modal-content">
+
+                                                                                            <div class="modal-header">
+                                                                                                <h4 class="modal-title"
+                                                                                                    id="myModalLabel">
+                                                                                                    Detaille sur
+                                                                                                    l'Aliment</h4>
+                                                                                                <button type="button"
+                                                                                                    class="close"
+                                                                                                    data-dismiss="modal"><span
+                                                                                                        aria-hidden="true">×</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <h4 class="heading">
+                                                                                                    Type
+                                                                                                    d'Aliment':&nbsp;
+                                                                                                </h4>
+
+                                                                                                <p
+                                                                                                    style="margin-left: 20px;">
+                                                                                                    {{fileCare?.prescription.type_aliment}}
+                                                                                                </p>
+
+                                                                                                <h4 class="heading">
+                                                                                                    Prie en charge Par
+                                                                                                    l'infirmier:&nbsp;
+                                                                                                </h4>
+                                                                                                <!--Recent Activity-->
+                                                                                                <ul class="messages"
+                                                                                                    style="margin-left: 20px;">
+                                                                                                    <li>
+                                                                                                        <img [src]="this.userService.url+'/photoUser/'+v.infirmier.id"
+                                                                                                            class="avatar"
+                                                                                                            alt="Avatar">
+
+                                                                                                        <div
+                                                                                                            class="message_wrapper">
+                                                                                                            <h4
+                                                                                                                class="heading">
+                                                                                                                {{v.infirmier.nom}}&nbsp;{{v.infirmier.prenom}}
+                                                                                                            </h4>
+                                                                                                            <blockquote
+                                                                                                                class="message">
+                                                                                                                Date
+                                                                                                                Soins:{{v.dateV}}<br>
+                                                                                                                Temps
+                                                                                                                Soins:{{v.timeValidation }}<br>
+                                                                                                            </blockquote>
+
+
+                                                                                                        </div>
+                                                                                                    </li>
+
+                                                                                                </ul><br>
+                                                                                                <!--/Recent Activity-->
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--/debut-->
+                                                                            </div>
+                                                                        </ng-container>
+                                                                    </div>
+                                                                </div>
+
+                                                                <br>
+                                                                <div *ngIf="2 - Validations?.length>0">
+                                                                    <span id="red">Aliment à
+                                                                        servir:&nbsp;</span><br>
+                                                                    <ng-container
+                                                                        *ngFor="let dummy of ' '.repeat(2 - Validations?.length).split(''), let x = index">
+                                                                        <div class="form-check form-check-inline">
+
+                                                                            <input class="form-check-input"
+                                                                                type="checkbox" id="inlineCheckbox3"
+                                                                                value="option3"
+                                                                                (click)="addValidation()">
+
+                                                                        </div>
+                                                                    </ng-container>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+
+                                            </ul>
+
+
+
+
+                                        </div>
+                                        <!--/med-->
+
+                                        <!-- /.row -->
+
+                                        <br><br><br><br><br><br><br><br><br><br><br><br>
+
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>
