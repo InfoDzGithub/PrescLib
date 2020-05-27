@@ -54,6 +54,7 @@ import { FichesInfirmierActifComponent } from './Infirmier/fiches-infirmier-acti
 import { FicheSoinComponent } from './Infirmier/fiche-soin/fiche-soin.component';
 import { FicheSoinReelComponent } from './Infirmier/fiche-soin-reel/fiche-soin-reel.component';
 import { FicheSoinAlimentComponent } from './Infirmier/fiche-soin-aliment/fiche-soin-aliment.component';
+import { FicheSoinSuiviComponent } from './Infirmier/fiche-soin-suivi/fiche-soin-suivi.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -96,6 +97,7 @@ const appRoutes: Routes = [
   { path: 'editFicheSoin/:id', component: FicheSoinComponent },
   { path: 'editFicheSoinReel/:id', component: FicheSoinReelComponent },
   { path: 'editFicheSoinAliment/:id', component: FicheSoinAlimentComponent },
+  { path: 'editFicheSoinSuivi/:id', component: FicheSoinSuiviComponent },
 
 
 
@@ -153,7 +155,8 @@ const appRoutes: Routes = [
     FichesInfirmierActifComponent,
     FicheSoinComponent,
     FicheSoinReelComponent,
-    FicheSoinAlimentComponent
+    FicheSoinAlimentComponent,
+    FicheSoinSuiviComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

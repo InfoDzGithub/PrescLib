@@ -197,5 +197,8 @@ export class FichesInfirmierActifComponent implements OnInit {
     this.router.navigate(["/editFicheSoinAliment", id]);
   }
 
+  ficheSoinSuivi(id: number) {
+    this.router.navigate(["/editFicheSoinSuivi", id]);
+  }
 
 }
