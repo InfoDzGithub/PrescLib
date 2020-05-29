@@ -48,4 +48,8 @@ export class CareFileService {
     return this.http.get(this.url + "/validationsByFileCare?idF=" + idF)
   }
 
+  archiveFile(idF) {
+    return this.http.get(this.url + "/archiveFile?id=" + idF)
+  }
+
 }

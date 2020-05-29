@@ -23,6 +23,7 @@ export class FicheSoinAlimentComponent implements OnInit {
   id: number;
   fileCare: any;
   fileCare2: FicheInfirmier;
+  cmp: number = 0;
 
   ownerAccount: User;
   email: string;
@@ -74,6 +75,10 @@ export class FicheSoinAlimentComponent implements OnInit {
     this.fileService.getValidationsByFileCare(this.fileCare.id)
       .subscribe(data => {
         this.Validations = data;
+        this.cmp = this.Validations.length;
+        if (this.cmp == 2) {
+          this.archiveFileCare();
+        }
 
         this.mode = 1;
       }, err => {
@@ -124,5 +129,19 @@ export class FicheSoinAlimentComponent implements OnInit {
 
   alert() {
     window.alert('test');
+  }
+
+  archiveFileCare() {
+
+    this.fileService.archiveFile(this.id)
+      .subscribe(data => {
+
+
+
+
+      }, err => {
+
+        console.log(err)
+      })
   }
 }

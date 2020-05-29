@@ -118,56 +118,60 @@
                                                                     <div class="well" style="overflow: auto">
                                                                         <span id="red">Aliment déja
                                                                             servi:&nbsp;</span><br>
-                                                                        <ng-container *ngFor="let v of Validations">
+                                                                        <ng-container
+                                                                            *ngFor="let v of Validations;let i=index;">
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" id="inlineCheckbox3"
                                                                                     value="true" checked disabled>
 
-                                                                                <a data-toggle="modal"
-                                                                                    data-target=".bs-example-modal-lg"
-                                                                                    class="clickable">
-                                                                                    detaille</a>
+                                                                                <a class="clickable" data-toggle="modal"
+                                                                                    [attr.data-target]="'#myModal' +i">detaille</a>
 
-                                                                                <div class="modal fade bs-example-modal-lg"
-                                                                                    tabindex="-1" role="dialog"
-                                                                                    aria-hidden="true">
-                                                                                    <div class="modal-dialog modal-lg">
+
+
+                                                                                <div class="modal"
+                                                                                    [attr.id]="'myModal' + i"
+                                                                                    role="dialog">
+                                                                                    <div class="modal-dialog">
                                                                                         <div class="modal-content">
 
+                                                                                            <!-- Modal Header -->
                                                                                             <div class="modal-header">
-                                                                                                <h4 class="modal-title"
-                                                                                                    id="myModalLabel">
+                                                                                                <h4 class="modal-title">
                                                                                                     Detaille sur
-                                                                                                    l'Aliment</h4>
+                                                                                                    l'aliment'
+                                                                                                </h4>
                                                                                                 <button type="button"
                                                                                                     class="close"
-                                                                                                    data-dismiss="modal"><span
-                                                                                                        aria-hidden="true">×</span>
-                                                                                                </button>
+                                                                                                    data-dismiss="modal">&times;</button>
                                                                                             </div>
+
+                                                                                            <!-- Modal body -->
+
                                                                                             <div class="modal-body">
+
+
                                                                                                 <h4 class="heading">
                                                                                                     Type
-                                                                                                    d'Aliment':&nbsp;
+                                                                                                    d'aliment:&nbsp;
                                                                                                 </h4>
 
                                                                                                 <p
                                                                                                     style="margin-left: 20px;">
                                                                                                     {{fileCare?.prescription.type_aliment}}
                                                                                                 </p>
-
                                                                                                 <h4 class="heading">
-                                                                                                    Prie en charge Par
+                                                                                                    Servi Par
                                                                                                     l'infirmier:&nbsp;
                                                                                                 </h4>
-                                                                                                <!--Recent Activity-->
+
                                                                                                 <ul class="messages"
                                                                                                     style="margin-left: 20px;">
                                                                                                     <li>
-                                                                                                        <img [src]="this.userService.url+'/photoUser/'+v.infirmier.id"
-                                                                                                            class="avatar"
-                                                                                                            alt="Avatar">
+                                                                                                        <!--img [src]="this.userService.url+'/photoUser/'+v.infirmier.id"
+                                                                                                        class="avatar"
+                                                                                                        alt="Avatar"-->
 
                                                                                                         <div
                                                                                                             class="message_wrapper">
@@ -178,9 +182,9 @@
                                                                                                             <blockquote
                                                                                                                 class="message">
                                                                                                                 Date
-                                                                                                                Soins:{{v.dateV}}<br>
+                                                                                                                Injection:{{v.dateV}}<br>
                                                                                                                 Temps
-                                                                                                                Soins:{{v.timeValidation }}<br>
+                                                                                                                Injection:{{v.timeValidation }}<br>
                                                                                                             </blockquote>
 
 
@@ -188,14 +192,24 @@
                                                                                                     </li>
 
                                                                                                 </ul><br>
-                                                                                                <!--/Recent Activity-->
-                                                                                            </div>
 
+
+
+
+                                                                                            </div>
+                                                                                            <!-- Modal footer -->
+                                                                                            <div class="modal-footer">
+                                                                                                <button type="button"
+                                                                                                    class="btn btn-danger"
+                                                                                                    data-dismiss="modal">Close</button>
+                                                                                            </div>
 
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <!--/debut-->
+
+
+
                                                                             </div>
                                                                         </ng-container>
                                                                     </div>

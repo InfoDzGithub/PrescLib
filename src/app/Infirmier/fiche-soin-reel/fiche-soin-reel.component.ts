@@ -21,7 +21,7 @@ export class FicheSoinReelComponent implements OnInit {
   id: number;
   fileCare: any;
   fileCare2: FicheInfirmier;
-
+  cmp: number = 0;
   ownerAccount: User;
   email: string;
   validation: Validation;
@@ -44,7 +44,16 @@ export class FicheSoinReelComponent implements OnInit {
       .subscribe(data => {
         this.fileCare = data;
         this.fileCare2 = data;
+        for (const iterator of this.fileCare.prescription.contenu) {
+          this.cmp = this.cmp + iterator.nbre_par_jr;
+        }
+        if (this.cmp == this.fileCare.validations.length) {
+          console.log("cmp" + this.cmp)
+          console.log("valiLenght" + this.fileCare.validations.length)
+          console.log("FINNNNnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+          this.archiveFileCare();
 
+        }
 
 
       }, err => {
@@ -74,6 +83,18 @@ export class FicheSoinReelComponent implements OnInit {
         this.Validations = data;
 
         this.mode = i;
+        this.cmp = 0;
+        for (const iterator of this.fileCare.prescription.contenu) {
+          this.cmp = this.cmp + iterator.nbre_par_jr;
+        }
+
+        if (this.cmp == this.fileCare.validations.length) {
+          console.log("cmp" + this.cmp)
+          console.log("valiLenght" + this.fileCare.validations.length)
+          console.log("FINNNNnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+          this.archiveFileCare();
+
+        }
       }, err => {
 
         console.log(err)
@@ -122,5 +143,19 @@ export class FicheSoinReelComponent implements OnInit {
 
   alert() {
     window.alert('test');
+  }
+
+  archiveFileCare() {
+
+    this.fileService.archiveFile(this.id)
+      .subscribe(data => {
+
+
+
+
+      }, err => {
+
+        console.log(err)
+      })
   }
 }

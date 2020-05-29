@@ -125,43 +125,47 @@
                                                                         <div class="well" style="overflow: auto">
                                                                             <span id="red">Déja
                                                                                 Injecter:&nbsp;</span><br>
-                                                                            <ng-container *ngFor="let v of Validations">
+                                                                            <ng-container
+                                                                                *ngFor="let v of Validations; let i=index">
                                                                                 <div
                                                                                     class="form-check form-check-inline">
                                                                                     <input class="form-check-input"
-                                                                                        type="checkbox"
-                                                                                        id="inlineCheckbox3"
+                                                                                        type="checkbox" id="i"
                                                                                         value="true" checked disabled>
-                                                                                    <!--a class="form-check-label"
-                                                                                        for="inlineCheckbox3"
-                                                                                        (click)="alert()">detaille</a-->
-                                                                                    <!--debut-->
-                                                                                    <a data-toggle="modal"
-                                                                                        data-target=".bs-example-modal-lg"
-                                                                                        class="clickable">
-                                                                                        detaille</a>
 
-                                                                                    <div class="modal fade bs-example-modal-lg"
-                                                                                        tabindex="-1" role="dialog"
-                                                                                        aria-hidden="true">
-                                                                                        <div
-                                                                                            class="modal-dialog modal-lg">
+
+
+
+                                                                                    <a class="clickable"
+                                                                                        data-toggle="modal"
+                                                                                        [attr.data-target]="'#myModal' +i">detaille</a>
+
+                                                                                    <!-- The Modal -->
+                                                                                    <div class="modal"
+                                                                                        [attr.id]="'myModal' + i"
+                                                                                        role="dialog">
+                                                                                        <div class="modal-dialog">
                                                                                             <div class="modal-content">
 
+                                                                                                <!-- Modal Header -->
                                                                                                 <div
                                                                                                     class="modal-header">
-                                                                                                    <h4 class="modal-title"
-                                                                                                        id="myModalLabel">
+                                                                                                    <h4
+                                                                                                        class="modal-title">
                                                                                                         Detaille sur
-                                                                                                        injection</h4>
+                                                                                                        injection
+                                                                                                    </h4>
                                                                                                     <button
                                                                                                         type="button"
                                                                                                         class="close"
-                                                                                                        data-dismiss="modal"><span
-                                                                                                            aria-hidden="true">×</span>
-                                                                                                    </button>
+                                                                                                        data-dismiss="modal">&times;</button>
                                                                                                 </div>
+
+                                                                                                <!-- Modal body -->
+
                                                                                                 <div class="modal-body">
+
+
                                                                                                     <h4 class="heading">
                                                                                                         Injection du
                                                                                                         medicament:&nbsp;
@@ -169,31 +173,20 @@
 
                                                                                                     <p
                                                                                                         style="margin-left: 20px;">
-                                                                                                        {{item?.nom_traitement}},&nbsp;dosage:&nbsp;{{item?.dosage}},&nbsp;Voie:&nbsp;{{item.voix}}
+                                                                                                        {{item?.nom_traitement}},&nbsp;dosage:&nbsp;{{item?.dosage}}mg,&nbsp;Voie:&nbsp;{{item.voix}}
                                                                                                     </p>
-
                                                                                                     <h4 class="heading">
                                                                                                         Injecté Par
                                                                                                         l'infirmier:&nbsp;
                                                                                                     </h4>
-                                                                                                    <!--Recent Activity-->
+
                                                                                                     <ul class="messages"
                                                                                                         style="margin-left: 20px;">
                                                                                                         <li>
-                                                                                                            <img [src]="this.userService.url+'/photoUser/'+v.infirmier.id"
+                                                                                                            <!--img [src]="this.userService.url+'/photoUser/'+v.infirmier.id"
                                                                                                                 class="avatar"
-                                                                                                                alt="Avatar">
-                                                                                                            <!--div
-                                                                                                                class="message_date">
-                                                                                                                <h3
-                                                                                                                    class="date text-info">
-                                                                                                                    24
-                                                                                                                </h3>
-                                                                                                                <p
-                                                                                                                    class="month">
-                                                                                                                    May
-                                                                                                                </p>
-                                                                                                            </div-->
+                                                                                                                alt="Avatar"-->
+
                                                                                                             <div
                                                                                                                 class="message_wrapper">
                                                                                                                 <h4
@@ -213,15 +206,45 @@
                                                                                                         </li>
 
                                                                                                     </ul><br>
-                                                                                                    <!--/Recent Activity-->
-                                                                                                </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                </div>
+                                                                                                <!-- Modal footer -->
+                                                                                                <div
+                                                                                                    class="modal-footer">
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        class="btn btn-danger"
+                                                                                                        data-dismiss="modal">Close</button>
+                                                                                                </div>
 
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <!--/debut-->
+
+
                                                                                 </div>
+
+
+
+                                                                                <!--/debut-->
+
                                                                             </ng-container>
                                                                         </div>
                                                                     </div>
@@ -242,6 +265,13 @@
                                                                             </div>
                                                                         </ng-container>
                                                                     </div>
+                                                                    <!--div *ngIf="cmp == Validations?.length">
+
+                                                                        <ng-container
+                                                                            [routerLink]="['/PrescriptionActif', fileCare.patient.id]"
+                                                                            routerLinkActive="router-link-active">
+                                                                        </ng-container>
+                                                                    </div-->
                                                                 </div>
                                                             </div>
                                                         </div>

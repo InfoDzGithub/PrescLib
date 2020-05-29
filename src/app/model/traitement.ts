@@ -7,6 +7,7 @@ export class Traitement extends Contenu {
     voix: string;
     rythme: number;
     dosage: number;
+    nbre_par_jour: number;
     constructor() {
         super();
     }

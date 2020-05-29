@@ -24,7 +24,7 @@ export class FicheSoinComponent implements OnInit {
   ownerAccount: User;
   email: string;
   validation: Validation;
-  cmp: number;
+  cmp: number = 0;
   Validations: any;
   mode: number;
   constructor(private fileService: CareFileService, private route: ActivatedRoute, public prescService: PrescriptionServiceService, private router: Router, private patService: PatientService, public userService: UtilisateurService) {
@@ -35,6 +35,9 @@ export class FicheSoinComponent implements OnInit {
     this.getFileCare();
     this.getAccountOwner();
     this.mode = -1;
+
+
+
   }
 
   getFileCare() {
@@ -43,18 +46,32 @@ export class FicheSoinComponent implements OnInit {
       .subscribe(data => {
         this.fileCare = data;
         this.fileCare2 = data;
+        console.log("file" + this.fileCare.id)
+        for (const iterator of this.fileCare.prescription.contenu) {
+          this.cmp = this.cmp + iterator.nbre_par_jour;
+        }
+        if (this.cmp == this.fileCare.validations.length) {
+          console.log("cmp" + this.cmp)
+          console.log("valiLenght" + this.fileCare.validations.length)
+          console.log("FINNNNnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+          this.archiveFileCare();
+
+        }
 
 
-        this.cmp = this.fileCare.validations.length;
-        //console.log("validations" + this.fileCare.validations)
-        //console.log("longeur" + this.fileCare.validations.length)
-        //console.log(typeof +this.fileCare.validations.length)
       }, err => {
 
         console.log(err)
       })
   }
 
+
+
+
+  increase() {
+    // this.cmp++
+    //console.log("cmp" + this.cmp)
+  }
   getAccountOwner() {
     this.email = sessionStorage.getItem('email');
     this.ownerAccount = new User();
@@ -74,8 +91,21 @@ export class FicheSoinComponent implements OnInit {
     this.fileService.getValidationsByBothContenuFileCare(item.id, this.fileCare.id)
       .subscribe(data => {
         this.Validations = data;
-        console.log("longt" + this.Validations.length)
         this.mode = i;
+        this.cmp = 0;
+        for (const iterator of this.fileCare.prescription.contenu) {
+          this.cmp = this.cmp + iterator.nbre_par_jour;
+        }
+
+        if (this.cmp == this.fileCare.validations.length) {
+          console.log("cmp" + this.cmp)
+          console.log("valiLenght" + this.fileCare.validations.length)
+          console.log("FINNNNnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+          this.archiveFileCare();
+
+        }
+
+
       }, err => {
 
         console.log(err)
@@ -101,11 +131,17 @@ export class FicheSoinComponent implements OnInit {
       this.validation.contenu = item;
       this.validation.ficheInfirmier = this.fileCare2;
       this.validation.infirmier = this.ownerAccount;
-      this.cmp++;
+
       this.fileService.addValidation(this.validation)
 
         .subscribe(data => {
-          if (confirm("Bien enregistré")) { this.ngOnInit() }
+          if (confirm("Bien enregistré")) {
+
+
+            this.ngOnInit();
+
+
+          }
         }, err => {
           if (confirm("Desolé!")) { }
           console.log(err)
@@ -125,4 +161,39 @@ export class FicheSoinComponent implements OnInit {
   alert() {
     window.alert('test');
   }
+
+
+
+
+
+
+
+
+
+
+  archiveFileCare() {
+
+    this.fileService.archiveFile(this.id)
+      .subscribe(data => {
+
+
+
+
+      }, err => {
+
+        console.log(err)
+      })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 }
