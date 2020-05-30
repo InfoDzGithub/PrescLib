@@ -52,4 +52,8 @@ export class CareFileService {
     return this.http.get(this.url + "/archiveFile?id=" + idF)
   }
 
+  fileNotCompleted(idU, page: number, size: number) {
+    return this.http.get(this.url + "/fileAreNotComplete?id=" + idU + "&page=" + page + "&size=" + size)
+  }
+
 }

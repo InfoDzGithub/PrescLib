@@ -27,76 +27,45 @@
                             Out</a>
                     </div>
                 </li>
+                <ng-container *ngIf="user.role=='infirmier'">
+                    <li role="presentation" class="nav-item dropdown open">
+                        <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1"
+                            data-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge bg-green">{{files.totalElements}}</span>
+                        </a>
 
-                <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1"
-                        data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-envelope-o"></i>
-                        <span class="badge bg-green">6</span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                        <li class="nav-item">
-                            <a class="dropdown-item">
-                                <span class="image"><img src="../assets/template/images/img.jpg"
-                                        alt="Profile Image" /></span>
-                                <span>
-                                    <span>John Smith</span>
-                                    <span class="time">3 mins ago</span>
-                                </span>
-                                <span class="message">
-                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="dropdown-item">
-                                <span class="image"><img src="../assets/template/images/img.jpg"
-                                        alt="Profile Image" /></span>
-                                <span>
-                                    <span>John Smith</span>
-                                    <span class="time">3 mins ago</span>
-                                </span>
-                                <span class="message">
-                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="dropdown-item">
-                                <span class="image"><img src="../assets/template/images/img.jpg"
-                                        alt="Profile Image" /></span>
-                                <span>
-                                    <span>John Smith</span>
-                                    <span class="time">3 mins ago</span>
-                                </span>
-                                <span class="message">
-                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="dropdown-item">
-                                <span class="image"><img src="../assets/template/images/img.jpg"
-                                        alt="Profile Image" /></span>
-                                <span>
-                                    <span>John Smith</span>
-                                    <span class="time">3 mins ago</span>
-                                </span>
-                                <span class="message">
-                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="text-center">
-                                <a class="dropdown-item">
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+                        <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+                            <ng-container *ngFor="let item of files?.content">
+                                <li class="nav-item">
+                                    <a class="dropdown-item">
+                                        <span class="image"><img src="../assets/template/images/fileC.png"
+                                                alt="Profile Image" /></span>
+                                        <span>
+                                            <span>Patient</span>
+                                            <span
+                                                class="time">{{item?.patient.nom}}&nbsp;{{item?.patient.prenom}}</span>
+                                        </span>
+                                        <span class="message">
+                                            Ce patient a une fiche infirmier non complette<br>
+                                            <a (click)="gotoFile(item.prescription.id)">Verrifier</a>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ng-container>
+
+                            <li class="nav-item">
+                                <div class="text-center">
+                                    <a class="dropdown-item" (click)="fileNotCompletted()">
+                                        <strong>Voir La liste</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ng-container>
                 <!-- User Account: style can be found in dropdown.less -->
 
             </ul>

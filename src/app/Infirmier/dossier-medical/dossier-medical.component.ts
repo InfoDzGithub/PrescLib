@@ -19,12 +19,13 @@ export class DossierMedicalComponent implements OnInit {
   pages: Array<number>;
   email: string;
   ownerInfirmierAccount: User = new User();
-  nbrePresc: Array<number>;
+  //nbrePresc: Array<number>;
+  nbre: number;
   constructor(public prescService: PrescriptionServiceService, private router: Router, private patService: PatientService, public userService: UtilisateurService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.ownerAccount();
-    console.log("nbre" + this.prescService.nbrePrescriptionActifByPatient(4))
+    //console.log("nbre" + this.prescService.nbrePrescriptionActifByPatient(4))
 
   }
 
@@ -34,25 +35,25 @@ export class DossierMedicalComponent implements OnInit {
       .subscribe(data => {
         this.patientActif = data;
         this.pages = new Array(this.patientActif.totalPages)
-        this.nbrePresc = new Array()
-        for (let index = 0; index < this.patientActif.totalElements; index++) {
-
-
-
-          this.prescService.nbrePrescriptionActifByPatient(this.patientActif.content[index].patient.id)
-            .subscribe(
-              data => {
-                this.nbrePresc.push(data);
-                console.log("tab" + this.nbrePresc)
-              }
-
-            );
-
-
-
-
-
-        }
+        /* this.nbrePresc = new Array()
+         for (let index = 0; index < this.patientActif.totalElements; index++) {
+ 
+ 
+ 
+           this.prescService.nbrePrescriptionActifByPatient(this.patientActif.content[index].patient.id)
+             .subscribe(
+               data => {
+                 this.nbrePresc.push(data);
+                 console.log("tab" + this.nbrePresc)
+               }
+ 
+             );
+ 
+ 
+ 
+ 
+ 
+         }*/
 
       }, err => {
 
@@ -92,5 +93,24 @@ export class DossierMedicalComponent implements OnInit {
     this.router.navigate(["/PrescriptionActif", id]);
   }
 
+  alert(id: number) {
+
+    this.prescService.nbrePrescriptionActifByPatient(id)
+      .subscribe(
+        data => {
+          this.nbre = data;
+          window.alert("Le nbre de prescription actif: " + this.nbre);
+
+        }
+
+      );
+
+
+
+
+
+  }
 
 }
+
+

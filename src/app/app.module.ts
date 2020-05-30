@@ -55,6 +55,7 @@ import { FicheSoinComponent } from './Infirmier/fiche-soin/fiche-soin.component'
 import { FicheSoinReelComponent } from './Infirmier/fiche-soin-reel/fiche-soin-reel.component';
 import { FicheSoinAlimentComponent } from './Infirmier/fiche-soin-aliment/fiche-soin-aliment.component';
 import { FicheSoinSuiviComponent } from './Infirmier/fiche-soin-suivi/fiche-soin-suivi.component';
+import { FileNotCompletedComponent } from './Infirmier/file-not-completed/file-not-completed.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
   { path: 'editFicheSoinReel/:id', component: FicheSoinReelComponent },
   { path: 'editFicheSoinAliment/:id', component: FicheSoinAlimentComponent },
   { path: 'editFicheSoinSuivi/:id', component: FicheSoinSuiviComponent },
+  { path: 'fileNotCompleted', component: FileNotCompletedComponent },
 
 
 
@@ -156,7 +158,8 @@ const appRoutes: Routes = [
     FicheSoinComponent,
     FicheSoinReelComponent,
     FicheSoinAlimentComponent,
-    FicheSoinSuiviComponent
+    FicheSoinSuiviComponent,
+    FileNotCompletedComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

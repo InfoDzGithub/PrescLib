@@ -1,25 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthentificationService } from '../service/authentification.service';
-import { UtilisateurService } from '../service/utilisateur.service';
-import { User } from '../model/user';
-import { CareFileService } from '../service/care-file.service';
-
+import { User } from 'src/app/model/user';
+import { AuthentificationService } from 'src/app/service/authentification.service';
+import { UtilisateurService } from 'src/app/service/utilisateur.service';
+import { CareFileService } from 'src/app/service/care-file.service';
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-file-not-completed',
+  templateUrl: './file-not-completed.component.html',
+  styleUrls: ['./file-not-completed.component.css']
 })
-export class HeaderComponent implements OnInit {
-  // @Input() id: number;
+export class FileNotCompletedComponent implements OnInit {
+
   user: User = new User();
   email: string;
   files: any;
   curentPage: number = 0;
-  size: number = 5;
+  size: number = 3;
   pages: Array<number>;
   constructor(public authService: AuthentificationService, public userService: UtilisateurService,
     private router: Router, private fileService: CareFileService) { }
+
 
 
   ngOnInit() {
@@ -36,21 +36,11 @@ export class HeaderComponent implements OnInit {
 
 
   }
-  onLogout() {
-    this.authService.logOut();
-    this.router.navigate(['login']);
+
+  gotoPage(i: number) {
+    this.curentPage = i;
+    this.ngOnInit();
   }
-
-  profileUser(id: number) {
-
-    this.router.navigate(["/detailUser", id]);
-  }
-
-  settingUser(id: number) {
-
-    this.router.navigate(["/parametre", id]);
-  }
-
 
   fileNotCompleted(id: number) {
     this.fileService.fileNotCompleted(id, this.curentPage, this.size)
@@ -67,15 +57,20 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
-
-
-
-  gotoFile(id: number) {
-    this.router.navigate(["/ActifFilesCare", id]);
+  ficheSoin(id: number) {
+    this.router.navigate(["/editFicheSoin", id]);
   }
-  fileNotCompletted() {
-    this.router.navigate(["/fileNotCompleted"]);
+
+  ficheSoinReel(id: number) {
+    this.router.navigate(["/editFicheSoinReel", id]);
+  }
+
+  ficheSoinAliment(id: number) {
+    this.router.navigate(["/editFicheSoinAliment", id]);
+  }
+
+  ficheSoinSuivi(id: number) {
+    this.router.navigate(["/editFicheSoinSuivi", id]);
   }
 
 }
