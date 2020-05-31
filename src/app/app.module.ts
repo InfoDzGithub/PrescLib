@@ -56,6 +56,7 @@ import { FicheSoinReelComponent } from './Infirmier/fiche-soin-reel/fiche-soin-r
 import { FicheSoinAlimentComponent } from './Infirmier/fiche-soin-aliment/fiche-soin-aliment.component';
 import { FicheSoinSuiviComponent } from './Infirmier/fiche-soin-suivi/fiche-soin-suivi.component';
 import { FileNotCompletedComponent } from './Infirmier/file-not-completed/file-not-completed.component';
+import { DossierSByPrescComponent } from './Medecin/dossier-sby-presc/dossier-sby-presc.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -159,7 +160,8 @@ const appRoutes: Routes = [
     FicheSoinReelComponent,
     FicheSoinAlimentComponent,
     FicheSoinSuiviComponent,
-    FileNotCompletedComponent
+    FileNotCompletedComponent,
+    DossierSByPrescComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

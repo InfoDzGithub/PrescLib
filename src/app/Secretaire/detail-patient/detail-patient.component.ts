@@ -20,6 +20,8 @@ export class DetailPatientComponent implements OnInit {
   currentResidentS: any;
   nbrePrescHosp: any;
   idH: string;
+  email: string;
+  user: any;
   constructor(private route: ActivatedRoute, private router: Router, private prescService: PrescriptionServiceService, public patService: PatientService, public userService: UtilisateurService) { }
 
   ngOnInit(): void {
@@ -29,6 +31,11 @@ export class DetailPatientComponent implements OnInit {
     this.getServicesHospByPatient()
     this.currentServiceResidedByPatient();
     //this.nbrePrescriptionActifInEveryHosp(this.idH);
+
+    this.email = sessionStorage.getItem('email');
+    console.log("email: " + this.email)
+    this.userService.searchUserByEmail(this.email)
+      .subscribe(data => this.user = data);
   }
 
   getServicesHospByPatient() {

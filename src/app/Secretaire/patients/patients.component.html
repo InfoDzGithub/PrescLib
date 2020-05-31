@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="x_content">
                                     <div class="row">
-                                        <div class="row " id="bouttonADD">
+                                        <div class="row " id="bouttonADD" *ngIf="user.role=='secretaire'">
                                             <div class="col-sm-12 col-12 text-right m-b-20">
                                                 <a routerLink="/addPatient"
                                                     class="btn btn-primary float-right btn-rounded"><i
@@ -89,9 +89,11 @@
                                                                     <a class="btn btn-success btn-xs" title="view"
                                                                         (click)="detailPatient(c.id)"><i
                                                                             class="fa fa-folder"></i> </a>
-                                                                    <a class="btn btn-info btn-xs"
-                                                                        (click)="editPatient(c.id)" title="edit"><i
-                                                                            class="fa fa-pencil"></i> </a>
+                                                                    <ng-container *ngIf="user.role=='secretaire'">
+                                                                        <a class="btn btn-info btn-xs"
+                                                                            (click)="editPatient(c.id)" title="edit"><i
+                                                                                class="fa fa-pencil"></i> </a>
+                                                                    </ng-container>
 
 
 
@@ -109,13 +111,15 @@
                                                                     <a class="btn btn-success btn-xs" title="view"
                                                                         (click)="detailPatient(c.id)"><i
                                                                             class="fa fa-folder"></i> </a>
-                                                                    <a class="btn btn-info btn-xs"
-                                                                        (click)="editPatient(c.id)" title="edit"><i
-                                                                            class="fa fa-pencil"></i> </a>
+                                                                    <ng-container *ngIf="user.role=='secretaire'">
+                                                                        <a class="btn btn-info btn-xs"
+                                                                            (click)="editPatient(c.id)" title="edit"><i
+                                                                                class="fa fa-pencil"></i> </a>
 
-                                                                    <a class="btn btn-danger btn-xs" title="sortir"
-                                                                        (click)="deleteConfirme(c)">
-                                                                        <i class="fa fa-times"></i></a>
+                                                                        <a class="btn btn-danger btn-xs" title="sortir"
+                                                                            (click)="deleteConfirme(c)">
+                                                                            <i class="fa fa-times"></i></a>
+                                                                    </ng-container>
                                                                 </td>
 
                                                             </tr>

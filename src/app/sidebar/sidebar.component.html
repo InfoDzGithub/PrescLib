@@ -3,7 +3,7 @@
     <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-            <li class="active"><a (click)="home()"><i class="fa fa-home"></i> Home </a>
+            <li class="active"><a (click)="home()"><i class="fa fa-home"></i> Accueil </a>
             </li>
             <li><a (click)="profileUser(user.id)"><i class="fa fa-user"></i> Profile </a>
             </li>
@@ -14,7 +14,8 @@
             <li *ngIf="user.role=='admin'" (click)="gotoUsers()"><a><i class="fa fa-users"></i> Utilisateurs</a>
 
             </li>
-            <li *ngIf="user.role=='secretaire'" (click)="gotoPatients()"><a><i class="fa fa-wheelchair"></i> Patients
+            <li *ngIf="user.role=='secretaire' || user.role=='medecin'" (click)="gotoPatients()"><a><i
+                        class="fa fa-wheelchair"></i> Patients
                 </a>
 
             </li>

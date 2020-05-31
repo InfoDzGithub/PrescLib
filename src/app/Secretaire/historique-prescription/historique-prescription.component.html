@@ -97,6 +97,11 @@
                                                                                 class="fa fa-file-powerpoint-o"></i>
                                                                         </a></ng-template>
 
+                                                                    <a *ngIf="ownerAccount.role=='medecin' "
+                                                                        class="btn btn-warning btn-xs"><i
+                                                                            class="fa fa-paste"></i></a>
+
+
 
 
                                                                 </td>
@@ -135,35 +140,46 @@
                                                                                 class="fa fa-file-powerpoint-o"></i>
                                                                         </a></ng-template>
 
+                                                                    <ng-container
+                                                                        *ngIf="c.secretaire.id==ownerAccount.id || c.medecin.id==ownerAccount.id">
+                                                                        <ng-template [ngIf]="c.type=='MDCL' ">
+                                                                            <a class="btn btn-primary btn-xs"
+                                                                                (click)="editMedicalPrescription(c.id)"
+                                                                                title="edit"><i
+                                                                                    class="fa fa-pencil"></i>
+                                                                            </a>
+                                                                        </ng-template>
+                                                                        <ng-template [ngIf]="c.type=='SUIV'">
+                                                                            <a class="btn btn-primary btn-xs"
+                                                                                (click)="editSuiviPrescription(c.id)"
+                                                                                title="edit"><i
+                                                                                    class="fa fa-pencil"></i>
+                                                                            </a>
+                                                                        </ng-template>
+                                                                        <ng-template [ngIf]="c.type=='SOIN'">
+                                                                            <a class="btn btn-primary btn-xs"
+                                                                                (click)="editSoinPrescription(c.id)"
+                                                                                title="edit"><i
+                                                                                    class="fa fa-pencil"></i>
+                                                                            </a>
+                                                                        </ng-template>
+                                                                        <ng-template [ngIf]="c.type=='ALMT'">
+                                                                            <a class="btn btn-primary btn-xs"
+                                                                                (click)="editAlimentPrescription(c.id)"
+                                                                                title="edit"><i
+                                                                                    class="fa fa-pencil"></i>
+                                                                            </a>
+                                                                        </ng-template>
+                                                                    </ng-container>
+                                                                    <a *ngIf="ownerAccount.role=='medecin' "
+                                                                        class="btn btn-warning btn-xs"><i
+                                                                            class="fa fa-paste"></i></a>
 
-                                                                    <ng-template
-                                                                        [ngIf]="c.type=='MDCL' && c.secretaire.id==ownerAccount.id">
-                                                                        <a class="btn btn-primary btn-xs"
-                                                                            (click)="editMedicalPrescription(c.id)"
-                                                                            title="edit"><i class="fa fa-pencil"></i>
-                                                                        </a>
-                                                                    </ng-template>
-                                                                    <ng-template
-                                                                        [ngIf]="c.type=='SUIV' && c.secretaire.id==ownerAccount.id">
-                                                                        <a class="btn btn-primary btn-xs"
-                                                                            (click)="editSuiviPrescription(c.id)"
-                                                                            title="edit"><i class="fa fa-pencil"></i>
-                                                                        </a>
-                                                                    </ng-template>
-                                                                    <ng-template
-                                                                        [ngIf]="c.type=='SOIN' && c.secretaire.id==ownerAccount.id">
-                                                                        <a class="btn btn-primary btn-xs"
-                                                                            (click)="editSoinPrescription(c.id)"
-                                                                            title="edit"><i class="fa fa-pencil"></i>
-                                                                        </a>
-                                                                    </ng-template>
-                                                                    <ng-template
-                                                                        [ngIf]="c.type=='ALMT' && c.secretaire.id==ownerAccount.id">
-                                                                        <a class="btn btn-primary btn-xs"
-                                                                            (click)="editAlimentPrescription(c.id)"
-                                                                            title="edit"><i class="fa fa-pencil"></i>
-                                                                        </a>
-                                                                    </ng-template>
+
+
+                                                                    <a *ngIf="ownerAccount.role=='medecin' && c.medecin.id==ownerAccount.id"
+                                                                        class="btn btn-danger btn-xs" title="sortir">
+                                                                        <i class="fa fa-times"></i></a>
 
                                                                 </td>
 
