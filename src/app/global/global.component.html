@@ -67,7 +67,8 @@
                             </div>
                         </div>
 
-                        <div class="card bg-danger" style="max-width: 18rem;" *ngIf="user.role=='secretaire'">
+                        <div class="card bg-danger" style="max-width: 18rem;"
+                            *ngIf="user.role=='secretaire' || user.role=='medecin'">
                             <div class="card-body">
                                 <h5 class="card-title">Patients</h5>
                                 <!--p class="card-text" id="colorWriter">Some quick example text to build on the panel
@@ -102,6 +103,23 @@
                                 <small class="text-muted">Plus Info <a (click)="searchTraitement()"><i
                                             class="fa fa-arrow-circle-right"></i></a></small>
 
+                            </div>
+                        </div>
+
+                        <div class="card bg-warning" style="max-width: 18rem;" *ngIf="user.role=='infirmier'">
+                            <div class="card-body">
+                                <h5 class="card-title">Dossier Soins</h5>
+                                <!--p class="card-text" id="colorWriter">Some quick example text to build on the panel
+                                    title and make up the
+                                    bulk of the panel's content.</p-->
+                                <span class="float-right" id="colorIcon"><i class="fa fa-medkit fa-5x"></i></span>
+
+                                <br><br><br>
+
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Plus Info <a (click)="dossierMedical()"><i
+                                            class="fa fa-arrow-circle-right"></i></a></small>
                             </div>
                         </div>
 

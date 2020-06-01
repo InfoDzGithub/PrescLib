@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from '../../service/patient.service';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
+import { PrescriptionServiceService } from 'src/app/service/prescription-service.service';
+import { Prescription } from 'src/app/model/prescription';
 
 @Component({
   selector: 'app-resident-service-prescription',
@@ -19,7 +21,7 @@ export class ResidentServicePrescriptionComponent implements OnInit {
   Hpatient: any;
   email: string;
   ownerAccount: any;
-  constructor(private route: ActivatedRoute, private router: Router, public userService: UtilisateurService, public patService: PatientService) { }
+  constructor(private prescService: PrescriptionServiceService, private route: ActivatedRoute, private router: Router, public userService: UtilisateurService, public patService: PatientService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -74,6 +76,9 @@ export class ResidentServicePrescriptionComponent implements OnInit {
 
     this.router.navigate(["/editAlimentPrescription", id]);
   }
+  goToHome() {
+    this.router.navigate(["/global"]);
+  }
 
 
   gotoPage(i: number) {
@@ -93,4 +98,21 @@ export class ResidentServicePrescriptionComponent implements OnInit {
       });
   }
 
+  goToFileCareByPresc(id: number) {
+    this.router.navigate(["/fileCareByPresc", id]);
+  }
+
+  archivePresc(c: Prescription) {
+    if (confirm("Vouliez vous stoper la prescription de type: " + c.type)) {
+      this.prescService.archivePresc(c.id)
+        .subscribe(data => {
+
+          this.ngOnInit()
+        }
+          , err => {
+
+
+          })
+    }
+  }
 }

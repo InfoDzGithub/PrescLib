@@ -56,4 +56,8 @@ export class CareFileService {
     return this.http.get(this.url + "/fileAreNotComplete?id=" + idU + "&page=" + page + "&size=" + size)
   }
 
+  fileByPresc(idF, page: number, size: number) {
+    return this.http.get(this.url + "/fileCareByPresc?id=" + idF + "&page=" + page + "&size=" + size)
+  }
+
 }

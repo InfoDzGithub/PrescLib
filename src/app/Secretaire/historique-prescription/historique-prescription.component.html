@@ -25,13 +25,14 @@
                                             {{Hpatient?.patient.nom}}&nbsp;{{Hpatient?.patient.prenom}}</small></h2>
 
                                     <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+
+                                        <li><a (click)="editPatient(Hpatient.patient.id)" style="font-size:17px;"><i
+                                                    class="fa fa-angle-double-left"></i></a>
                                         </li>
-                                        <li><a (click)="editPatient(Hpatient.patient.id)"><i
-                                                    class="fa fa-share"></i></a>
+
+                                        <li><a class="close-link" (click)="goToHome()"><i class="fa fa-close"></i></a>
                                         </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
+
                                     </ul>
 
                                     <div class="clearfix"></div>
@@ -98,7 +99,8 @@
                                                                         </a></ng-template>
 
                                                                     <a *ngIf="ownerAccount.role=='medecin' "
-                                                                        class="btn btn-warning btn-xs"><i
+                                                                        class="btn btn-warning btn-xs"
+                                                                        (click)="goToFileCareByPresc(c.id)"><i
                                                                             class="fa fa-paste"></i></a>
 
 
@@ -172,13 +174,15 @@
                                                                         </ng-template>
                                                                     </ng-container>
                                                                     <a *ngIf="ownerAccount.role=='medecin' "
-                                                                        class="btn btn-warning btn-xs"><i
+                                                                        class="btn btn-warning btn-xs"
+                                                                        (click)="goToFileCareByPresc(c.id)"><i
                                                                             class="fa fa-paste"></i></a>
 
 
 
                                                                     <a *ngIf="ownerAccount.role=='medecin' && c.medecin.id==ownerAccount.id"
-                                                                        class="btn btn-danger btn-xs" title="sortir">
+                                                                        class="btn btn-danger btn-xs" title="stoper"
+                                                                        (click)="archivePresc(c)">
                                                                         <i class="fa fa-times"></i></a>
 
                                                                 </td>

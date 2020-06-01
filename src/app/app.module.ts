@@ -101,6 +101,8 @@ const appRoutes: Routes = [
   { path: 'editFicheSoinAliment/:id', component: FicheSoinAlimentComponent },
   { path: 'editFicheSoinSuivi/:id', component: FicheSoinSuiviComponent },
   { path: 'fileNotCompleted', component: FileNotCompletedComponent },
+  { path: 'fileCareByPresc/:id', component: DossierSByPrescComponent },
+
 
 
 

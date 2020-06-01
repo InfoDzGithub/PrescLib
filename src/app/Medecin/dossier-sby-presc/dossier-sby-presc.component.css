@@ -1,0 +1,14 @@
+#box
+{
+height:250px ;
+width: 850px;
+background-color:white;
+} 
+.clickable
+{
+cursor: pointer;
+}
+#decaler2{
+    margin-left: 300px;
+    font-size: 20px;
+  }

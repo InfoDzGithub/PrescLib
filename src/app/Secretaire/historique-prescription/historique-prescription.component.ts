@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from 'src/app/service/patient.service';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
+import { PrescriptionServiceService } from 'src/app/service/prescription-service.service';
+import { Prescription } from 'src/app/model/prescription';
 
 @Component({
   selector: 'app-historique-prescription',
@@ -18,7 +20,7 @@ export class HistoriquePrescriptionComponent implements OnInit {
   size: number = 3;
   pages: Array<number>;
   Hpatient: any;
-  constructor(private route: ActivatedRoute, private userService: UtilisateurService, private router: Router, public patService: PatientService) { }
+  constructor(private route: ActivatedRoute, private userService: UtilisateurService, private router: Router, public patService: PatientService, private prescService: PrescriptionServiceService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -48,6 +50,21 @@ export class HistoriquePrescriptionComponent implements OnInit {
 
       });
   }
+
+  archivePresc(c: Prescription) {
+    if (confirm("Vouliez vous stoper la prescription de type: " + c.type)) {
+      this.prescService.archivePresc(c.id)
+        .subscribe(data => {
+
+
+        }
+          , err => {
+
+
+          })
+    }
+  }
+
   gotoPage(i: number) {
     this.curentPage = i;
     this.doSearch();
@@ -88,5 +105,13 @@ export class HistoriquePrescriptionComponent implements OnInit {
   editAlimentPrescription(id: number) {
 
     this.router.navigate(["/editAlimentPrescription", id]);
+  }
+
+  goToFileCareByPresc(id: number) {
+    this.router.navigate(["/fileCareByPresc", id]);
+  }
+
+  goToHome() {
+    this.router.navigate(["/global"]);
   }
 }

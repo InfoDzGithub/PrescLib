@@ -73,7 +73,9 @@ export class PrescriptionServiceService {
     return this.http.get(this.url + "/actifPrescriptionByPatient?id=" + idPatient + "&page=" + page + "&size=" + size)
 
   }
-
+  archivePresc(id: number) {
+    return this.http.get(this.url + "/archivePrescription/" + id)
+  }
 
 
 }

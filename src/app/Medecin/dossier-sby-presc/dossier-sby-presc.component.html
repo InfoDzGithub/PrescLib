@@ -1,1 +1,260 @@
-<p>dossier-sby-presc works!</p>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <app-menu></app-menu>
+            <app-header></app-header>
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h2>Dossier du soins</h2>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Liste de tous les fiches infirmiers:
+                                        <small>{{presc?.patient.nom}}&nbsp;{{presc?.patient.prenom}}</small></h2>
+
+                                    <ul class="nav navbar-right panel_toolbox">
+
+                                        <li><a (click)="detailPatient(presc.patient.id)" style="font-size:17px;"><i
+                                                    class="fa fa-angle-double-left"></i></a>
+                                        </li>
+
+                                        <li><a class="close-link" (click)="goToHome()"><i class="fa fa-close"></i></a>
+                                        </li>
+
+                                    </ul>
+
+                                    <div class="clearfix"></div>
+
+                                </div>
+                                <div class="x_content">
+                                    <div class="row">
+
+                                        <br>
+                                        <div class="col-sm-12" *ngIf="filesCare?.totalElements>0; else showExcuse">
+
+                                            <div class="card-box table-responsive">
+
+
+
+
+                                                <!--div class="title_left" style="color:#1ABB9C">
+                                                    <h2>Fiche actif et inactif</h2>
+                                                </div-->
+                                                <ng-container *ngFor="let c of filesCare?.content; let i=index">
+                                                    <ng-container *ngIf="c.etat">
+                                                        <div class="col-md-3">
+
+
+                                                            <div class="x_content">
+
+                                                                <div class="dropdown">
+                                                                    <a id="imageDropdown" data-toggle="dropdown">
+                                                                        <img href="#"
+                                                                            src="../assets/template/images/ficheN.png"
+                                                                            alt="..."
+                                                                            style="height: 230px;width: 200px;">
+                                                                    </a>
+                                                                    <!--ul class="dropdown-menu" role="menu"
+                                                                        aria-labelledby="imageDropdown">
+                                                                        <li role="presentation"
+                                                                            class="list-group-item py-2">
+
+                                                                            <ng-template
+                                                                                [ngIf]="prescription.type=='SOIN'">
+                                                                                <a (click)="ficheSoinReel(c.id)"
+                                                                                    title="view"><i
+                                                                                        class="fa fa-file-powerpoint-o"></i>
+                                                                                    &nbsp;+ Fiche SOIN
+                                                                                </a></ng-template>
+                                                                            <ng-template
+                                                                                [ngIf]="prescription.type=='SUIV'">
+                                                                                <a (click)="ficheSoinSuivi(c.id)"
+                                                                                    title="view"><i
+                                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                    + Fiche suivi
+                                                                                </a></ng-template>
+                                                                            <ng-template
+                                                                                [ngIf]="prescription.type=='ALMT'">
+                                                                                <a (click)="ficheSoinAliment(c.id)"
+                                                                                    title="view"><i
+                                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                    + Fiche Aliment
+                                                                                </a></ng-template>
+                                                                            <ng-template
+                                                                                [ngIf]="prescription.type=='MDCL'">
+                                                                                <a (click)="ficheSoin(c.id)"
+                                                                                    title="view"><i
+                                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                    + Fiche medical
+                                                                                </a>
+                                                                            </ng-template>
+
+
+
+
+
+
+
+                                                                        </li>
+                                                                    </ul-->
+
+                                                                </div><br>
+                                                                <br>
+
+                                                                <h2 style="margin-top: -20px;text-align: center;">
+                                                                    <small>Service: &nbsp;
+                                                                        {{c?.service.nom}}</small>
+                                                                    <br><small>crée le: &nbsp;
+                                                                        {{ c?.dateF | date }}</small>
+                                                                </h2>
+                                                            </div>
+
+                                                        </div>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="!c.etat">
+                                                        <div class="col-md-3">
+
+
+                                                            <div class="x_content">
+
+                                                                <div class="dropdown">
+                                                                    <a id="imageDropdown" data-toggle="dropdown">
+                                                                        <img href="#"
+                                                                            src="../assets/template/images/ficheA.png"
+                                                                            alt="..."
+                                                                            style="height: 230px;width: 200px;">
+                                                                    </a>
+                                                                    <ul class="dropdown-menu" role="menu"
+                                                                        aria-labelledby="imageDropdown">
+                                                                        <li role="presentation"
+                                                                            class="list-group-item py-2">
+
+                                                                            <!--ng-template
+                                                                                [ngIf]="prescription.type=='SOIN'">
+                                                                                <a (click)="ficheSoinReel(c.id)"
+                                                                                    title="view"><i
+                                                                                        class="fa fa-file-powerpoint-o"></i>
+                                                                                    &nbsp;+ Fiche SOIN
+                                                                                </a></ng-template>
+                                                                            <ng-template
+                                                                                [ngIf]="prescription.type=='SUIV'">
+                                                                                <a (click)="ficheSoinSuivi(c.id)"
+                                                                                    title="view"><i
+                                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                    + Fiche suivi
+                                                                                </a></ng-template>
+                                                                            <ng-template
+                                                                                [ngIf]="prescription.type=='ALMT'">
+                                                                                <a (click)="ficheSoinAliment(c.id)"
+                                                                                    title="view"><i
+                                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                    + Fiche Aliment
+                                                                                </a></ng-template>
+                                                                            <ng-template
+                                                                                [ngIf]="prescription.type=='MDCL'">
+                                                                                <a (click)="ficheSoin(c.id)"
+                                                                                    title="view"><i
+                                                                                        class="fa fa-file-powerpoint-o"></i>&nbsp;
+                                                                                    + Fiche medical
+                                                                                </a>
+                                                                            </ng-template-->
+
+
+
+
+
+
+
+                                                                        </li>
+                                                                    </ul>
+
+                                                                </div><br>
+                                                                <br>
+
+                                                                <h2 style="margin-top: -20px;text-align: center;">
+                                                                    <small>Service: &nbsp;
+                                                                        {{c?.service.nom}}</small>
+                                                                    <br><small>crée le: &nbsp;
+                                                                        {{ c?.dateF | date }}</small>
+                                                                </h2>
+                                                            </div>
+
+                                                        </div>
+                                                    </ng-container>
+                                                </ng-container>
+                                                <br>
+
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination justify-content-end">
+
+                                                        <li class="page-item" *ngFor="let p of pages; let i=index"
+                                                            [ngClass]="{'active':i==curentPage}">
+                                                            <a class="page-link clickable"
+                                                                (click)="gotoPage(i)">{{i}}</a></li>
+
+                                                    </ul>
+                                                </nav>
+                                            </div>
+
+                                            <br>
+
+
+
+
+                                        </div>
+
+                                        <ng-template #showExcuse>
+                                            <blockquote class="message" id="decaler2">
+                                                <p>
+                                                    &nbsp;
+                                                    Le dossier soins du
+                                                    patient:&nbsp;{{presc?.patient.nom}}&nbsp;{{presc?.patient.prenom}}
+                                                    est vide .</p>
+                                                <br>
+
+
+
+                                                <br><br><br><br><br><br><br><br><br><br>
+                                                <br><br><br><br><br><br><br><br><br><br>
+
+                                            </blockquote>
+
+
+
+                                        </ng-template>
+                                        <div id="box">
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+</body>
