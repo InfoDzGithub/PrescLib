@@ -25,10 +25,15 @@
                                     <!--h2>Invoice Design <small>Sample user invoice design</small></h2-->
                                     <ul class="nav navbar-right panel_toolbox">
 
-                                        <li><a (click)="FicheInfirmierActif(fileCare.prescription.id)"
+                                        <li *ngIf="ownerAccount.role=='infirmier'"><a
+                                                (click)="FicheInfirmierActif(fileCare.prescription.id)"
                                                 style="font-size:17px;"><i class="fa fa-angle-double-left"></i></a>
                                         </li>
 
+                                        <li *ngIf="ownerAccount.role=='medecin'"><a
+                                                (click)="fileCareByPresc(fileCare.prescription.id)"
+                                                style="font-size:17px;"><i class="fa fa-angle-double-left"></i></a>
+                                        </li>
                                         <button class="btn btn-default" onclick="window.print();"><i
                                                 class="fa fa-print"></i> </button>
                                         <li><a class="close-link" (click)="home()"><i class="fa fa-close"></i></a>
@@ -99,7 +104,10 @@
                                                                 <a (click)="showValidationBox(item,i)"
                                                                     class="tag clickable">
                                                                     <!--span>Numero °{{i+1}}</span-->
-                                                                    <span>Injecter</span>
+                                                                    <span
+                                                                        *ngIf="ownerAccount.role=='infirmier'">Injecter</span>
+                                                                    <span
+                                                                        *ngIf="ownerAccount.role=='medecin'">Afficher</span>
                                                                 </a>
                                                             </div>
                                                             <div class="block_content">
@@ -252,26 +260,250 @@
                                                                     <br>
                                                                     <div
                                                                         *ngIf="item.nbre_par_jour - Validations?.length>0">
-                                                                        <span id="red">A Injecter:&nbsp;</span><br>
-                                                                        <ng-container
-                                                                            *ngFor="let dummy of ' '.repeat(item.nbre_par_jour - Validations?.length).split(''), let x = index">
-                                                                            <div class="form-check form-check-inline">
+                                                                        <div *ngIf="ownerAccount.role=='infirmier'">
 
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" id="inlineCheckbox3"
-                                                                                    value="option3"
-                                                                                    (click)="addValidation(item)">
+                                                                            <span id="red">A Injecter:&nbsp;</span><br>
+
+                                                                            <ng-container
+                                                                                *ngFor="let dummy of ' '.repeat(item.nbre_par_jour - Validations?.length).split(''), let x = index">
+                                                                                <div
+                                                                                    class="form-check form-check-inline">
+
+                                                                                    <input class="form-check-input"
+                                                                                        type="checkbox"
+                                                                                        id="inlineCheckbox3"
+                                                                                        value="option3"
+                                                                                        (click)="addValidation(item)">
+
+                                                                                </div>
+                                                                            </ng-container>
+                                                                        </div>
+                                                                        <div *ngIf="ownerAccount.role=='medecin'">
+
+
+
+
+
+                                                                            <div
+                                                                                *ngIf="item.nbre_par_jour > Validations.length">
+                                                                                <span id="red">Rest
+                                                                                    &nbsp;{{item.nbre_par_jour - Validations.length}}&nbsp;injection(s)</span><br>
 
                                                                             </div>
-                                                                        </ng-container>
-                                                                    </div>
-                                                                    <!--div *ngIf="cmp == Validations?.length">
 
-                                                                        <ng-container
-                                                                            [routerLink]="['/PrescriptionActif', fileCare.patient.id]"
-                                                                            routerLinkActive="router-link-active">
-                                                                        </ng-container>
-                                                                    </div-->
+
+
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="ownerAccount.role=='medecin'">
+                                                                        <div
+                                                                            *ngIf="item.nbre_par_jour - Validations.length ==0">
+                                                                            <span id="red">L'injection
+                                                                                du:&nbsp;{{item?.nom_traitement}}&nbsp;est
+                                                                                effectué avec succes</span><br>
+
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+
+                                                </ul>
+
+                                                <ul class="list-unstyled timeline"
+                                                    *ngIf="!item.etat && ownerAccount.role=='medecin'">
+                                                    <li>
+                                                        <div class="block">
+                                                            <div class="tags">
+                                                                <a (click)="showValidationBox(item,i)"
+                                                                    class="tag clickable">
+                                                                    <!--span>Numero °{{i+1}}</span-->
+
+                                                                    <span
+                                                                        *ngIf="ownerAccount.role=='medecin'">Afficher</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="block_content">
+                                                                <h2 class="title">
+                                                                    <a>{{item?.nom_traitement}}&nbsp; (STOPPER)
+                                                                    </a>
+                                                                </h2>
+                                                                <div class="byline" id="bleuNuit">
+                                                                    <span id="vert">Le voie:</span>
+                                                                    &nbsp;{{item?.voix}}
+                                                                    &nbsp;chaque <a>{{item?.rythme}}H<br></a>
+                                                                    <span id="vert">Le dosage:</span>
+                                                                    &nbsp;{{item?.dosage}}mg<br>
+                                                                    <span id="vert">Remarque:&nbsp;</span>
+                                                                    <p>{{item?.remarque}}
+                                                                    </p>
+                                                                </div>
+
+                                                                <!--item?.validations.length>0 && -->
+                                                                <div *ngIf="mode==i">
+
+                                                                    <div *ngIf="Validations.length>0">
+                                                                        <div class="well" style="overflow: auto">
+                                                                            <span id="red">Déja
+                                                                                Injecter:&nbsp;</span><br>
+                                                                            <ng-container
+                                                                                *ngFor="let v of Validations; let i=index">
+                                                                                <div
+                                                                                    class="form-check form-check-inline">
+                                                                                    <input class="form-check-input"
+                                                                                        type="checkbox" id="i"
+                                                                                        value="true" checked disabled>
+
+
+
+
+                                                                                    <a class="clickable"
+                                                                                        data-toggle="modal"
+                                                                                        [attr.data-target]="'#myModal' +i">detaille</a>
+
+                                                                                    <!-- The Modal -->
+                                                                                    <div class="modal"
+                                                                                        [attr.id]="'myModal' + i"
+                                                                                        role="dialog">
+                                                                                        <div class="modal-dialog">
+                                                                                            <div class="modal-content">
+
+                                                                                                <!-- Modal Header -->
+                                                                                                <div
+                                                                                                    class="modal-header">
+                                                                                                    <h4
+                                                                                                        class="modal-title">
+                                                                                                        Detaille sur
+                                                                                                        injection
+                                                                                                    </h4>
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        class="close"
+                                                                                                        data-dismiss="modal">&times;</button>
+                                                                                                </div>
+
+                                                                                                <!-- Modal body -->
+
+                                                                                                <div class="modal-body">
+
+
+                                                                                                    <h4 class="heading">
+                                                                                                        Injection du
+                                                                                                        medicament:&nbsp;
+                                                                                                    </h4>
+
+                                                                                                    <p
+                                                                                                        style="margin-left: 20px;">
+                                                                                                        {{item?.nom_traitement}},&nbsp;dosage:&nbsp;{{item?.dosage}}mg,&nbsp;Voie:&nbsp;{{item.voix}}
+                                                                                                    </p>
+                                                                                                    <h4 class="heading">
+                                                                                                        Injecté Par
+                                                                                                        l'infirmier:&nbsp;
+                                                                                                    </h4>
+
+                                                                                                    <ul class="messages"
+                                                                                                        style="margin-left: 20px;">
+                                                                                                        <li>
+                                                                                                            <!--img [src]="this.userService.url+'/photoUser/'+v.infirmier.id"
+                                                                                                                class="avatar"
+                                                                                                                alt="Avatar"-->
+
+                                                                                                            <div
+                                                                                                                class="message_wrapper">
+                                                                                                                <h4
+                                                                                                                    class="heading">
+                                                                                                                    {{v.infirmier.nom}}&nbsp;{{v.infirmier.prenom}}
+                                                                                                                </h4>
+                                                                                                                <blockquote
+                                                                                                                    class="message">
+                                                                                                                    Date
+                                                                                                                    Injection:{{v.dateV}}<br>
+                                                                                                                    Temps
+                                                                                                                    Injection:{{v.timeValidation }}<br>
+                                                                                                                </blockquote>
+
+
+                                                                                                            </div>
+                                                                                                        </li>
+
+                                                                                                    </ul><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                </div>
+                                                                                                <!-- Modal footer -->
+                                                                                                <div
+                                                                                                    class="modal-footer">
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        class="btn btn-danger"
+                                                                                                        data-dismiss="modal">Close</button>
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+
+                                                                                </div>
+
+
+
+                                                                                <!--/debut-->
+
+                                                                            </ng-container>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <br>
+                                                                    <div
+                                                                        *ngIf="item.nbre_par_jour - Validations?.length>0">
+
+                                                                        <div
+                                                                            *ngIf="item.nbre_par_jour > Validations.length">
+                                                                            <span id="red">Stoper avant que les
+                                                                                &nbsp;{{item.nbre_par_jour - Validations.length}}&nbsp;injection(s)
+                                                                                est (sont)effectué</span><br>
+
+                                                                        </div>
+
+
+
+
+
+                                                                    </div>
+
+                                                                    <div
+                                                                        *ngIf="item.nbre_par_jour - Validations.length ==0">
+                                                                        <span id="red">L'injection
+                                                                            du:&nbsp;{{item?.nom_traitement}}&nbsp;est
+                                                                            effectué avec succes</span><br>
+
+
+                                                                    </div>
+
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -280,15 +512,6 @@
 
                                                 </ul>
                                             </ng-container>
-                                            <!--div class="card-body">
-                                                    <div class="col-12">
-
-                                                        <button class="btn btn-default m-1" type="reset">
-                                                            Annuler </button>
-                                                        <button class="btn btn-success m-1" type="submit">
-                                                            Enregistrer</button>
-                                                    </div>
-                                                </div-->
 
 
                                         </div>

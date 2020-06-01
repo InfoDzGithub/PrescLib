@@ -68,4 +68,23 @@ export class DossierSByPrescComponent implements OnInit {
     this.router.navigate(["/detailPatient", id]);
   }
 
+  detailFileMDCL(id: number) {
+    this.router.navigate(["/editFicheSoin", id]);
+
+  }
+
+  detailFileSuivi(id: number) {
+    this.router.navigate(["/editFicheSoinSuivi", id]);
+
+  }
+
+  detailFileSoin(id: number) {
+    this.router.navigate(["/editFicheSoinReel", id]);
+
+  }
+
+  detailFileALMT(id: number) {
+    this.router.navigate(["/editFicheSoinAliment", id]);
+
+  }
 }

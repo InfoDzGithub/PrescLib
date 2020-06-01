@@ -9,28 +9,24 @@ import { User } from 'src/app/model/user';
 import { Traitement } from 'src/app/model/traitement';
 import { Validation } from 'src/app/model/validation';
 import { FicheInfirmier } from 'src/app/model/fiche-infirmier';
-import { Tests } from 'src/app/model/tests';
-
 
 @Component({
-  selector: 'app-fiche-soin-aliment',
-  templateUrl: './fiche-soin-aliment.component.html',
-  styleUrls: ['./fiche-soin-aliment.component.css']
+  selector: 'app-detail-file-mdcl',
+  templateUrl: './detail-file-mdcl.component.html',
+  styleUrls: ['./detail-file-mdcl.component.css']
 })
-export class FicheSoinAlimentComponent implements OnInit {
-
+export class DetailFileMDCLComponent implements OnInit {
 
   id: number;
   fileCare: any;
   fileCare2: FicheInfirmier;
-  cmp: number = 0;
 
   ownerAccount: User;
   email: string;
   validation: Validation;
-
+  cmp: number = 0;
   Validations: any;
-  mode: number;
+  //mode: number;
   constructor(private fileService: CareFileService, private route: ActivatedRoute, public prescService: PrescriptionServiceService, private router: Router, private patService: PatientService, public userService: UtilisateurService) {
   }
 
@@ -38,7 +34,10 @@ export class FicheSoinAlimentComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.getFileCare();
     this.getAccountOwner();
-    this.mode = 0;
+    //this.mode = -1;
+
+
+
   }
 
   getFileCare() {
@@ -47,6 +46,7 @@ export class FicheSoinAlimentComponent implements OnInit {
       .subscribe(data => {
         this.fileCare = data;
         this.fileCare2 = data;
+        console.log("file" + this.fileCare.id)
 
 
 
@@ -55,6 +55,10 @@ export class FicheSoinAlimentComponent implements OnInit {
         console.log(err)
       })
   }
+
+
+
+
 
   getAccountOwner() {
     this.email = sessionStorage.getItem('email');
@@ -70,17 +74,14 @@ export class FicheSoinAlimentComponent implements OnInit {
   }
 
 
-  showValidationBox() {
+  showValidationBox(item: Traitement, i: number) {
 
-    this.fileService.getValidationsByFileCare(this.fileCare.id)
+    this.fileService.getValidationsByBothContenuFileCare(item.id, this.fileCare.id)
       .subscribe(data => {
         this.Validations = data;
-        this.cmp = this.Validations.length;
-        if (this.cmp == 2) {
-          this.archiveFileCare();
-        }
 
-        this.mode = 1;
+
+
       }, err => {
 
         console.log(err)
@@ -97,27 +98,7 @@ export class FicheSoinAlimentComponent implements OnInit {
 
 
 
-  addValidation() {
-    if (confirm("Vouliez vous servir le repas?")) {
 
-      this.validation = new Validation();
-      this.validation.type_val = "VB";
-      this.validation.val_bool = true;
-      //this.validation.contenu = item;
-      this.validation.ficheInfirmier = this.fileCare2;
-      this.validation.infirmier = this.ownerAccount;
-
-      this.fileService.addValidation(this.validation)
-
-        .subscribe(data => {
-          if (confirm("Bien enregistré")) { this.ngOnInit() }
-        }, err => {
-          if (confirm("Desolé!")) { }
-          console.log(err)
-        })
-    }
-
-  }
 
 
   home() {
@@ -127,25 +108,6 @@ export class FicheSoinAlimentComponent implements OnInit {
     this.router.navigate(["/ActifFilesCare", id]);
   }
 
-  alert() {
-    window.alert('test');
-  }
-
-  archiveFileCare() {
-
-    this.fileService.archiveFile(this.id)
-      .subscribe(data => {
 
 
-
-
-      }, err => {
-
-        console.log(err)
-      })
-  }
-
-  fileCareByPresc(id: number) {
-    this.router.navigate(["/fileCareByPresc", id]);
-  }
 }

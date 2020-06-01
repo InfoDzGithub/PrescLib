@@ -158,4 +158,10 @@ export class FicheSoinSuiviComponent implements OnInit {
         console.log(err)
       })
   }
+
+
+
+  fileCareByPresc(id: number) {
+    this.router.navigate(["/fileCareByPresc", id]);
+  }
 }

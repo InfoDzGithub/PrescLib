@@ -66,35 +66,35 @@
                                                                             alt="..."
                                                                             style="height: 230px;width: 200px;">
                                                                     </a>
-                                                                    <!--ul class="dropdown-menu" role="menu"
+                                                                    <ul class="dropdown-menu" role="menu"
                                                                         aria-labelledby="imageDropdown">
                                                                         <li role="presentation"
                                                                             class="list-group-item py-2">
 
                                                                             <ng-template
-                                                                                [ngIf]="prescription.type=='SOIN'">
-                                                                                <a (click)="ficheSoinReel(c.id)"
+                                                                                [ngIf]="c.prescription.type=='SOIN'">
+                                                                                <a (click)="detailFileSoin(c.id)"
                                                                                     title="view"><i
                                                                                         class="fa fa-file-powerpoint-o"></i>
                                                                                     &nbsp;+ Fiche SOIN
                                                                                 </a></ng-template>
                                                                             <ng-template
-                                                                                [ngIf]="prescription.type=='SUIV'">
-                                                                                <a (click)="ficheSoinSuivi(c.id)"
+                                                                                [ngIf]="c.prescription.type=='SUIV'">
+                                                                                <a (click)="detailFileSuivi(c.id)"
                                                                                     title="view"><i
                                                                                         class="fa fa-file-powerpoint-o"></i>&nbsp;
                                                                                     + Fiche suivi
                                                                                 </a></ng-template>
                                                                             <ng-template
-                                                                                [ngIf]="prescription.type=='ALMT'">
-                                                                                <a (click)="ficheSoinAliment(c.id)"
+                                                                                [ngIf]="c.prescription.type=='ALMT'">
+                                                                                <a (click)="detailFileALMT(c.id)"
                                                                                     title="view"><i
                                                                                         class="fa fa-file-powerpoint-o"></i>&nbsp;
                                                                                     + Fiche Aliment
                                                                                 </a></ng-template>
                                                                             <ng-template
-                                                                                [ngIf]="prescription.type=='MDCL'">
-                                                                                <a (click)="ficheSoin(c.id)"
+                                                                                [ngIf]="c.prescription.type=='MDCL'">
+                                                                                <a (click)="detailFileMDCL(c.id)"
                                                                                     title="view"><i
                                                                                         class="fa fa-file-powerpoint-o"></i>&nbsp;
                                                                                     + Fiche medical
@@ -108,7 +108,7 @@
 
 
                                                                         </li>
-                                                                    </ul-->
+                                                                    </ul>
 
                                                                 </div><br>
                                                                 <br>
@@ -141,37 +141,35 @@
                                                                         <li role="presentation"
                                                                             class="list-group-item py-2">
 
-                                                                            <!--ng-template
-                                                                                [ngIf]="prescription.type=='SOIN'">
-                                                                                <a (click)="ficheSoinReel(c.id)"
+                                                                            <ng-template
+                                                                                [ngIf]="c.prescription.type=='SOIN'">
+                                                                                <a (click)="detailFileSoin(c.id)"
                                                                                     title="view"><i
                                                                                         class="fa fa-file-powerpoint-o"></i>
                                                                                     &nbsp;+ Fiche SOIN
                                                                                 </a></ng-template>
                                                                             <ng-template
-                                                                                [ngIf]="prescription.type=='SUIV'">
-                                                                                <a (click)="ficheSoinSuivi(c.id)"
+                                                                                [ngIf]="c.prescription.type=='SUIV'">
+                                                                                <a (click)="detailFileSuivi(c.id)"
                                                                                     title="view"><i
                                                                                         class="fa fa-file-powerpoint-o"></i>&nbsp;
                                                                                     + Fiche suivi
                                                                                 </a></ng-template>
                                                                             <ng-template
-                                                                                [ngIf]="prescription.type=='ALMT'">
-                                                                                <a (click)="ficheSoinAliment(c.id)"
+                                                                                [ngIf]="c.prescription.type=='ALMT'">
+                                                                                <a (click)="detailFileALMT(c.id)"
                                                                                     title="view"><i
                                                                                         class="fa fa-file-powerpoint-o"></i>&nbsp;
                                                                                     + Fiche Aliment
                                                                                 </a></ng-template>
                                                                             <ng-template
-                                                                                [ngIf]="prescription.type=='MDCL'">
-                                                                                <a (click)="ficheSoin(c.id)"
+                                                                                [ngIf]="c.prescription.type=='MDCL'">
+                                                                                <a (click)="detailFileMDCL(c.id)"
                                                                                     title="view"><i
                                                                                         class="fa fa-file-powerpoint-o"></i>&nbsp;
                                                                                     + Fiche medical
                                                                                 </a>
-                                                                            </ng-template-->
-
-
+                                                                            </ng-template>
 
 
 

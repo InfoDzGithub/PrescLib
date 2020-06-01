@@ -57,6 +57,7 @@ import { FicheSoinAlimentComponent } from './Infirmier/fiche-soin-aliment/fiche-
 import { FicheSoinSuiviComponent } from './Infirmier/fiche-soin-suivi/fiche-soin-suivi.component';
 import { FileNotCompletedComponent } from './Infirmier/file-not-completed/file-not-completed.component';
 import { DossierSByPrescComponent } from './Medecin/dossier-sby-presc/dossier-sby-presc.component';
+import { DetailFileMDCLComponent } from './Medecin/detail-file-mdcl/detail-file-mdcl.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent },
@@ -102,6 +103,8 @@ const appRoutes: Routes = [
   { path: 'editFicheSoinSuivi/:id', component: FicheSoinSuiviComponent },
   { path: 'fileNotCompleted', component: FileNotCompletedComponent },
   { path: 'fileCareByPresc/:id', component: DossierSByPrescComponent },
+  { path: 'detailFileMDCL/:id', component: DetailFileMDCLComponent },
+
 
 
 
@@ -163,7 +166,8 @@ const appRoutes: Routes = [
     FicheSoinAlimentComponent,
     FicheSoinSuiviComponent,
     FileNotCompletedComponent,
-    DossierSByPrescComponent
+    DossierSByPrescComponent,
+    DetailFileMDCLComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, FormsModule,

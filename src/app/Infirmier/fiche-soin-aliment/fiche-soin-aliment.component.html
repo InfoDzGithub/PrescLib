@@ -25,7 +25,12 @@
                                     <!--h2>Invoice Design <small>Sample user invoice design</small></h2-->
                                     <ul class="nav navbar-right panel_toolbox">
 
-                                        <li><a (click)="FicheInfirmierActif(fileCare.prescription.id)"
+                                        <li *ngIf="ownerAccount.role=='infirmier'"><a
+                                                (click)="FicheInfirmierActif(fileCare.prescription.id)"
+                                                style="font-size:17px;"><i class="fa fa-angle-double-left"></i></a>
+                                        </li>
+                                        <li *ngIf="ownerAccount.role=='medecin'"><a
+                                                (click)="fileCareByPresc(fileCare.prescription.id)"
                                                 style="font-size:17px;"><i class="fa fa-angle-double-left"></i></a>
                                         </li>
 
@@ -97,7 +102,10 @@
                                                         <div class="tags">
                                                             <a (click)="showValidationBox()" class="tag clickable">
                                                                 <!--span>Numero °{{i+1}}</span-->
-                                                                <span>Servir</span>
+                                                                <span
+                                                                    *ngIf="ownerAccount.role=='infirmier'">Servir</span>
+                                                                <span
+                                                                    *ngIf="ownerAccount.role=='medecin'">Afficher</span>
                                                             </a>
                                                         </div>
                                                         <div class="block_content">
@@ -217,19 +225,43 @@
 
                                                                 <br>
                                                                 <div *ngIf="2 - Validations?.length>0">
-                                                                    <span id="red">Aliment à
-                                                                        servir:&nbsp;</span><br>
-                                                                    <ng-container
-                                                                        *ngFor="let dummy of ' '.repeat(2 - Validations?.length).split(''), let x = index">
-                                                                        <div class="form-check form-check-inline">
+                                                                    <div *ngIf="ownerAccount.role=='infirmier'">
+                                                                        <span id="red">Aliment à
+                                                                            servir:&nbsp;</span><br>
+                                                                        <ng-container
+                                                                            *ngFor="let dummy of ' '.repeat(2 - Validations?.length).split(''), let x = index">
+                                                                            <div class="form-check form-check-inline">
 
-                                                                            <input class="form-check-input"
-                                                                                type="checkbox" id="inlineCheckbox3"
-                                                                                value="option3"
-                                                                                (click)="addValidation()">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" id="inlineCheckbox3"
+                                                                                    value="option3"
+                                                                                    (click)="addValidation()">
+
+                                                                            </div>
+                                                                        </ng-container>
+                                                                    </div>
+                                                                    <div *ngIf="ownerAccount.role=='medecin'">
+                                                                        <div *ngIf="2 > Validations.length">
+                                                                            <span id="red">Rest
+                                                                                &nbsp;{{2 - Validations.length}}&nbsp;repas</span><br>
 
                                                                         </div>
-                                                                    </ng-container>
+
+
+
+
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div *ngIf="ownerAccount.role=='medecin'">
+                                                                    <div *ngIf="2 - Validations.length ==0">
+                                                                        <span id="red">La service
+                                                                            des:&nbsp;{{fileCare?.prescription.type_aliment}}&nbsp;est
+                                                                            effectué avec succes</span><br>
+
+
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

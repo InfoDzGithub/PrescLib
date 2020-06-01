@@ -162,7 +162,9 @@ export class FicheSoinComponent implements OnInit {
     window.alert('test');
   }
 
-
+  fileCareByPresc(id: number) {
+    this.router.navigate(["/fileCareByPresc", id]);
+  }
 
 
 
