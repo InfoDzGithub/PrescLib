@@ -250,7 +250,7 @@ export class EditMedicalPrescriptionComponent implements OnInit {
 
 
 
-  detailPatient(id: number) {
+  editPatient(id: number) {
     this.router.navigate(["/editPatient", id]);
   }
   detailMedicalPrescription(idP: number) {

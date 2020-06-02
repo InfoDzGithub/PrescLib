@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilisateurService } from 'src/app/service/utilisateur.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-detail-user',
@@ -19,6 +20,8 @@ export class DetailUserComponent implements OnInit {
   size: number = 3;
   pages: Array<number>;
   pagesH: Array<number>;
+  ownerAccount: User;
+  email: string;
   constructor(private route: ActivatedRoute, private router: Router, public userService: UtilisateurService) { }
 
   ngOnInit(): void {
@@ -28,6 +31,20 @@ export class DetailUserComponent implements OnInit {
     console.log("user de id" + this.id)
     this.getServicesOccupied();
     this.getHistoriqueServicesOccupied();
+    this.getAccountOwner();
+
+  }
+
+  getAccountOwner() {
+    this.email = sessionStorage.getItem('email');
+    this.ownerAccount = new User();
+    this.userService.searchUserByEmail(this.email)
+      .subscribe(data => {
+        this.ownerAccount = data;
+
+      }
+
+      );
 
   }
 
@@ -87,5 +104,14 @@ export class DetailUserComponent implements OnInit {
     this.curentPageH = i;
     this.getHistoriqueServicesOccupied();
 
+  }
+
+  home() {
+    this.router.navigate(['global']);
+  }
+
+
+  users() {
+    this.router.navigate(['users']);
   }
 }

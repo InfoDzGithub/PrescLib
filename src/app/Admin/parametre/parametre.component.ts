@@ -48,7 +48,9 @@ export class ParametreComponent implements OnInit {
   }
 
 
-
+  home() {
+    this.router.navigate(['global']);
+  }
 
 
 

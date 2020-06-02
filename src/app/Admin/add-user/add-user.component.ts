@@ -192,4 +192,12 @@ export class AddUserComponent implements OnInit {
 
 
 
+
+  home() {
+    this.router.navigate(['global']);
+  }
+  users() {
+    this.router.navigate(['users']);
+  }
+
 }

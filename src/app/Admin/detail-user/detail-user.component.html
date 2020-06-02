@@ -9,7 +9,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Profile d'employer</h3>
+                            <h3>Profile </h3>
                         </div>
 
                         <!--div class="title_right">
@@ -30,21 +30,16 @@
                         <div class="col-md-12 col-sm-12 ">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Rapport <small>sur l'employer</small></h2>
+                                    <h2>Rapport <small>sur l'employé</small></h2>
+
                                     <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        <li *ngIf="ownerAccount .role=='admin'"><a (click)="users()"
+                                                style="font-size:17px;"><i class="fa fa-angle-double-left"></i></a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Settings 1</a>
-                                                <a class="dropdown-item" href="#">Settings 2</a>
-                                            </div>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        <li><a class="close-link" (click)="home()"><i class="fa fa-close"></i></a>
                                         </li>
                                     </ul>
+
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">

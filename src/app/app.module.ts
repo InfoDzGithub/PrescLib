@@ -63,7 +63,7 @@ import { AuthGaurdService } from './service/auth-gaurd.service';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'global', component: GlobalComponent, canActivate: [AuthGaurdService] },
-  { path: 'forgetPassword', component: ForgetPasswordComponent, canActivate: [AuthGaurdService] },
+  { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGaurdService] },
   { path: 'header', component: LogoutComponent, canActivate: [AuthGaurdService] },
   { path: 'users', component: UsersComponent, canActivate: [AuthGaurdService] },
@@ -105,7 +105,7 @@ const appRoutes: Routes = [
   { path: 'editFicheSoinSuivi/:id', component: FicheSoinSuiviComponent, canActivate: [AuthGaurdService] },
   { path: 'fileNotCompleted', component: FileNotCompletedComponent, canActivate: [AuthGaurdService] },
   { path: 'fileCareByPresc/:id', component: DossierSByPrescComponent, canActivate: [AuthGaurdService] },
-  { path: '**', component: PageNotFoundComponent, canActivate: [AuthGaurdService] },
+  { path: '**', component: PageNotFoundComponent },
 
 
 

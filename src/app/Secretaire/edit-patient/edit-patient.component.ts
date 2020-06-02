@@ -240,4 +240,12 @@ export class EditPatientComponent implements OnInit {
       })
   }
 
+
+  home() {
+    this.router.navigate(["/global"]);
+  }
+
+  patients() {
+    this.router.navigate(["/patients"]);
+  }
 }

@@ -99,4 +99,12 @@ export class AddPatientComponent implements OnInit {
     }
   }
 
+  home() {
+    this.router.navigate(["/global"]);
+  }
+
+  patients() {
+    this.router.navigate(["/patients"]);
+  }
+
 }

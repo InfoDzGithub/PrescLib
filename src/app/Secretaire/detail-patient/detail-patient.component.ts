@@ -107,6 +107,15 @@ export class DetailPatientComponent implements OnInit {
     this.router.navigate(["/currentResidentPrescription", id]);
   }
 
+  dossierSoin() {
+    this.router.navigate(["/dossierMedical"]);
+  }
 
+  patients() {
+    this.router.navigate(["/patients"]);
+  }
+  home() {
+    this.router.navigate(["/global"]);
+  }
 
 }

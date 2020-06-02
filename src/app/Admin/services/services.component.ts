@@ -18,7 +18,9 @@ export class ServicesComponent implements OnInit {
   ngOnInit(): void {
     this.getAllServices();
   }
-
+  home() {
+    this.router.navigate(['global']);
+  }
 
   getAllServices() {
     this.depService.getAllServices(this.curentPage, this.size)

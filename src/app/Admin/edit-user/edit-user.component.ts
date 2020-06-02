@@ -223,6 +223,15 @@ export class EditUserComponent implements OnInit {
 
   }
 
+
+
+  home() {
+    this.router.navigate(['global']);
+  }
+  users() {
+    this.router.navigate(['users']);
+  }
+
 }
 
 

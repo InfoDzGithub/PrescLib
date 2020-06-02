@@ -85,4 +85,12 @@ export class EditServiceComponent implements OnInit {
     }
   }
 
+
+
+  home() {
+    this.router.navigate(['global']);
+  }
+  services() {
+    this.router.navigate(['services']);
+  }
 }

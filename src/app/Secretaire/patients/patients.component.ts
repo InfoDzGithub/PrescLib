@@ -80,4 +80,9 @@ export class PatientsComponent implements OnInit {
       this.doSearch();
     }
   }
+
+
+  home() {
+    this.router.navigate(["/global"]);
+  }
 }

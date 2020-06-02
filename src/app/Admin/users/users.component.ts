@@ -108,4 +108,9 @@ export class UsersComponent implements OnInit {
 
     this.router.navigate(["/editUser", id]);
   }
+
+
+  home() {
+    this.router.navigate(['global']);
+  }
 }
