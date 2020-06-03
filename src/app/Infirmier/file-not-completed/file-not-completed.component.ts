@@ -73,4 +73,7 @@ export class FileNotCompletedComponent implements OnInit {
     this.router.navigate(["/editFicheSoinSuivi", id]);
   }
 
+  home() {
+    this.router.navigate(["/global"]);
+  }
 }

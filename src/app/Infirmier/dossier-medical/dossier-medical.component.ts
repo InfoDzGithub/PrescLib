@@ -93,6 +93,10 @@ export class DossierMedicalComponent implements OnInit {
     this.router.navigate(["/PrescriptionActif", id]);
   }
 
+  home() {
+    this.router.navigate(["/global"]);
+  }
+
   alert(id: number) {
 
     this.prescService.nbrePrescriptionActifByPatient(id)
@@ -110,6 +114,8 @@ export class DossierMedicalComponent implements OnInit {
 
 
   }
+
+
 
 }
 

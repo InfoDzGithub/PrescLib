@@ -48,7 +48,9 @@ export class FicheSoinComponent implements OnInit {
         this.fileCare2 = data;
         console.log("file" + this.fileCare.id)
         for (const iterator of this.fileCare.prescription.contenu) {
-          this.cmp = this.cmp + iterator.nbre_par_jour;
+          if (iterator.etat == true) {
+            this.cmp = this.cmp + iterator.nbre_par_jour;
+          }
         }
         if (this.cmp == this.fileCare.validations.length) {
           console.log("cmp" + this.cmp)
@@ -94,7 +96,9 @@ export class FicheSoinComponent implements OnInit {
         this.mode = i;
         this.cmp = 0;
         for (const iterator of this.fileCare.prescription.contenu) {
-          this.cmp = this.cmp + iterator.nbre_par_jour;
+          if (iterator.etat == true) {
+            this.cmp = this.cmp + iterator.nbre_par_jour;
+          }
         }
 
         if (this.cmp == this.fileCare.validations.length) {

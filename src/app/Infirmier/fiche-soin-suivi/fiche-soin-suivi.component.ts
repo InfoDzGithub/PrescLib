@@ -45,7 +45,9 @@ export class FicheSoinSuiviComponent implements OnInit {
         this.fileCare = data;
         this.fileCare2 = data;
         for (const iterator of this.fileCare.prescription.contenu) {
-          this.cmp = this.cmp + iterator.nbre_par_jr;
+          if (iterator.etat == true) {
+            this.cmp = this.cmp + iterator.nbre_par_jr;
+          }
         }
         if (this.cmp == this.fileCare.validations.length) {
           console.log("cmp" + this.cmp)
@@ -86,7 +88,9 @@ export class FicheSoinSuiviComponent implements OnInit {
         this.mode = i;
         this.cmp = 0;
         for (const iterator of this.fileCare.prescription.contenu) {
-          this.cmp = this.cmp + iterator.nbre_par_jr;
+          if (iterator.etat == true) {
+            this.cmp = this.cmp + iterator.nbre_par_jr;
+          }
         }
 
         if (this.cmp == this.fileCare.validations.length) {
