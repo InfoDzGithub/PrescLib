@@ -77,17 +77,20 @@ export class DetailPatientComponent implements OnInit {
   nbrePrescriptionActifInEveryHosp(id: number) {
 
     //let idX = Number(id);
+
     this.prescService.nbrePrescriptionActifInEveryHosp(id)
       .subscribe(data => {
 
         this.nbrePrescHosp = data;
         console.log("nbre" + this.nbrePrescHosp)
+        window.alert("Le nbre de prescription actifs:" + this.nbrePrescHosp)
 
 
       }, err => {
 
         console.log(err)
       })
+
   }
 
 

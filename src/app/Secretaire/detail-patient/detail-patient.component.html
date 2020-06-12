@@ -326,7 +326,8 @@
                                                                         <div class=" col-sm-6 emphasis">
                                                                             <p class="ratings">
 
-                                                                                <a href="#"><span
+                                                                                <a
+                                                                                    (click)="nbrePrescriptionActifInEveryHosp(item.id)"><span
                                                                                         class="fa fa-star"></span></a>
                                                                                 <!--a>
                                                                                     {{nbrePrescriptionActifInEveryHosp(item.id)}}</a-->
@@ -337,7 +338,8 @@
                                                                             </p>
                                                                         </div>
 
-                                                                        <div class=" col-sm-6 emphasis">
+                                                                        <div class=" col-sm-6 emphasis"
+                                                                            *ngIf="user.role=='secretaire'|| user.role=='infirmier'">
 
                                                                             <button type="button"
                                                                                 class="btn btn-primary btn-sm"
@@ -345,6 +347,17 @@
                                                                                 (click)="historiquePrecription(item.id)"><i
                                                                                     class="fa fa-folder-open-o"></i>
                                                                                 prescriptions
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class=" col-sm-6 emphasis"
+                                                                            *ngIf="user.role=='medecin'">
+
+                                                                            <button type="button"
+                                                                                class="btn btn-primary btn-sm"
+                                                                                title="prescription"
+                                                                                (click)="historiquePrecription(item.id)"><i
+                                                                                    class="fa fa-folder-open-o"></i>
+                                                                                Dossier
                                                                             </button>
                                                                         </div>
                                                                     </div>

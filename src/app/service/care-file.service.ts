@@ -60,4 +60,8 @@ export class CareFileService {
     return this.http.get(this.url + "/fileCareByPresc?id=" + idF + "&page=" + page + "&size=" + size)
   }
 
+  nbreValidationDisable(idF) {
+    return this.http.get<number>(this.url + "/nbreValidationsDisable?id=" + idF)
+  }
+
 }

@@ -25,7 +25,7 @@ export class FicheSoinReelComponent implements OnInit {
   ownerAccount: User;
   email: string;
   validation: Validation;
-
+  nbreV: number;
   Validations: any;
   mode: number;
   constructor(private fileService: CareFileService, private route: ActivatedRoute, public prescService: PrescriptionServiceService, private router: Router, private patService: PatientService, public userService: UtilisateurService) {
@@ -49,7 +49,7 @@ export class FicheSoinReelComponent implements OnInit {
             this.cmp = this.cmp + iterator.nbre_par_jr;
           }
         }
-        if (this.cmp == this.fileCare.validations.length) {
+        if (this.cmp == (this.fileCare.validations.length - this.nbreV)) {
           console.log("cmp" + this.cmp)
           console.log("valiLenght" + this.fileCare.validations.length)
           console.log("FINNNNnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
@@ -92,7 +92,7 @@ export class FicheSoinReelComponent implements OnInit {
           }
         }
 
-        if (this.cmp == this.fileCare.validations.length) {
+        if (this.cmp == (this.fileCare.validations.length - this.nbreV)) {
           console.log("cmp" + this.cmp)
           console.log("valiLenght" + this.fileCare.validations.length)
           console.log("FINNNNnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
@@ -128,7 +128,27 @@ export class FicheSoinReelComponent implements OnInit {
       this.fileService.addValidation(this.validation)
 
         .subscribe(data => {
-          if (confirm("Bien enregistré")) { this.ngOnInit() }
+          if (confirm("Bien enregistré")) {
+
+            this.cmp = 0;
+            for (const iterator of this.fileCare.prescription.contenu) {
+              if (iterator.etat == true) {
+                this.cmp = this.cmp + iterator.nbre_par_jr;
+              }
+            }
+
+            if (this.cmp == (this.fileCare.validations.length - this.nbreV)) {
+              console.log("cmp" + this.cmp)
+              console.log("valiLenght" + this.fileCare.validations.length)
+              console.log("FINNNNnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+              this.archiveFileCare();
+
+            }
+
+
+
+            this.ngOnInit()
+          }
         }, err => {
           if (confirm("Desolé!")) { }
           console.log(err)
@@ -164,7 +184,22 @@ export class FicheSoinReelComponent implements OnInit {
   }
 
 
+  validationDisab(idF: number) {
 
+    this.fileService.nbreValidationDisable(idF)
+      .subscribe(
+        data => {
+          //this.nbreV = data;
+          this.nbreV = data;
+
+
+        }
+
+      );
+
+
+
+  }
 
   fileCareByPresc(id: number) {
     this.router.navigate(["/fileCareByPresc", id]);

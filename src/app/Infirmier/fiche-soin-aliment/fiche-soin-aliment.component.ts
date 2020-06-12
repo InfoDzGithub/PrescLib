@@ -75,6 +75,7 @@ export class FicheSoinAlimentComponent implements OnInit {
     this.fileService.getValidationsByFileCare(this.fileCare.id)
       .subscribe(data => {
         this.Validations = data;
+        this.cmp = 0;
         this.cmp = this.Validations.length;
         if (this.cmp == 2) {
           this.archiveFileCare();
@@ -110,7 +111,16 @@ export class FicheSoinAlimentComponent implements OnInit {
       this.fileService.addValidation(this.validation)
 
         .subscribe(data => {
-          if (confirm("Bien enregistré")) { this.ngOnInit() }
+          if (confirm("Bien enregistré")) {
+
+            this.cmp = 0;
+            this.cmp = this.Validations.length;
+            if (this.cmp == 2) {
+              this.archiveFileCare();
+            }
+
+            this.ngOnInit()
+          }
         }, err => {
           if (confirm("Desolé!")) { }
           console.log(err)
