@@ -112,11 +112,11 @@ export class EditUserComponent implements OnInit {
       .subscribe(data => {
 
 
-        this.infoBox("L'utilisateur a était modifier avec succes");
+        this.infoBox("L'utilisateur a été modifié avec succes");
         this.uploadPhoto();
 
       }, err => {
-        this.infoBox("Desolé! utilisateur n' a pas était modifier");
+        this.infoBox("Desolé! utilisateur n' a pas été modifié");
 
       })
 
@@ -167,7 +167,7 @@ export class EditUserComponent implements OnInit {
   }
 
   detachUserFromServiceConfirm(item: any) {
-    if (confirm("Cette action va détacher L'utilisateur:  " + this.user.nom + " " + this.user.prenom + " du service " + item.service.nom)) {
+    if (confirm("Cette action va priver L'utilisateur:  " + this.user.nom + " " + this.user.prenom + " du service " + item.service.nom)) {
 
       this.userService.releaseUserFromActifService(this.id, item.service.id)
         .subscribe(data => {

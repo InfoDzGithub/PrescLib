@@ -105,10 +105,10 @@ export class AddUserComponent implements OnInit {
       .subscribe(data => {
         //this.user = data;
 
-        this.infoBox("L'utilisateur a était ajouté avec succes");
+        this.infoBox("L'utilisateur a été ajouté avec succes");
         this.findUserSaved(this.user.email)
       }, err => {
-        this.infoBox("Desolé! utilisateur n'a pas était ajouté, vérifier s'il est nouveau ");
+        this.infoBox("Desolé! utilisateur n'a pas étté ajouté, vérifier s'il est nouveau ");
 
       })
 

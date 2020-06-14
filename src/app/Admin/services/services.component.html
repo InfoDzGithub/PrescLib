@@ -44,7 +44,7 @@
                                     <div class="row">
                                         <ng-container *ngFor="let c of services?.content">
                                             <div class="col-md-3   widget widget_tally_box " *ngIf="c.etat">
-                                                <div class="x_panel fixed_height_390 bg-light">
+                                                <div class="x_panel fixed_height_390 bg-warning">
                                                     <div class="x_title">
                                                         <h2>{{c.nom}}</h2>
                                                         <ul class="nav navbar-right panel_toolbox">
@@ -103,7 +103,7 @@
 
                                             <!--etat false-->
                                             <div class="col-md-3   widget widget_tally_box " *ngIf="!c.etat">
-                                                <div class="x_panel fixed_height_390 bg-warning">
+                                                <div class="x_panel fixed_height_390 bg-light">
                                                     <div class="x_title">
                                                         <h2>{{c.nom}}</h2>
                                                         <ul class="nav navbar-right panel_toolbox">

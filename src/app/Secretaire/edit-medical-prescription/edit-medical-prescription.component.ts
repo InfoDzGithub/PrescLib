@@ -131,7 +131,7 @@ export class EditMedicalPrescriptionComponent implements OnInit {
     return this.fb.group({
       medicament: ['', Validators.compose([Validators.required])],
       voix: ['', Validators.compose([Validators.required])], // i.e Email, Phone
-      rythme: [null, [Validators.pattern("[0-9 ]{1}")]], // i.e. Home, Office
+      rythme: [null], // , [Validators.pattern("[0-9 ]{1}")]
       remarque: [null, Validators.compose([Validators.required])],
       dosage: [null]
     });

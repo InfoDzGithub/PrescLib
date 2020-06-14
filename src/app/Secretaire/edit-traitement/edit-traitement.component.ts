@@ -52,7 +52,7 @@ export class EditTraitementComponent implements OnInit {
   initForm() {
     this.traitementForm = this.fb.group({
       nomTraitement: ['', Validators.required],
-      rythme: ['', Validators.pattern("[0-9 ]{1}")],
+      rythme: [''],//, Validators.pattern("[0-9 ]{1}")
       dosage: ['', [Validators.required]],
       remarque: ['', Validators.required],
       voix: ['', Validators.required]
