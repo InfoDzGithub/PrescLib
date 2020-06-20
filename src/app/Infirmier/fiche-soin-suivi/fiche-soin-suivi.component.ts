@@ -25,7 +25,7 @@ export class FicheSoinSuiviComponent implements OnInit {
   ownerAccount: User;
   email: string;
   validation: Validation;
-  nbreV: number;
+  nbreV: number = 0;
   Validations: any;
   mode: number;
   constructor(private fileService: CareFileService, private route: ActivatedRoute, public prescService: PrescriptionServiceService, private router: Router, private patService: PatientService, public userService: UtilisateurService) {

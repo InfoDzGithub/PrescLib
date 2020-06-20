@@ -145,7 +145,7 @@ export class EditSoinPrescriptionComponent implements OnInit {
     this.prescription.patient = this.prescription.patient;
     this.prescription.medecin = formValue['doctorPresc'];
     this.prescription.service = formValue['servicePresc'];
-    this.prescription.secretaire = this.ownerAccount;
+    //this.prescription.secretaire = this.ownerAccount;
     this.prescription.type_presc = "SOIN";
     this.prescription.type = "SOIN";
 

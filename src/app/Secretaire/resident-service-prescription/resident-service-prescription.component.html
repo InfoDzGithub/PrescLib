@@ -149,7 +149,7 @@
 
 
                                                                     <ng-container
-                                                                        *ngIf="c.secretaire.id==ownerAccount.id ">
+                                                                        *ngIf="c.secretaire.id==ownerAccount.id || c.medecin.id==ownerAccount.id">
                                                                         <ng-template [ngIf]="c.type=='MDCL'">
                                                                             <a class="btn btn-primary btn-xs"
                                                                                 (click)="editMedicalPrescription(c.id)"

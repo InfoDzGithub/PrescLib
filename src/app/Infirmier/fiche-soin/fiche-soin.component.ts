@@ -27,7 +27,7 @@ export class FicheSoinComponent implements OnInit {
   cmp: number = 0;
   Validations: any;
   mode: number;
-  nbreV: number;
+  nbreV: number = 0;
   constructor(private fileService: CareFileService, private route: ActivatedRoute, public prescService: PrescriptionServiceService, private router: Router, private patService: PatientService, public userService: UtilisateurService) {
   }
 

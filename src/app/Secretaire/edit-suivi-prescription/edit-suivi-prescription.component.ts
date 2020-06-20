@@ -146,7 +146,7 @@ export class EditSuiviPrescriptionComponent implements OnInit {
     this.prescription.patient = this.prescription.patient;
     this.prescription.medecin = formValue['doctorPresc'];
     this.prescription.service = formValue['servicePresc'];
-    this.prescription.secretaire = this.ownerAccount;
+    // this.prescription.secretaire = this.ownerAccount;
     this.prescription.type_presc = "SUIV";
     this.prescription.type = "SUIV";
 

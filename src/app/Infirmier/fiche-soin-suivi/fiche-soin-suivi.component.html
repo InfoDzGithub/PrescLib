@@ -104,7 +104,7 @@
                                                                     class="tag clickable">
                                                                     <!--span>Numero °{{i+1}}</span-->
                                                                     <span
-                                                                        *ngIf="ownerAccount.role=='medecin'">Surveiller</span>
+                                                                        *ngIf="ownerAccount.role=='infirmier'">Surveiller</span>
                                                                     <span
                                                                         *ngIf="ownerAccount.role=='medecin'">Afficher</span>
                                                                 </a>
@@ -313,10 +313,8 @@
                                                                     class="tag clickable">
                                                                     <!--span>Numero °{{i+1}}</span-->
 
-                                                                    <span
-                                                                        *ngIf="ownerAccount.role=='medecin'">Afficher</span>
-                                                                    <span
-                                                                        *ngIf="ownerAccount.role=='infirmier'">Suivi</span>
+
+                                                                    <span>Afficher</span>
                                                                 </a>
                                                             </div>
                                                             <div class="block_content">

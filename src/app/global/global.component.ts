@@ -32,7 +32,7 @@ export class GlobalComponent implements OnInit {
 
   settingUser(id: number) {
 
-    this.router.navigate(["/parametre", id]);
+    this.router.navigate(["/detailUser", id]);
   }
 
   goToUser() {

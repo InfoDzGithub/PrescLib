@@ -162,11 +162,11 @@ export class EditMedicalPrescriptionComponent implements OnInit {
   submit() {
     console.log(this.form.value);
     const formValue = this.form.value;
-    // this.prescription = new Prescription();
+
     this.prescription.patient = this.prescription.patient;
     this.prescription.medecin = formValue['doctorPresc'];
     this.prescription.service = formValue['servicePresc'];
-    this.prescription.secretaire = this.ownerAccount;
+    //this.prescription.secretaire = this.ownerAccount;
     this.prescription.type_presc = "MDCL";
     this.prescription.type = "MDCL";
 
