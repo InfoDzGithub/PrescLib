@@ -25,7 +25,7 @@ export class FicheSoinReelComponent implements OnInit {
   ownerAccount: User;
   email: string;
   validation: Validation;
-  nbreV: number;
+  nbreV: number = 0;
   Validations: any;
   mode: number;
   constructor(private fileService: CareFileService, private route: ActivatedRoute, public prescService: PrescriptionServiceService, private router: Router, private patService: PatientService, public userService: UtilisateurService) {
@@ -116,7 +116,7 @@ export class FicheSoinReelComponent implements OnInit {
 
 
   addValidation(item: Tests) {
-    if (confirm("Aviez vous injecter le traitement?")) {
+    if (confirm("Aviez vous effectué le soin?")) {
 
       this.validation = new Validation();
       this.validation.type_val = "VB";

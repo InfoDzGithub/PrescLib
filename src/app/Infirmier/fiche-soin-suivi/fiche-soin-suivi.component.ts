@@ -116,7 +116,7 @@ export class FicheSoinSuiviComponent implements OnInit {
 
 
   addValidation(item: Tests, value: number) {
-    if (confirm("Aviez vous injecter le traitement?")) {
+    if (confirm("Aviez vous effectué le suivi?")) {
 
       this.validation = new Validation();
       this.validation.type_val = "VN";

@@ -29,7 +29,7 @@
                                                 <a class="dropdown-item"
                                                     (click)="addSuiviPrescription(patient.id)">Surveillance</a>
                                                 <a class="dropdown-item"
-                                                    (click)="addSoinPrescription(patient.id)">Soins</a>
+                                                    (click)="addSoinPrescription(patient.id)">Soin</a>
                                                 <a class="dropdown-item"
                                                     (click)="addAlimentPrescription(patient.id)">Aliment</a>
                                             </div>
@@ -213,9 +213,9 @@
                                                         <div class="item form-group">
                                                             <div class="col-md-6 col-sm-6 offset-md-3">
                                                                 <button class="btn btn-default"
-                                                                    type="reset">Annulé</button>
+                                                                    type="reset">Annuler</button>
                                                                 <button class="btn btn-primary" type="submit"
-                                                                    [disabled]="patientForm.invalid">Validé</button>
+                                                                    [disabled]="patientForm.invalid">Valider</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -249,7 +249,7 @@
                                                                             <select id="serviceAff" class="form-control"
                                                                                 formControlName="serviceAff"
                                                                                 placeholder="service" required>
-                                                                                <option disabled>chef service</option>
+                                                                                <option disabled>Service</option>
                                                                                 <option *ngFor="let u of servicesOcc"
                                                                                     [ngValue]="u.service"
                                                                                     (click)="doctorsOfSelectedService(u.service.id)">
@@ -289,7 +289,7 @@
                                                                         <div class="form-group row">
                                                                             <div class="col-md-9 col-sm-9  offset-md-3">
                                                                                 <button type="button"
-                                                                                    class="btn btn-primary">Annulé</button>
+                                                                                    class="btn btn-primary">Annuler</button>
 
                                                                                 <button type="submit"
                                                                                     [disabled]="affectForm.invalid"
@@ -330,7 +330,7 @@
                                                                                 class="form-control"
                                                                                 formControlName="serviceTrsf"
                                                                                 placeholder="service" required>
-                                                                                <option disabled>chef service</option>
+                                                                                <option disabled>Service</option>
                                                                                 <option *ngFor="let u of servicesOcc"
                                                                                     [ngValue]="u.service"
                                                                                     (click)="doctorsOfSelectedService(u.service.id)">
@@ -370,7 +370,7 @@
                                                                         <div class="form-group row">
                                                                             <div class="col-md-9 col-sm-9  offset-md-3">
                                                                                 <button type="button"
-                                                                                    class="btn btn-primary">Annulé</button>
+                                                                                    class="btn btn-primary">Annuler</button>
 
                                                                                 <button type="submit"
                                                                                     [disabled]="transfertForm.invalid"

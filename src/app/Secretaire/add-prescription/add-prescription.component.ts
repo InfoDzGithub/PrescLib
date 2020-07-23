@@ -175,7 +175,7 @@ export class AddPrescriptionComponent implements OnInit {
 
 
         }
-        this.infoBox("La prescription a été ajouté avec succes");
+        this.infoBox("La prescription a été ajouté avec succès");
         //===>rediriger vers détaille
         this.router.navigate(["/detailMedicalPrescription", this.prescriptionSaved.id]);
 

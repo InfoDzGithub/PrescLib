@@ -75,7 +75,7 @@ export class PatientsComponent implements OnInit {
 
   }
   deleteConfirme(c: any) {
-    if (confirm("Voulier vous maruer la sortie du:  " + c.nom + " " + c.prenom + " du service " + c.service.nom)) {
+    if (confirm("Voulier vous marquer la sortie du  " + c.nom + " " + c.prenom + " du service " + c.service.nom)) {
       this.exitPatient(c.id);
       this.doSearch();
     }

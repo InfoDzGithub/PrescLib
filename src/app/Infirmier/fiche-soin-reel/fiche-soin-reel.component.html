@@ -50,7 +50,7 @@
                                         <div class="row">
                                             <div class="  invoice-header">
                                                 <h1>
-                                                    <i class="fa fa-clipboard"></i> Fiche du Soins:
+                                                    <i class="fa fa-clipboard"></i> Fiche du Soin:
                                                     <small style="font-size: 25px;">
                                                         {{fileCare?.dateF| date}}</small>
                                                 </h1>
@@ -130,7 +130,7 @@
                                                                     <div *ngIf="Validations.length>0">
                                                                         <div class="well" style="overflow: auto">
                                                                             <span id="red">Soins déja
-                                                                                éffectué:&nbsp;</span><br>
+                                                                                effectués:&nbsp;</span><br>
                                                                             <ng-container
                                                                                 *ngFor="let v of Validations;  let i=index">
                                                                                 <div
@@ -145,7 +145,7 @@
 
                                                                                     <a class="clickable"
                                                                                         data-toggle="modal"
-                                                                                        [attr.data-target]="'#myModal' +i">detaille</a>
+                                                                                        [attr.data-target]="'#myModal' +i">détails</a>
 
                                                                                     <!-- The Modal -->
                                                                                     <div class="modal"
@@ -159,8 +159,8 @@
                                                                                                     class="modal-header">
                                                                                                     <h4
                                                                                                         class="modal-title">
-                                                                                                        Detaille sur
-                                                                                                        le soins
+                                                                                                        Détail sur
+                                                                                                        le soin
                                                                                                     </h4>
                                                                                                     <button
                                                                                                         type="button"
@@ -175,7 +175,7 @@
 
                                                                                                     <h4 class="heading">
                                                                                                         Type du
-                                                                                                        soins:&nbsp;
+                                                                                                        soin:&nbsp;
                                                                                                     </h4>
 
                                                                                                     <p
@@ -245,7 +245,7 @@
 
                                                                         <div *ngIf="ownerAccount.role=='infirmier'">
                                                                             <span id="red">Soins à
-                                                                                éffectuer:&nbsp;</span><br>
+                                                                                effectuer:&nbsp;</span><br>
                                                                             <ng-container
                                                                                 *ngFor="let dummy of ' '.repeat(item.nbre_par_jr - Validations?.length).split(''), let x = index">
                                                                                 <div
@@ -278,7 +278,7 @@
                                                                     <div *ngIf="ownerAccount.role=='medecin'">
                                                                         <div
                                                                             *ngIf="item.nbre_par_jr - Validations.length ==0">
-                                                                            <span id="red">Le soignement
+                                                                            <span id="red">Soignement
                                                                                 de:&nbsp;{{item?.nom_test}}&nbsp;est
                                                                                 effectué avec succes</span><br>
 
@@ -326,8 +326,8 @@
 
                                                                     <div *ngIf="Validations.length>0">
                                                                         <div class="well" style="overflow: auto">
-                                                                            <span id="red">Soins déja
-                                                                                éffectué:&nbsp;</span><br>
+                                                                            <span id="red">Soin déja
+                                                                                effectués:&nbsp;</span><br>
                                                                             <ng-container
                                                                                 *ngFor="let v of Validations;  let i=index">
                                                                                 <div
@@ -342,7 +342,7 @@
 
                                                                                     <a class="clickable"
                                                                                         data-toggle="modal"
-                                                                                        [attr.data-target]="'#myModal' +i">detaille</a>
+                                                                                        [attr.data-target]="'#myModal' +i">détails</a>
 
                                                                                     <!-- The Modal -->
                                                                                     <div class="modal"
@@ -356,7 +356,7 @@
                                                                                                     class="modal-header">
                                                                                                     <h4
                                                                                                         class="modal-title">
-                                                                                                        Detaille sur
+                                                                                                        Détail sur
                                                                                                         le soins
                                                                                                     </h4>
                                                                                                     <button
@@ -372,7 +372,7 @@
 
                                                                                                     <h4 class="heading">
                                                                                                         Type du
-                                                                                                        soins:&nbsp;
+                                                                                                        soin:&nbsp;
                                                                                                     </h4>
 
                                                                                                     <p
@@ -460,8 +460,8 @@
                                                                     <div *ngIf="ownerAccount.role=='medecin'">
                                                                         <div
                                                                             *ngIf="item.nbre_par_jr - Validations.length ==0">
-                                                                            <span id="red">Le soignement
-                                                                                de:&nbsp;{{item?.nom_test}}&nbsp;est
+                                                                            <span id="red">Soignement
+                                                                                de &nbsp;{{item?.nom_test}}&nbsp;est
                                                                                 effectué avec succes</span><br>
 
 

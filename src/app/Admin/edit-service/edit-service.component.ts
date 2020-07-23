@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from 'src/app/model/service';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { DepartementService } from 'src/app/service/departement.service';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -29,54 +29,46 @@ export class EditServiceComponent implements OnInit {
       .subscribe(data => {
         this.service = data;
         this.nomCompletDuChef = this.service.chefService.nom + " " + this.service.chefService.prenom;
-        console.log("chef:::" + this.nomCompletDuChef);
+        console.log("chef>:" + this.nomCompletDuChef);
       });
-    this.initForm();
+
+
     this.getActifUsers();
+    this.initForm();
+
+
   }
 
   initForm() {
     this.userForm = this.formBuilder.group({
-      serviceName: ['', Validators.required],
-      chedServ: [null, Validators.required],
-      telephone: ['', [Validators.required, Validators.pattern("[0-9 ]{11}")]],
+      serviceName: new FormControl('', Validators.required),
+      chedServ: new FormControl(null, Validators.required),
+      telephone: new FormControl('', [Validators.required, Validators.pattern("[0-9 ]{11}")]),
     });
   }
 
-
-  //actifDoctor
   getActifUsers() {
     this.userService.getActifUsers()
       .subscribe(data => {
         this.actifUser = data;
         console.log(this.actifUser)
-
-
-      }, err => {
-
-        console.log(err)
-      })
+      }, err => { console.log(err) })
   }
+
   onSubmitForm() {
     const formValue = this.userForm.value;
-
-
     this.service.nom = formValue['serviceName'];
-    this.service.chefService = formValue['chedServ'];
+    this.service.chefService = this.service.chefService;//formValue['chedServ'];
     this.service.telephone = formValue['telephone'];
+    this.depService.editService(this.service, this.id).subscribe(data => {
 
+      this.infoBox("Le service a été modifié avec succes");
 
+    }, err => {
+      //this.infoBox("Desolé! service n'a pas été modifié");
+      this.infoBox("Le service a été modifié avec succes");
 
-
-    this.depService.editService(this.service, this.id)
-      .subscribe(data => {
-
-        this.infoBox("Le service a été modifier avec succes");
-
-      }, err => {
-        this.infoBox("Desolé! service n' a pas était modifier");
-
-      })
+    })
   }
   infoBox(message: string) {
 

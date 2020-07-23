@@ -132,7 +132,7 @@ export class FicheSoinComponent implements OnInit {
 
 
   addValidation(item: Traitement) {
-    if (confirm("Aviez vous injecter le traitement?")) {
+    if (confirm("Aviez vous injecté le traitement?")) {
 
       this.validation = new Validation();
       this.validation.type_val = "VB";

@@ -12,7 +12,7 @@
                     <div class="page-title">
                         <div class="title_left">
                             <h2>Modifie la prescription aliment du:
-                                <small>{{prescription?.patient?.nom}}&nbsp;{{prescription?.patient?.prenom}}</small>
+                                {{prescription?.patient?.nom}}&nbsp;{{prescription?.patient?.prenom}}
                             </h2>
                         </div>
 
@@ -184,7 +184,7 @@
                                         <div class="card-body">
                                             <div class="col-12">
 
-                                                <button class="btn btn-default" type="reset">Annulé</button>
+                                                <button class="btn btn-default" type="reset">Annuler</button>
                                                 <button class="btn btn-success m-1" [disabled]="!form.valid"
                                                     type="submit"> Enregistrer</button>
                                             </div>

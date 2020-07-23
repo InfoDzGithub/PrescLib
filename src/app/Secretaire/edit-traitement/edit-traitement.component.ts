@@ -76,12 +76,12 @@ export class EditTraitementComponent implements OnInit {
     this.prescService.editTraitement(this.traitement, this.traitement.id)
       .subscribe(data => {
 
-        this.infoBox("Le traitement a bien été modifié");
+        this.infoBox("Le traitement a été modifié");
 
 
 
       }, err => {
-        this.infoBox("Desolé! le patient n'a pas été affecté");
+        this.infoBox("Desolé! le traitement n'a pas été modifié");
 
 
       })

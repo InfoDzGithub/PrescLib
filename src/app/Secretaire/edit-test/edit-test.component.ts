@@ -74,7 +74,7 @@ export class EditTestComponent implements OnInit {
     this.prescService.editTest(this.test, this.test.id)
       .subscribe(data => {
 
-        this.infoBox("Le test a bien été modifié");
+        this.infoBox("Le test a été modifié");
 
 
 

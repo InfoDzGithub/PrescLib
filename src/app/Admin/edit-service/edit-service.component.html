@@ -63,12 +63,12 @@
                                             <label for="inputState">Chef du service</label>
                                             <select id="chedServ" class="form-control" formControlName="chedServ"
                                                 [(ngModel)]="nomCompletDuChef" required>
-                                                <!--option [(ngModel)]="nomCompletDuChef" >
-                                                </option-->
 
-                                                <option *ngFor="let u of actifUser" [ngValue]="u">
+                                                <option *ngFor="let u of actifUser"
+                                                    [selected]="u.id===service.chefService.id">
                                                     {{u.nom}} {{u.prenom}}
                                                 </option>
+                                                <option *ngIf="actifUser.length===0">No data found</option>
                                             </select>
                                         </div>
                                         <br><br><br><br><br><br><br><br><br><br><br>
@@ -76,9 +76,9 @@
                                         <div class="ln_solid"></div>
                                         <div class="item form-group">
                                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                                <button class="btn btn-default" type="reset">Annulé</button>
+                                                <button class="btn btn-default" type="reset">Annuler</button>
                                                 <button class="btn btn-primary" type="submit"
-                                                    [disabled]="userForm.invalid">Validé</button>
+                                                    [disabled]="userForm.invalid">Valider</button>
                                             </div>
                                         </div>
                                         <br><br>

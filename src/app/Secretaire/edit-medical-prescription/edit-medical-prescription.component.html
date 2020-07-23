@@ -12,7 +12,7 @@
                     <div class="page-title">
                         <div class="title_left">
                             <h2>Modifie la prescription médicale du:
-                                <small>{{prescription?.patient?.nom}}&nbsp;{{prescription?.patient?.prenom}}</small>
+                                {{prescription?.patient?.nom}}&nbsp;{{prescription?.patient?.prenom}}
                             </h2>
                         </div>
 
@@ -88,7 +88,7 @@
 
                                             <div class="form-group col-6">
                                                 <label for="inputState">Service</label>
-                                                <select id="serviceAff" class="form-control" [ngModel]="service?.nom"
+                                                <select id="serviceAff" class="form-control" [(ngModel)]="service.nom"
                                                     formControlName="servicePresc" placeholder="service" required>
                                                     <option [ngValue]="service" selected>{{service?.nom}}</option>
                                                     <option *ngFor="let u of servicesOcc" [ngValue]="u.service"
@@ -125,7 +125,7 @@
                                         </div><br>
 
                                         <!--edit trai-->
-                                        <div class="card-header">Ancien Traitement</div>
+                                        <div class="card-header">Ancien Traitements</div>
                                         <br>
                                         <div class="x_content" style="background-color: white;">
                                             <br />
@@ -219,7 +219,7 @@
 
                                         <!--/edit trai-->
                                         <br><br>
-                                        <div class="card-header">Nouveau Traitement</div>
+                                        <div class="card-header">Nouveau Traitements</div>
                                         <div class="card-body" formArrayName="contacts">
                                             <div class="row">
                                                 <div class="col-6"

@@ -167,7 +167,7 @@ export class EditSuiviPrescriptionComponent implements OnInit {
 
 
         }
-        this.infoBox("La prescription a été modifié avec succes");
+        this.infoBox("La prescription a été modifié avec succès");
         //===>rediriger vers détaille
         this.router.navigate(["/detailSuiviPrescription", this.prescriptionSaved.id]);
 

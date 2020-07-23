@@ -21,7 +21,7 @@
                         <div class="col-md-12 col-sm-12 ">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>paramétrer Vos propres informations </h2>
+                                    <h2>Gérer vos paramètres </h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="close-link" (click)="home()"><i class="fa fa-close"></i></a>
                                         </li>
@@ -50,7 +50,7 @@
                                         <br>
 
                                         &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<button class="btn btn-success"
-                                            (click)="detailUser(user?.id)">Detaille</button>
+                                            (click)="detailUser(user?.id)">Détails</button>
 
 
                                     </div>
@@ -59,7 +59,7 @@
                                             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                                 <li role="presentation" class="active"><a href="#tab_content1"
                                                         id="home-tab" role="tab" data-toggle="tab"
-                                                        aria-expanded="true">Parametre</a>
+                                                        aria-expanded="true">Paramètres</a>
                                                 </li>
 
 
@@ -132,7 +132,8 @@
                                                         <div class="ln_solid"></div>
                                                         <div class="item form-group col-md-6">
 
-                                                            <button class="btn btn-default" type="reset">Annulé</button>
+                                                            <button class="btn btn-default"
+                                                                type="reset">Annuler</button>
                                                             <button class="btn btn-primary" type="submit"
                                                                 [disabled]="userForm.invalid">Modifier</button>
 

@@ -166,7 +166,7 @@ export class EditSoinPrescriptionComponent implements OnInit {
 
 
         }
-        this.infoBox("La prescription a été modifié avec succes");
+        this.infoBox("La prescription a été modifié avec succès");
         //===>rediriger vers détaille
         this.router.navigate(["/detailSoinPrescription", this.prescriptionSaved.id]);
 

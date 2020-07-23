@@ -128,8 +128,8 @@
 
                                                                     <div *ngIf="Validations.length>0">
                                                                         <div class="well" style="overflow: auto">
-                                                                            <span id="red">Surveillance déja
-                                                                                éffectué:&nbsp;</span><br>
+                                                                            <span id="red">Surveillances déja
+                                                                                effectuées:&nbsp;</span><br>
                                                                             <ng-container
                                                                                 *ngFor="let v of Validations; let i=index">
                                                                                 <div
@@ -140,7 +140,7 @@
 
                                                                                     <a class="clickable"
                                                                                         data-toggle="modal"
-                                                                                        [attr.data-target]="'#myModal' +i">detaille</a>
+                                                                                        [attr.data-target]="'#myModal' +i">détails</a>
 
                                                                                     <!-- The Modal -->
                                                                                     <div class="modal"
@@ -154,7 +154,7 @@
                                                                                                     class="modal-header">
                                                                                                     <h4
                                                                                                         class="modal-title">
-                                                                                                        Detaille sur
+                                                                                                        Detail sur
                                                                                                         le type de
                                                                                                         surveillance
                                                                                                     </h4>
@@ -285,9 +285,9 @@
                                                                     <div *ngIf="ownerAccount.role=='medecin'">
                                                                         <div
                                                                             *ngIf="item.nbre_par_jr - Validations.length ==0">
-                                                                            <span id="red">La surveillance
-                                                                                de:&nbsp;{{item?.nom_test}}&nbsp;est
-                                                                                effectué avec succes</span><br>
+                                                                            <span id="red">Surveillance
+                                                                                de &nbsp;{{item?.nom_test}}&nbsp;est
+                                                                                effectuée avec succès</span><br>
 
 
                                                                         </div>
@@ -336,8 +336,8 @@
 
                                                                     <div *ngIf="Validations.length>0">
                                                                         <div class="well" style="overflow: auto">
-                                                                            <span id="red">Surveillance déja
-                                                                                éffectué:&nbsp;</span><br>
+                                                                            <span id="red">Surveillances déja
+                                                                                effectuées:&nbsp;</span><br>
                                                                             <ng-container
                                                                                 *ngFor="let v of Validations; let i=index">
                                                                                 <div
@@ -348,7 +348,7 @@
 
                                                                                     <a class="clickable"
                                                                                         data-toggle="modal"
-                                                                                        [attr.data-target]="'#myModal' +i">detaille</a>
+                                                                                        [attr.data-target]="'#myModal' +i">détails</a>
 
                                                                                     <!-- The Modal -->
                                                                                     <div class="modal"
@@ -362,7 +362,7 @@
                                                                                                     class="modal-header">
                                                                                                     <h4
                                                                                                         class="modal-title">
-                                                                                                        Detaille sur
+                                                                                                        Détail sur
                                                                                                         le type de
                                                                                                         surveillance
                                                                                                     </h4>
